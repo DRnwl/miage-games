@@ -5,28 +5,166 @@
 package models;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  *
- * @author Sangre
+ * @author Pierro
  */
 @Entity
+@Table(name = "Client")
+@NamedQueries({
+    @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c"),
+    @NamedQuery(name = "Client.findById", query = "SELECT c FROM Client c WHERE c.id = :id"),
+    @NamedQuery(name = "Client.findByLogin", query = "SELECT c FROM Client c WHERE c.login = :login"),
+    @NamedQuery(name = "Client.findByPassword", query = "SELECT c FROM Client c WHERE c.password = :password"),
+    @NamedQuery(name = "Client.findByNom", query = "SELECT c FROM Client c WHERE c.nom = :nom"),
+    @NamedQuery(name = "Client.findByPrenom", query = "SELECT c FROM Client c WHERE c.prenom = :prenom"),
+    @NamedQuery(name = "Client.findByTelephone", query = "SELECT c FROM Client c WHERE c.telephone = :telephone"),
+    @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email"),
+    @NamedQuery(name = "Client.findByAdresse", query = "SELECT c FROM Client c WHERE c.adresse = :adresse")
+})
 public class Client implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    // @Basic
+    // C'est l'annotation la plus simple pour indiquer qu'une propriété est persistante 
+    //(c'est-à-dire gérée par JPA).
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    
+    @Basic(optional = false)
+    @Column(name = "login")
+    private String login;
+    
+    @Basic(optional = false)
+    @Column(name = "password")
+    private String password;
+    
+    @Basic(optional = false)
+    @Column(name = "nom")
+    private String nom;
+    
+    @Basic(optional = false)
+    @Column(name = "prenom")
+    private String prenom;
+    
+    @Basic(optional = false)
+    @Column(name = "telephone")
+    private String telephone;
+    
+    @Basic(optional = false)
+    @Column(name = "email")
+    private String email;
+    
+    @Basic(optional = false)
+    @Column(name = "adresse")
+    private String adresse;
 
-    public Long getId() {
+    public Client() {
+    }
+
+    public Client(Integer id) {
+        this.id = id;
+    }
+
+    public Client(Integer id, String login, String password) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+    }
+    
+    
+
+    public Client(Integer id, String login, String password, String nom, String prenom, String telephone, String email, String adresse) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.email = email;
+        this.adresse = adresse;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public String getLogin() {
+        return login;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     @Override
@@ -53,5 +191,4 @@ public class Client implements Serializable {
     public String toString() {
         return "models.Client[ id=" + id + " ]";
     }
-    
 }
