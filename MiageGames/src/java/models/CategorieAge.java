@@ -22,10 +22,10 @@ import javax.persistence.Id;
 public class CategorieAge implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
     
     @Basic(optional = false)
     @Column(name = "nom")
@@ -43,11 +43,11 @@ public class CategorieAge implements Serializable {
     public CategorieAge() {
     }
 
-    public CategorieAge(Long id) {
+    public CategorieAge(Integer id) {
         this.id = id;
     }
 
-    public CategorieAge(Long id, String nom, String description, String nomImage) {
+    public CategorieAge(Integer id, String nom, String description, String nomImage) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -55,11 +55,11 @@ public class CategorieAge implements Serializable {
     }
 
     
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
