@@ -12,7 +12,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Pierro
+ * @author Sangre
  */
 @Entity
 public class Categorie implements Serializable {
@@ -51,7 +51,7 @@ public class Categorie implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Categorie[ id=" + id + " ]";
+        return "models.Categorie[ id=" + id + " ]";
     }
     
 }

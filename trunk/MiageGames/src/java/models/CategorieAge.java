@@ -12,7 +12,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Pierro
+ * @author Sangre
  */
 @Entity
 public class CategorieAge implements Serializable {
@@ -51,7 +51,7 @@ public class CategorieAge implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.CategorieAge[ id=" + id + " ]";
+        return "models.CategorieAge[ id=" + id + " ]";
     }
     
 }
