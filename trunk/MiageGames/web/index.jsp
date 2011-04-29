@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello Workjbkjld! 17h16</h1>
+        <h1>Hello Workjbkjld!</h1>
     </body>
 </html>
