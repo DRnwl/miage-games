@@ -24,9 +24,9 @@ import javax.persistence.Id;
 public class Distributeur implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    private Long id;
+    private Integer id;
 
     @Basic(optional = false)
     @Column(name = "nom_distributeur")
@@ -42,12 +42,12 @@ public class Distributeur implements Serializable {
     public Distributeur() {
     }
 
-    public Distributeur(Long id, String nomDistributeur) {
+    public Distributeur(Integer id, String nomDistributeur) {
         this.id = id;
         this.nomDistributeur = nomDistributeur;
     }
 
-    public Distributeur(Long id, String nomDistributeur, String siteDistributeur) {
+    public Distributeur(Integer id, String nomDistributeur, String siteDistributeur) {
         this.id = id;
         this.nomDistributeur = nomDistributeur;
         this.siteDistributeur = siteDistributeur;
@@ -79,11 +79,11 @@ public class Distributeur implements Serializable {
     
     
     
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

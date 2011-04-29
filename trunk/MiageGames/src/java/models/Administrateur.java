@@ -23,12 +23,12 @@ import javax.persistence.Id;
     @NamedQuery(name = "Administrateur.findByLogin", query = "SELECT a FROM Administrateur a WHERE a.login = :login"),
     @NamedQuery(name = "Administrateur.findByName", query = "SELECT a FROM Administrateur a WHERE a.nom = :nom")})
 public class Administrateur implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
     
     @Basic(optional = false)
     @Column(name = "login")
@@ -53,14 +53,14 @@ public class Administrateur implements Serializable {
     public Administrateur() {
     }
 
-    public Administrateur(Long id, String login, String password) {
+    public Administrateur(Integer id, String login, String password) {
         this.id = id;
         this.login = login;
         this.password = password;
     }
 
     
-    public Administrateur(Long id, String login, String password, String nom, String email, String telephone) {
+    public Administrateur(Integer id, String login, String password, String nom, String email, String telephone) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -72,11 +72,11 @@ public class Administrateur implements Serializable {
     
     
     
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
