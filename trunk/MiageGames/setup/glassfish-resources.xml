@@ -10,5 +10,5 @@
         <property name="URL" value="jdbc:derby://localhost:1527/miagegames"/>
         <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="oo" object-type="user" pool-name="derby_net_miagegames_vincentPool"/>
+    <jdbc-resource enabled="true" jndi-name="MgPers" object-type="user" pool-name="derby_net_miagegames_vincentPool"/>
 </resources>
