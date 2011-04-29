@@ -5,7 +5,7 @@
 package models;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,12 +15,46 @@ import javax.persistence.Id;
  * @author Sangre
  */
 @Entity
+@Table(name = "categorie_age")
+@NamedQueries({
+    @NamedQuery(name = "Categorie_age.findAll", query = "SELECT c FROM Categorie_age c"),
+    @NamedQuery(name = "Categorie_age.findById", query = "SELECT c FROM Categorie_age c WHERE c.id = :id")})
 public class CategorieAge implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Basic(optional = false)
+    @Column(name = "id")
     private Long id;
+    
+    @Basic(optional = false)
+    @Column(name = "nom")
+    private String nom;
+    
+    @Basic(optional = false)
+    @Column(name = "description")
+    private String description;
+    
+    
+    @Basic(optional = false)
+    @Column(name = "nom_image")
+    private String nomImage;
 
+    public CategorieAge() {
+    }
+
+    public CategorieAge(Long id) {
+        this.id = id;
+    }
+
+    public CategorieAge(Long id, String nom, String description, String nomImage) {
+        this.id = id;
+        this.nom = nom;
+        this.description = description;
+        this.nomImage = nomImage;
+    }
+
+    
     public Long getId() {
         return id;
     }
@@ -28,6 +62,33 @@ public class CategorieAge implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNomImage() {
+        return nomImage;
+    }
+
+    public void setNomImage(String nomImage) {
+        this.nomImage = nomImage;
+    }
+
+   
+    
 
     @Override
     public int hashCode() {
