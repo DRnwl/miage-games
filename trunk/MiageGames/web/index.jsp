@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello Workjbkjld!</h1>
+        <h1>Bienvenu sur notre site MiageGames</h1>
     </body>
 </html>
