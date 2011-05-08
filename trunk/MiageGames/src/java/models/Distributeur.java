@@ -7,9 +7,7 @@ package models;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.*;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 
 /**
  *
@@ -20,7 +18,9 @@ import javax.persistence.Id;
 @NamedQueries({
     @NamedQuery(name = "Distributeur.findAll", query = "SELECT d FROM Distributeur d"),
     @NamedQuery(name = "Distributeur.findById", query = "SELECT d FROM Distributeur d WHERE d.id = :id"),
-    @NamedQuery(name = "Distributeur.findByName", query = "SELECT d FROM Distributeur d WHERE d.nom_distributeur = :nom_distributeur")})
+    @NamedQuery(name = "Distributeur.findByNom_distributeur", query = "SELECT d FROM Distributeur d WHERE d.nom_distributeur = :nom_distributeur"),
+    @NamedQuery(name = "Distributeur.findBySite_distributeur", query = "SELECT d FROM Distributeur d WHERE d.site_distributeur = :site_distributeur")
+})
 public class Distributeur implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,11 +30,11 @@ public class Distributeur implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "nom_distributeur")
-    private String nomDistributeur;
+    private String nom_distributeur;
     
     @Basic(optional = false)
     @Column(name = "site_distributeur")
-    private String siteDistributeur;
+    private String site_distributeur;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "distributeur")
     private Collection<Produit> collectionProduit;
@@ -42,50 +42,53 @@ public class Distributeur implements Serializable {
     public Distributeur() {
     }
 
-    public Distributeur(Integer id, String nomDistributeur) {
+    public Distributeur(Integer id, String nom_distributeur, String site_distributeur, Collection<Produit> collectionProduit) {
         this.id = id;
-        this.nomDistributeur = nomDistributeur;
-    }
-
-    public Distributeur(Integer id, String nomDistributeur, String siteDistributeur) {
-        this.id = id;
-        this.nomDistributeur = nomDistributeur;
-        this.siteDistributeur = siteDistributeur;
-    }
-    
-    public String getNomDistributeur() {
-        return nomDistributeur;
-    }
-
-    public void setNomDistributeur(String nomDistributeur) {
-        this.nomDistributeur = nomDistributeur;
-    }
-
-    public String getSiteDistributeur() {
-        return siteDistributeur;
-    }
-
-    public void setSiteDistributeur(String siteDistributeur) {
-        this.siteDistributeur = siteDistributeur;
+        this.nom_distributeur = nom_distributeur;
+        this.site_distributeur = site_distributeur;
+        this.collectionProduit = collectionProduit;
     }
 
     public Collection<Produit> getCollectionProduit() {
         return collectionProduit;
     }
 
-    public void setCollectionProduit(Collection<Produit> collectionProduit) {
-        this.collectionProduit = collectionProduit;
-    }
-    
-    
-    
     public Integer getId() {
         return id;
+    }
+
+    public String getNom_distributeur() {
+        return nom_distributeur;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getSite_distributeur() {
+        return site_distributeur;
+    }
+
+    public void setCollectionProduit(Collection<Produit> collectionProduit) {
+        this.collectionProduit = collectionProduit;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public void setNom_distributeur(String nom_distributeur) {
+        this.nom_distributeur = nom_distributeur;
+    }
+
+    public void setSite_distributeur(String site_distributeur) {
+        this.site_distributeur = site_distributeur;
+    }
+
+   
+    
+    
+   
 
     @Override
     public int hashCode() {

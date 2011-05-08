@@ -5,15 +5,9 @@
 package models;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import java.util.Collection;
+import javax.persistence.*;
+
 
 /**
  *
@@ -72,6 +66,9 @@ public class Client implements Serializable {
     @Basic(optional = false)
     @Column(name = "adresse")
     private String adresse;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    private Collection<Client_Commande> collectionClient_commande;
 
     public Client() {
     }
@@ -167,6 +164,16 @@ public class Client implements Serializable {
         this.telephone = telephone;
     }
 
+    public Collection<Client_Commande> getCollectionClient_commande() {
+        return collectionClient_commande;
+    }
+
+    public void setCollectionClient_commande(Collection<Client_Commande> collectionClient_commande) {
+        this.collectionClient_commande = collectionClient_commande;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

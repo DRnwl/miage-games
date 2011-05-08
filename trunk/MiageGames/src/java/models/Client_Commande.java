@@ -5,7 +5,7 @@
 package models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Collection;
 import javax.persistence.*;
 
 
@@ -44,7 +44,11 @@ public class Client_Commande implements Serializable {
     @Column(name="numero_confirmation")
     private int numero_confirmation;
     
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client_commande")
+    private Collection<Commande_Produit> collectionCommande_produit;
+    
     @JoinColumn(name="Client_id", referencedColumnName="id")
+    @ManyToOne(optional = false)
     private Client client;
 
     public Client_Commande() {
@@ -104,6 +108,14 @@ public class Client_Commande implements Serializable {
 
     public void setNumero_confirmation(int numero_confirmation) {
         this.numero_confirmation = numero_confirmation;
+    }
+
+    public Collection<Commande_Produit> getCollectionCommande_produit() {
+        return collectionCommande_produit;
+    }
+
+    public void setCollectionCommande_produit(Collection<Commande_Produit> collectionCommande_produit) {
+        this.collectionCommande_produit = collectionCommande_produit;
     }
 
     

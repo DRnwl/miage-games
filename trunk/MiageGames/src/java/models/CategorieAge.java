@@ -5,20 +5,22 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.*;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 
 /**
  *
  * @author Sangre
  */
 @Entity
-@Table(name = "categorie_age")
+@Table(name = "Categorie_age")
 @NamedQueries({
     @NamedQuery(name = "Categorie_age.findAll", query = "SELECT c FROM Categorie_age c"),
-    @NamedQuery(name = "Categorie_age.findById", query = "SELECT c FROM Categorie_age c WHERE c.id = :id")})
+    @NamedQuery(name = "Categorie_age.findById", query = "SELECT c FROM Categorie_age c WHERE c.id = :id"),
+    @NamedQuery(name = "Categorie_age.findByDescription", query = "SELECT c FROM Categorie_age c WHERE c.description = :description"),
+    @NamedQuery(name = "Categorie_age.findByNom_image", query = "SELECT c FROM Categorie_age c WHERE c.nom_image = :nom_image")
+})
 public class CategorieAge implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,6 +41,10 @@ public class CategorieAge implements Serializable {
     @Basic(optional = false)
     @Column(name = "nom_image")
     private String nomImage;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorieAge")
+    private Collection<Produit> collectionProduit;
+    
 
     public CategorieAge() {
     }
@@ -85,6 +91,14 @@ public class CategorieAge implements Serializable {
 
     public void setNomImage(String nomImage) {
         this.nomImage = nomImage;
+    }
+
+    public Collection<Produit> getCollectionProduit() {
+        return collectionProduit;
+    }
+
+    public void setCollectionProduit(Collection<Produit> collectionProduit) {
+        this.collectionProduit = collectionProduit;
     }
 
    

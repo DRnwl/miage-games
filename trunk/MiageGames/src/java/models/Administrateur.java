@@ -6,23 +6,23 @@ package models;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  *
  * @author Sangre
  */
-
 @Entity
-@Table(name = "administrateur")
+@Table(name = "Administrateur")
 @NamedQueries({
     @NamedQuery(name = "Administrateur.findAll", query = "SELECT a FROM Administrateur a"),
     @NamedQuery(name = "Administrateur.findById", query = "SELECT a FROM Administrateur a WHERE a.id = :id"),
     @NamedQuery(name = "Administrateur.findByLogin", query = "SELECT a FROM Administrateur a WHERE a.login = :login"),
-    @NamedQuery(name = "Administrateur.findByName", query = "SELECT a FROM Administrateur a WHERE a.nom = :nom")})
+    @NamedQuery(name = "Administrateur.findByName", query = "SELECT a FROM Administrateur a WHERE a.nom = :nom"),
+    @NamedQuery(name = "Administrateur.findByEmail", query = "SELECT a FROM Administrateur a WHERE a.email = :email"),
+     @NamedQuery(name = "Administrateur.findByTelephone", query = "SELECT a FROM Administrateur a WHERE a.telephone = :telephone")
+})
 public class Administrateur implements Serializable {
+
     private static final Long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,7 +59,6 @@ public class Administrateur implements Serializable {
         this.password = password;
     }
 
-    
     public Administrateur(Integer id, String login, String password, String nom, String email, String telephone) {
         this.id = id;
         this.login = login;
@@ -69,9 +68,6 @@ public class Administrateur implements Serializable {
         this.telephone = telephone;
     }
 
-    
-    
-    
     public Integer getId() {
         return id;
     }
@@ -120,7 +116,6 @@ public class Administrateur implements Serializable {
         this.telephone = telephone;
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -145,5 +140,4 @@ public class Administrateur implements Serializable {
     public String toString() {
         return "models.Administrateur[ id=" + id + " ]";
     }
-    
 }
