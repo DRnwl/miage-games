@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>ServletPrincipal</servlet-name>
+        <servlet-class>controleur.ServletPrincipal</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletPrincipal</servlet-name>
+        <url-pattern>/ServletPrincipal</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <jsp-config>
+        <jsp-property-group>
+            <description>On va ajouter dans ce groupe toutes les pages qui vont inclure Header/footer de base</description>
+            <url-pattern>/vente/*</url-pattern>
+            <url-pattern>/home.jsp</url-pattern>
+            <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
+            <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
+        </jsp-property-group>
+    </jsp-config>
+    <security-constraint>
+        <display-name>Admin</display-name>
+        <web-resource-collection>
+            <web-resource-name>Administration</web-resource-name>
+            <description>Accès à l'interface administrateur</description>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>AdminMG</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-role>
+        <description>Accès à la console admin</description>
+        <role-name>AdminMG</role-name>
+    </security-role>
+</web-app>
