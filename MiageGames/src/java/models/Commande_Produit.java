@@ -25,10 +25,12 @@ public class Commande_Produit implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    
 
-    @JoinColumn(name="Client_Commande_id", referencedColumnName="id")
+    @JoinColumn(name="Client_Commande_id", referencedColumnName="id", insertable= false, updatable= false)
+    @ManyToOne(optional = false)
     private Client_Commande client_commande;
     
-    @JoinColumn(name="Produit_id", referencedColumnName="id")
+    @JoinColumn(name="Produit_id", referencedColumnName="id", insertable=false, updatable= false)
+    @ManyToOne(optional = false)
     private Produit produit;
     
     @Basic(optional = false)

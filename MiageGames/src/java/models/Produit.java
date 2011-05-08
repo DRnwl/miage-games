@@ -4,21 +4,12 @@
  */
 package models;
 
-import java.awt.Image;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import java.util.Collection;
+import javax.persistence.*;
+
 
 /**
  *
@@ -55,22 +46,31 @@ public class Produit implements Serializable {
     
     // Categorie_id reference la cle primaire "id" de la table "Categorie"
     @JoinColumn(name = "Categorie_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
     private Categorie categorie;
     
     @JoinColumn(name = "Distributeur_id", referencedColumnName = "id")
+    @ManyToOne(optional= false)
     private Distributeur distributeur;
     
+    @Basic(optional = false)
     @Column(name = "tags")
     private ArrayList<String> tags;
     
+    @Basic(optional = false)
     @Column(name = "developpeur")
     private String developpeur;
     
+    @Basic(optional = false)
     @Column(name = "Editeur")
     private String Editeur;
     
     @JoinColumn(name = "CategorieAge_id", referencedColumnName = "id")
+    @ManyToOne(optional= false)
     private CategorieAge categorieAge;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
+    private Collection<Commande_Produit> CollectionCommande_Produit;
 
     public Produit() {
     }
@@ -167,6 +167,17 @@ public class Produit implements Serializable {
         this.tags = tags;
     }
 
+    public Collection<Commande_Produit> getCollectionCommande_Produit() {
+        return CollectionCommande_Produit;
+    }
+
+    public void setCollectionCommande_Produit(Collection<Commande_Produit> CollectionCommande_Produit) {
+        this.CollectionCommande_Produit = CollectionCommande_Produit;
+    }
+
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
