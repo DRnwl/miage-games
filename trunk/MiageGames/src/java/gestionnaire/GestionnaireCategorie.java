@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package session;
+package gestionnaire;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

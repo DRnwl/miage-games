@@ -59,8 +59,8 @@ public class Produit implements Serializable {
     
     
     @Basic(optional= false)
-    @Column(name = "Sortie")
-    private String Sortie;
+    @Column(name = "sortie")
+    private String sortie;
     
     @JoinColumn(name = "CategorieAge_id", referencedColumnName = "id")
     @ManyToOne(optional= false)
@@ -87,14 +87,14 @@ public class Produit implements Serializable {
         this.id = id;
     }
 
-    public Produit(Integer id, String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String Sortie, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur, Collection<Commande_Produit> CollectionCommande_Produit) {
+    public Produit(Integer id, String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur, Collection<Commande_Produit> CollectionCommande_Produit) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
         this.categorie = categorie;
         this.distributeur = distributeur;
         this.tags = tags;
-        this.Sortie = Sortie;
+        this.sortie = sortie;
         this.categorieAge = categorieAge;
         this.editeur = editeur;
         this.developpeur = developpeur;
@@ -110,11 +110,11 @@ public class Produit implements Serializable {
     }
 
     public String getSortie() {
-        return Sortie;
+        return sortie;
     }
 
-    public void setSortie(String Sortie) {
-        this.Sortie = Sortie;
+    public void setSortie(String sortie) {
+        this.sortie = sortie;
     }
 
     public Categorie getCategorie() {
