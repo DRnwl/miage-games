@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 
-
 /**
  *
  * @author Pierro
@@ -24,6 +23,7 @@ import javax.persistence.*;
     @NamedQuery(name = "Produit.findByPrix", query = "SELECT p FROM Produit p WHERE p.prix = :prix"),
     @NamedQuery(name = "Produit.findByDistributeur", query = "SELECT p FROM Produit p WHERE p.Distributeur_id = :Distributeur_id"),
     @NamedQuery(name = "Produit.findByEditeur", query = "SELECT p FROM Produit p WHERE p.Editeur_id = :Editeur_id"),
+    @NamedQuery(name = "Produit.findBySortie", query = "SELECT p FROM Produit p WHERE p.sortie = :sortie"),
     @NamedQuery(name = "Produit.findByDeveloppeur", query = "SELECT p FROM Produit p WHERE p.Developpeur_id = :Developpeur_id"),
     @NamedQuery(name = "Produit.findByCategorie", query = "SELECT p FROM Produit p WHERE p.Categorie_id = :Categorie_id")
 })
@@ -35,50 +35,36 @@ public class Produit implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
     @Basic(optional = false)
     @Column(name = "nom")
     private String nom;
-    
     @Basic(optional = false)
     @Column(name = "prix")
     private BigDecimal prix;
-    
     // Categorie_id reference la cle primaire "id" de la table "Categorie"
     @JoinColumn(name = "Categorie_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Categorie categorie;
-    
     @JoinColumn(name = "Distributeur_id", referencedColumnName = "id")
-    @ManyToOne(optional= false)
+    @ManyToOne(optional = false)
     private Distributeur distributeur;
-    
     @Basic(optional = false)
     @Column(name = "tags")
     private ArrayList<String> tags;
-    
-    
-    @Basic(optional= false)
+    @Basic(optional = false)
     @Column(name = "sortie")
     private String sortie;
-    
     @JoinColumn(name = "CategorieAge_id", referencedColumnName = "id")
-    @ManyToOne(optional= false)
+    @ManyToOne(optional = false)
     private CategorieAge categorieAge;
-    
-    
     @JoinColumn(name = "Editeur_id", referencedColumnName = "id")
-    @ManyToOne(optional= false)
+    @ManyToOne(optional = false)
     private Editeur editeur;
-    
     @JoinColumn(name = "Developpeur_id", referencedColumnName = "id")
-    @ManyToOne(optional= false)
+    @ManyToOne(optional = false)
     private Developpeur developpeur;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
     private Collection<Commande_Produit> CollectionCommande_Produit;
-    
-    
 
     public Produit() {
     }
@@ -189,9 +175,6 @@ public class Produit implements Serializable {
         this.tags = tags;
     }
 
-    
-    
-    
     @Override
     public int hashCode() {
         int hash = 0;
