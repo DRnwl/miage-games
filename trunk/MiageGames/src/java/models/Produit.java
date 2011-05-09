@@ -23,8 +23,8 @@ import javax.persistence.*;
     @NamedQuery(name = "Produit.findByNom", query = "SELECT p FROM Produit p WHERE p.nom = :nom"),
     @NamedQuery(name = "Produit.findByPrix", query = "SELECT p FROM Produit p WHERE p.prix = :prix"),
     @NamedQuery(name = "Produit.findByDistributeur", query = "SELECT p FROM Produit p WHERE p.Distributeur_id = :Distributeur_id"),
-    @NamedQuery(name = "Produit.findByEditeur", query = "SELECT p FROM Produit p WHERE p.editeur = :editeur"),
-    @NamedQuery(name = "Produit.findByDeveloppeur", query = "SELECT p FROM Produit p WHERE p.developpeur = :developpeur"),
+    @NamedQuery(name = "Produit.findByEditeur", query = "SELECT p FROM Produit p WHERE p.Editeur_id = :Editeur_id"),
+    @NamedQuery(name = "Produit.findByDeveloppeur", query = "SELECT p FROM Produit p WHERE p.Developpeur_id = :Developpeur_id"),
     @NamedQuery(name = "Produit.findByCategorie", query = "SELECT p FROM Produit p WHERE p.Categorie_id = :Categorie_id")
 })
 public class Produit implements Serializable {
@@ -57,20 +57,28 @@ public class Produit implements Serializable {
     @Column(name = "tags")
     private ArrayList<String> tags;
     
-    @Basic(optional = false)
-    @Column(name = "developpeur")
-    private String developpeur;
     
-    @Basic(optional = false)
-    @Column(name = "Editeur")
-    private String Editeur;
+    @Basic(optional= false)
+    @Column(name = "Sortie")
+    private String Sortie;
     
     @JoinColumn(name = "CategorieAge_id", referencedColumnName = "id")
     @ManyToOne(optional= false)
     private CategorieAge categorieAge;
     
+    
+    @JoinColumn(name = "Editeur_id", referencedColumnName = "id")
+    @ManyToOne(optional= false)
+    private Editeur editeur;
+    
+    @JoinColumn(name = "Developpeur_id", referencedColumnName = "id")
+    @ManyToOne(optional= false)
+    private Developpeur developpeur;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
     private Collection<Commande_Produit> CollectionCommande_Produit;
+    
+    
 
     public Produit() {
     }
@@ -79,92 +87,18 @@ public class Produit implements Serializable {
         this.id = id;
     }
 
-    public Produit(Integer id, String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String developpeur, String Editeur, CategorieAge categorieAge) {
+    public Produit(Integer id, String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String Sortie, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur, Collection<Commande_Produit> CollectionCommande_Produit) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
         this.categorie = categorie;
         this.distributeur = distributeur;
         this.tags = tags;
-        this.developpeur = developpeur;
-        this.Editeur = Editeur;
+        this.Sortie = Sortie;
         this.categorieAge = categorieAge;
-    }
-
-    public String getEditeur() {
-        return Editeur;
-    }
-
-    public Categorie getCategorie() {
-        return categorie;
-    }
-
-    public CategorieAge getCategorieAge() {
-        return categorieAge;
-    }
-
-    public String getDeveloppeur() {
-        return developpeur;
-    }
-
-    public Distributeur getDistributeur() {
-        return distributeur;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public BigDecimal getPrix() {
-        return prix;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public ArrayList<String> getTags() {
-        return tags;
-    }
-
-    public void setEditeur(String Editeur) {
-        this.Editeur = Editeur;
-    }
-
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
-    }
-
-    public void setCategorieAge(CategorieAge categorieAge) {
-        this.categorieAge = categorieAge;
-    }
-
-    public void setDeveloppeur(String developpeur) {
+        this.editeur = editeur;
         this.developpeur = developpeur;
-    }
-
-    public void setDistributeur(Distributeur distributeur) {
-        this.distributeur = distributeur;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setPrix(BigDecimal prix) {
-        this.prix = prix;
-    }
-
-    public void setTags(ArrayList<String> tags) {
-        this.tags = tags;
+        this.CollectionCommande_Produit = CollectionCommande_Produit;
     }
 
     public Collection<Commande_Produit> getCollectionCommande_Produit() {
@@ -173,6 +107,86 @@ public class Produit implements Serializable {
 
     public void setCollectionCommande_Produit(Collection<Commande_Produit> CollectionCommande_Produit) {
         this.CollectionCommande_Produit = CollectionCommande_Produit;
+    }
+
+    public String getSortie() {
+        return Sortie;
+    }
+
+    public void setSortie(String Sortie) {
+        this.Sortie = Sortie;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
+    public CategorieAge getCategorieAge() {
+        return categorieAge;
+    }
+
+    public void setCategorieAge(CategorieAge categorieAge) {
+        this.categorieAge = categorieAge;
+    }
+
+    public Developpeur getDeveloppeur() {
+        return developpeur;
+    }
+
+    public void setDeveloppeur(Developpeur developpeur) {
+        this.developpeur = developpeur;
+    }
+
+    public Distributeur getDistributeur() {
+        return distributeur;
+    }
+
+    public void setDistributeur(Distributeur distributeur) {
+        this.distributeur = distributeur;
+    }
+
+    public Editeur getEditeur() {
+        return editeur;
+    }
+
+    public void setEditeur(Editeur editeur) {
+        this.editeur = editeur;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public BigDecimal getPrix() {
+        return prix;
+    }
+
+    public void setPrix(BigDecimal prix) {
+        this.prix = prix;
+    }
+
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
     }
 
     
