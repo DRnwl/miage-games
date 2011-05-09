@@ -15,12 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Categorie_age")
-@NamedQueries({
-    @NamedQuery(name = "Categorie_age.findAll", query = "SELECT c FROM Categorie_age c"),
-    @NamedQuery(name = "Categorie_age.findById", query = "SELECT c FROM Categorie_age c WHERE c.id = :id"),
-    @NamedQuery(name = "Categorie_age.findByDescription", query = "SELECT c FROM Categorie_age c WHERE c.description = :description"),
-    @NamedQuery(name = "Categorie_age.findByNom_image", query = "SELECT c FROM Categorie_age c WHERE c.nom_image = :nom_image")
-})
+
 public class CategorieAge implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

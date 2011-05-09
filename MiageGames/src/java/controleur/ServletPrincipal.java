@@ -7,6 +7,7 @@ package controleur;
 import gestionnaire.GestionnaireCategorie;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,6 +34,11 @@ public class ServletPrincipal extends HttpServlet {
             throws ServletException, IOException {
         
          String userPath = request.getServletPath();
+         if(gestionnaireCategorie.count() < 1)
+             gestionnaireCategorie.creerCategories();
+         System.out.println(gestionnaireCategorie.count());
+         for(int i =0; i < gestionnaireCategorie.count();i++)
+             System.out.println(gestionnaireCategorie.findAll().get(i).getNom());
          
          RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
 

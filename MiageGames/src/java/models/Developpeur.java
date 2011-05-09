@@ -14,12 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Developpeur")
-@NamedQueries({
-    @NamedQuery(name = "Developpeur.findAll", query = "SELECT c FROM Developpeur c"),
-    @NamedQuery(name = "Developpeur.findById", query = "SELECT c FROM Developpeur c WHERE c.id = :id"),
-    @NamedQuery(name = "Developpeur.findByNomDeveloppeur", query = "SELECT c FROM Developpeur c WHERE c.nomDeveloppeur = :nomDeveloppeur"),
-    @NamedQuery(name = "Developpeur.findBySiteDeveloppeur", query = "SELECT c FROM Developpeur c WHERE c.siteDeveloppeur = :siteDeveloppeur")
-})
+
 public class Developpeur implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -14,12 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Editeur")
-@NamedQueries({
-    @NamedQuery(name = "Editeur.findAll", query = "SELECT c FROM Editeur c"),
-    @NamedQuery(name = "Editeur.findById", query = "SELECT c FROM Editeur c WHERE c.id = :id"),
-    @NamedQuery(name = "Editeur.findByNomEditeur", query = "SELECT c FROM Editeur c WHERE c.nomEditeur = :nomEditeur"),
-    @NamedQuery(name = "Editeur.findBySiteEditeur", query = "SELECT c FROM Editeur c WHERE c.siteEditeur = :siteEditeur")
-})
+
 public class Editeur implements Serializable {
 
     private static final long serialVersionUID = 1L;

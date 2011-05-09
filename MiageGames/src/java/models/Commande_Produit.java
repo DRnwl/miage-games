@@ -13,12 +13,6 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Commande_Produit")
-@NamedQueries({
-    @NamedQuery(name = "Commande_Produit.findAll", query = "SELECT o FROM Commande_Produit o"),
-    @NamedQuery(name = "Commande_Produit.findByClient_Commande_id", query = "SELECT o FROM Commande_Produit o WHERE o.commande_ProduitPk.client_Commande_id = :client_Commande_id"),   
-    @NamedQuery(name = "Commande_Produit.findByProduitId", query = "SELECT o FROM Commande_Produit o WHERE o.commande_ProduitPk.produit_id = :produit_id"),  
-    @NamedQuery(name = "Commande_Produit.findByquantite", query = "SELECT o FROM Commande_Produit o WHERE o.quantite = :quantite")})
-
 public class Commande_Produit implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -35,7 +29,7 @@ public class Commande_Produit implements Serializable {
     
     @Basic(optional = false)
     @Column(name="quantite")
-    private Integer quantité;
+    private Integer quantite;
 
     public Commande_Produit() {
     }
@@ -44,9 +38,9 @@ public class Commande_Produit implements Serializable {
         this.commande_ProduitPk = commande_ProduitPk;
     }
 
-    public Commande_Produit(Commande_ProduitPK commande_ProduitPk, Integer quantité) {
+    public Commande_Produit(Commande_ProduitPK commande_ProduitPk, Integer quantite) {
         this.commande_ProduitPk = commande_ProduitPk;
-        this.quantité = quantité;
+        this.quantite = quantite;
     }
 
     public Commande_Produit(Client_Commande client_commande, Produit produit) {
@@ -78,12 +72,12 @@ public class Commande_Produit implements Serializable {
         this.produit = produit;
     }
 
-    public Integer getQuantité() {
-        return quantité;
+    public Integer getQuantite() {
+        return quantite;
     }
 
-    public void setQuantité(Integer quantité) {
-        this.quantité = quantité;
+    public void setQuantite(Integer quantite) {
+        this.quantite = quantite;
     }
 
     

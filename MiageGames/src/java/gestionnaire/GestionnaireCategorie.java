@@ -27,6 +27,13 @@ public class GestionnaireCategorie extends GestionnaireCommun<Categorie> {
     public GestionnaireCategorie() {
         super(Categorie.class);
     }
+    
+    public void creerCategories(){
+        create(new Categorie("PC"));
+        create(new Categorie("PS3"));
+        create(new Categorie("WII"));
+        create(new Categorie("XBOX360"));
+    }
 
     
 }
