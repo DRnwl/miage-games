@@ -4,8 +4,10 @@
  */
 package controleur;
 
+import gestionnaire.GestionnaireCategorie;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Sangre
  */
 public class ServletPrincipal extends HttpServlet {
+    @EJB
+    private GestionnaireCategorie gestionnaireCategorie;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -29,6 +33,7 @@ public class ServletPrincipal extends HttpServlet {
             throws ServletException, IOException {
         
          String userPath = request.getServletPath();
+         
          RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
 
         dp.forward(request, response);

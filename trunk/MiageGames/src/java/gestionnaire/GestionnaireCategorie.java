@@ -4,18 +4,20 @@
  */
 package gestionnaire;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.ejb.Stateless;
+import javax.ejb.LocalBean;
+import javax.persistence.*;
 import models.Categorie;
 
 /**
  *
- * @author Pierro
+ * @author Sangre
  */
+@Stateless
+@LocalBean
 public class GestionnaireCategorie extends GestionnaireCommun<Categorie> {
     
     @PersistenceContext
-    
     private EntityManager em;
 
     protected EntityManager getEntityManager() {
