@@ -14,13 +14,6 @@
         </session-timeout>
     </session-config>
     <jsp-config>
-        <jsp-property-group>
-            <description>On va ajouter dans ce groupe toutes les pages qui vont inclure Header/footer de base</description>
-            <url-pattern>/vente/*</url-pattern>
-            <url-pattern>/home.jsp</url-pattern>
-            <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
-            <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
-        </jsp-property-group>
     </jsp-config>
     <security-constraint>
         <display-name>Admin</display-name>

@@ -21,6 +21,8 @@
 		<script src="js/fns.js" type="text/javascript"></script>
 	</head>
     <body>
-        <h1>Bouh</h1>
+       <%@include file="header.jsp" %>
+       <%@include file="footer.jsp" %>
+            
     </body>
 </html>
