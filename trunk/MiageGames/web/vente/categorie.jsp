@@ -9,9 +9,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+                <title>Miage Games - ${param.cat}</title>
+		<link rel="stylesheet" href="../css/style.css" type="text/css" media="all" />
+		<!--[if IE 6]>
+			<link rel="stylesheet" href="css/ie6-style.css" type="text/css" media="all" />
+		<![endif]-->
+		<script src="../js/jquery-1.4.2.js" type="text/javascript"></script>
+		<script src="../js/fns.js" type="text/javascript"></script>
     </head>
     <body>
-        <h1>Categorie</h1>
+        <%@include file="/header.jsp" %>
+        <h1>Categorie ${param.cat}</h1>
+       <%@include file="/footer.jsp" %>
+        
     </body>
 </html>

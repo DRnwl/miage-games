@@ -14,6 +14,7 @@ import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Sangre
  */
+@WebServlet(name = "Principal",
+            urlPatterns = {"/categorie"})
 public class ServletPrincipal extends HttpServlet {
     @EJB
     private GestionnaireCategorie gestionnaireCategorie;
@@ -52,7 +55,7 @@ public class ServletPrincipal extends HttpServlet {
          
          String userPath = request.getServletPath();
         
-         
+         System.out.println(userPath);
          RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
 
         dp.forward(request, response);
