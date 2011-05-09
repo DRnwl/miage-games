@@ -9,10 +9,10 @@
 				<!-- Top Navigation -->
 				<div id="top-nav">
 					<ul>
-						<li class="home"><a href="#">Accueil</a></li>
+						<li class="home"><a href="/MiageGames/index.jsp">Accueil</a></li>
 					    <c:forEach var="categorie" items="${categories}">
                     
-                                                <li><a href="/ventes/categorie.jsp?cat=${categorie.nom}">${categorie.nom}</a></li>
+                                                <li><a href="/MiageGames/vente/categorie.jsp?cat=${categorie.nom}">${categorie.nom}</a></li>
                
                                             </c:forEach> 
 					</ul>
