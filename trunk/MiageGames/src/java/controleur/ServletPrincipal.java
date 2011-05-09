@@ -8,8 +8,11 @@ import gestionnaire.GestionnaireCategorie;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +26,19 @@ public class ServletPrincipal extends HttpServlet {
     @EJB
     private GestionnaireCategorie gestionnaireCategorie;
 
+    @Override
+    public void init(ServletConfig servletConfig) throws ServletException {
+
+        super.init(servletConfig);
+        
+        // Si aucune catégorie n'existe, on les crées
+        if(gestionnaireCategorie.count() < 1)
+             gestionnaireCategorie.creerCategories();
+        
+        // On stock la liste des catégories 
+        getServletContext().setAttribute("categories", gestionnaireCategorie.findAll());
+    }
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -33,12 +49,9 @@ public class ServletPrincipal extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+         
          String userPath = request.getServletPath();
-         if(gestionnaireCategorie.count() < 1)
-             gestionnaireCategorie.creerCategories();
-         System.out.println(gestionnaireCategorie.count());
-         for(int i =0; i < gestionnaireCategorie.count();i++)
-             System.out.println(gestionnaireCategorie.findAll().get(i).getNom());
+        
          
          RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
 

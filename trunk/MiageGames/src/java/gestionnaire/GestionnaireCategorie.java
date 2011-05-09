@@ -30,9 +30,12 @@ public class GestionnaireCategorie extends GestionnaireCommun<Categorie> {
     
     public void creerCategories(){
         create(new Categorie("PC"));
-        create(new Categorie("PS3"));
+        create(new Categorie("DS"));
         create(new Categorie("WII"));
+        create(new Categorie("PSP"));
         create(new Categorie("XBOX360"));
+        create(new Categorie("3DS"));
+        create(new Categorie("PS3"));
     }
 
     
