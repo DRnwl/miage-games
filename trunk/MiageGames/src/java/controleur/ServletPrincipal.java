@@ -6,15 +6,10 @@ package controleur;
 
 import gestionnaire.GestionnaireCategorie;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,11 +18,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Sangre
  */
-@WebServlet(name = "Principal",
-            urlPatterns = {"/categorie"})
 public class ServletPrincipal extends HttpServlet {
     @EJB
     private GestionnaireCategorie gestionnaireCategorie;
+    
+    
 
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
@@ -37,6 +32,7 @@ public class ServletPrincipal extends HttpServlet {
         // Si aucune catégorie n'existe, on les crées
         if(gestionnaireCategorie.count() < 1)
              gestionnaireCategorie.creerCategories();
+        
         
         // On stock la liste des catégories 
         getServletContext().setAttribute("categories", gestionnaireCategorie.findAll());
