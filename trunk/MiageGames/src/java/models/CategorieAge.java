@@ -14,8 +14,17 @@ import javax.persistence.*;
  * @author Sangre
  */
 @Entity
-@Table(name = "Categorie_age")
+@Table(name = "CategorieAge")
 
+@NamedQueries({
+    @NamedQuery(name = "CategorieAge.findAll", query = "SELECT c FROM CategorieAge c"),
+    
+    @NamedQuery(name = "CategorieAge.findById", query = "SELECT c FROM CategorieAge c WHERE c.id = :id"),
+    
+    @NamedQuery(name = "CategorieAge.findByDescription", query = "SELECT c FROM CategorieAge c WHERE c.description = :description"),
+    
+    @NamedQuery(name = "CategorieAge.findByNomImage", query = "SELECT c FROM CategorieAge c WHERE c.nomImage = :nomImage")
+})
 public class CategorieAge implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,7 +43,7 @@ public class CategorieAge implements Serializable {
     
     
     @Basic(optional = false)
-    @Column(name = "nom_image")
+    @Column(name = "nomImage")
     private String nomImage;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorieAge")

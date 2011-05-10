@@ -14,7 +14,17 @@ import javax.persistence.*;
  * @author Sangre
  */
 @Entity
-@Table(name = "distributeur")
+@Table(name = "Distributeur")
+
+@NamedQueries({
+    @NamedQuery(name = "Distributeur.findAll", query = "SELECT d FROM Distributeur d"),
+    
+    @NamedQuery(name = "Distributeur.findById", query = "SELECT d FROM Distributeur d WHERE d.id = :id"),
+    
+    @NamedQuery(name = "Distributeur.findByNom_distributeur", query = "SELECT d FROM Distributeur d WHERE d.nom_distributeur = :nom_distributeur"),
+    
+    @NamedQuery(name = "Distributeur.findBySite_distributeur", query = "SELECT d FROM Distributeur d WHERE d.site_distributeur = :site_distributeur")
+})
 
 public class Distributeur implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -16,6 +16,26 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Client")
 
+@NamedQueries({
+    @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c"),
+    
+    @NamedQuery(name = "Client.findById", query = "SELECT c FROM Client c WHERE c.id = :id"),
+    
+    @NamedQuery(name = "Client.findByLogin", query = "SELECT c FROM Client c WHERE c.login = :login"),
+    
+    @NamedQuery(name = "Client.findByPassword", query = "SELECT c FROM Client c WHERE c.password = :password"),
+    
+    @NamedQuery(name = "Client.findByNom", query = "SELECT c FROM Client c WHERE c.nom = :nom"),
+    
+    @NamedQuery(name = "Client.findByPrenom", query = "SELECT c FROM Client c WHERE c.prenom = :prenom"),
+    
+    @NamedQuery(name = "Client.findByTelephone", query = "SELECT c FROM Client c WHERE c.telephone = :telephone"),
+    
+    @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email"),
+    
+    @NamedQuery(name = "Client.findByAdresse", query = "SELECT c FROM Client c WHERE c.adresse = :adresse")
+})
+
 public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,7 +78,7 @@ public class Client implements Serializable {
     private String adresse;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
-    private Collection<Client_Commande> collectionClient_commande;
+    private Collection<Commande_Client> collectionCommandeClient;
 
     public Client() {
     }
@@ -154,12 +174,12 @@ public class Client implements Serializable {
         this.telephone = telephone;
     }
 
-    public Collection<Client_Commande> getCollectionClient_commande() {
-        return collectionClient_commande;
+    public Collection<Commande_Client> getCollectionClient_commande() {
+        return collectionCommandeClient;
     }
 
-    public void setCollectionClient_commande(Collection<Client_Commande> collectionClient_commande) {
-        this.collectionClient_commande = collectionClient_commande;
+    public void setCollectionClient_commande(Collection<Commande_Client> collectionClient_commande) {
+        this.collectionCommandeClient = collectionClient_commande;
     }
 
     
