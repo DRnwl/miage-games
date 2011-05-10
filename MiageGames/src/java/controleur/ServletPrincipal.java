@@ -5,6 +5,7 @@
 package controleur;
 
 import gestionnaire.GestionnaireCategorie;
+import gestionnaire.GestionnaireProduit;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServletPrincipal extends HttpServlet {
     @EJB
+    private GestionnaireProduit gestionnaireProduit;
+    @EJB
     private GestionnaireCategorie gestionnaireCategorie;
     
     
@@ -31,11 +34,15 @@ public class ServletPrincipal extends HttpServlet {
         
         // Si aucune catégorie n'existe, on les crées
         if(gestionnaireCategorie.count() < 1)
-             gestionnaireCategorie.creerCategories();
+             gestionnaireCategorie.creerCategoriesTest();
+        
+        if(gestionnaireProduit.count() < 1)
+            gestionnaireProduit.creerProduitsTest();
         
         
         // On stock la liste des catégories 
         getServletContext().setAttribute("categories", gestionnaireCategorie.findAll());
+        getServletContext().setAttribute("produits", gestionnaireProduit.findAll());
     }
 
     /** 

@@ -80,12 +80,8 @@ public class Produit implements Serializable {
     public Produit() {
     }
 
-    public Produit(Integer id) {
-        this.id = id;
-    }
 
-    public Produit(Integer id, String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur, Collection<Produit_Commande> CollectionCommande_Produit) {
-        this.id = id;
+    public Produit(String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur, Collection<Produit_Commande> CollectionCommande_Produit) {
         this.nom = nom;
         this.prix = prix;
         this.categorie = categorie;
