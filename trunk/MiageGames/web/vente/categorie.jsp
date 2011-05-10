@@ -19,7 +19,8 @@
     </head>
     <body>
         <%@include file="/header.jsp" %>
-        <h1>Categorie ${param.cat}</h1>
+        <%@include file="/menu.jsp" %>
+        <h1>&nbsp;Categorie ${param.cat}</h1> 
        <%@include file="/footer.jsp" %>
         
     </body>

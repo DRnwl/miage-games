@@ -16,7 +16,6 @@ import javax.persistence.*;
 
 public class Administrateur implements Serializable {
 
-    private static final Long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -46,14 +45,12 @@ public class Administrateur implements Serializable {
     public Administrateur() {
     }
 
-    public Administrateur(Integer id, String login, String password) {
-        this.id = id;
+    public Administrateur(String login, String password) {
         this.login = login;
         this.password = password;
     }
 
-    public Administrateur(Integer id, String login, String password, String nom, String email, String telephone) {
-        this.id = id;
+    public Administrateur(String login, String password, String nom, String email, String telephone) {
         this.login = login;
         this.password = password;
         this.nom = nom;
