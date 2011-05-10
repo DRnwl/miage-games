@@ -12,16 +12,26 @@ import javax.persistence.*;
  * @author Pierro
  */
 @Entity
-@Table(name="Commande_Produit")
-public class Commande_Produit implements Serializable {
+@Table(name="Produit_Commande")
+@NamedQueries({
+    @NamedQuery(name = "Produit_Commande.findAll", query = "SELECT o FROM Produit_Commande o"),
+    
+    @NamedQuery(name = "Produit_Commande.findByClientCommandeId", query = "SELECT o FROM Produit_Commande o WHERE o.commande_ProduitPk.commandeClientId = :commandeClientId"), 
+    
+    @NamedQuery(name = "Produit_Commande.findByProduitId", query = "SELECT o FROM Produit_Commande o WHERE o.commande_ProduitPk.produitId = :produitId"),  
+    
+    @NamedQuery(name = "Produit_Commande.findByquantite", query = "SELECT o FROM Produit_Commande o WHERE o.quantite = :quantite")
+})
+public class Produit_Commande implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    private Commande_ProduitPK commande_ProduitPk;
+    private Produit_CommandePK commande_ProduitPk;
    
 
-    @JoinColumn(name="client_Commande_id", referencedColumnName="id", insertable= false, updatable= false)
+    @JoinColumn(name="commande_client_id", referencedColumnName="id", insertable= false, updatable= false)
     @ManyToOne(optional = false)
-    private Client_Commande client_commande;
+    private Commande_Client commande_client;
     
     @JoinColumn(name="produit_id", referencedColumnName="id", insertable=false, updatable= false)
     @ManyToOne(optional = false)
@@ -31,36 +41,36 @@ public class Commande_Produit implements Serializable {
     @Column(name="quantite")
     private Integer quantite;
 
-    public Commande_Produit() {
+    public Produit_Commande() {
     }
 
-    public Commande_Produit(Commande_ProduitPK commande_ProduitPk) {
+    public Produit_Commande(Produit_CommandePK commande_ProduitPk) {
         this.commande_ProduitPk = commande_ProduitPk;
     }
 
-    public Commande_Produit(Commande_ProduitPK commande_ProduitPk, Integer quantite) {
+    public Produit_Commande(Produit_CommandePK commande_ProduitPk, Integer quantite) {
         this.commande_ProduitPk = commande_ProduitPk;
         this.quantite = quantite;
     }
 
-    public Commande_Produit(Client_Commande client_commande, Produit produit) {
-        this.client_commande = client_commande;
+    public Produit_Commande(Commande_Client client_commande, Produit produit) {
+        this.commande_client = client_commande;
         this.produit = produit;
     }
 
-    public Client_Commande getClient_commande() {
-        return client_commande;
+    public Commande_Client getClient_commande() {
+        return commande_client;
     }
 
-    public void setClient_commande(Client_Commande client_commande) {
-        this.client_commande = client_commande;
+    public void setClient_commande(Commande_Client client_commande) {
+        this.commande_client = client_commande;
     }
 
-    public Commande_ProduitPK getCommande_ProduitPk() {
+    public Produit_CommandePK getCommande_ProduitPk() {
         return commande_ProduitPk;
     }
 
-    public void setCommande_ProduitPk(Commande_ProduitPK commande_ProduitPk) {
+    public void setCommande_ProduitPk(Produit_CommandePK commande_ProduitPk) {
         this.commande_ProduitPk = commande_ProduitPk;
     }
 
@@ -92,10 +102,10 @@ public class Commande_Produit implements Serializable {
      @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Commande_Produit)) {
+        if (!(object instanceof Produit_Commande)) {
             return false;
         }
-        Commande_Produit other = (Commande_Produit) object;
+        Produit_Commande other = (Produit_Commande) object;
         if ((this.commande_ProduitPk == null && other.commande_ProduitPk != null) || (this.commande_ProduitPk != null && !this.commande_ProduitPk.equals(other.commande_ProduitPk))) {
             return false;
         }

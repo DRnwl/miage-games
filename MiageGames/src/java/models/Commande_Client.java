@@ -14,9 +14,19 @@ import javax.persistence.*;
  * @author Pierro
  */
 @Entity
-@Table (name = "Client_Commande")
+@Table (name = "Commande_Client")
+@NamedQueries({
+    @NamedQuery(name = "Commande_Client.findAll", query = "SELECT c FROM Commande_Client c"),
+    
+    @NamedQuery(name = "Commande_Client.findById", query = "SELECT c FROM Commande_Client c WHERE c.id = :id"),
+    
+    @NamedQuery(name = "Commande_Client.findByMontant", query = "SELECT c FROM Commande_Client c WHERE c.montant = :montant"),  
+    
+    @NamedQuery(name = "Commande_Client.findByDate_achat", query = "SELECT c FROM Commande_Client c WHERE c.date_achat = :date_achat"),
+    
+    @NamedQuery(name = "Commande_Client.findByNumero_confirmation", query = "SELECT c FROM Commande_Client c WHERE c.numero_confirmation = :numero_confirmation")})
 
-public class Client_Commande implements Serializable {
+public class Commande_Client implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,21 +47,21 @@ public class Client_Commande implements Serializable {
     @Column(name="numero_confirmation")
     private int numero_confirmation;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client_commande")
-    private Collection<Commande_Produit> collectionCommande_produit;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "commande_client")
+    private Collection<Produit_Commande> collectionProduitCommande;
     
-    @JoinColumn(name="Client_id", referencedColumnName="id")
+    @JoinColumn(name="client_id", referencedColumnName="id")
     @ManyToOne(optional = false)
     private Client client;
 
-    public Client_Commande() {
+    public Commande_Client() {
     }
 
-    public Client_Commande(Integer id) {
+    public Commande_Client(Integer id) {
         this.id = id;
     }
 
-    public Client_Commande(Integer id, Integer montant, String date_achat, int numero_confirmation, Client client) {
+    public Commande_Client(Integer id, Integer montant, String date_achat, int numero_confirmation, Client client) {
         this.id = id;
         this.montant = montant;
         this.date_achat = date_achat;
@@ -103,12 +113,12 @@ public class Client_Commande implements Serializable {
         this.numero_confirmation = numero_confirmation;
     }
 
-    public Collection<Commande_Produit> getCollectionCommande_produit() {
-        return collectionCommande_produit;
+    public Collection<Produit_Commande> getCollectionCommande_produit() {
+        return collectionProduitCommande;
     }
 
-    public void setCollectionCommande_produit(Collection<Commande_Produit> collectionCommande_produit) {
-        this.collectionCommande_produit = collectionCommande_produit;
+    public void setCollectionCommande_produit(Collection<Produit_Commande> collectionCommande_produit) {
+        this.collectionProduitCommande = collectionCommande_produit;
     }
 
     
@@ -128,10 +138,10 @@ public class Client_Commande implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Client_Commande)) {
+        if (!(object instanceof Commande_Client)) {
             return false;
         }
-        Client_Commande other = (Client_Commande) object;
+        Commande_Client other = (Commande_Client) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
