@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <title>Miage Games - ${param.cat}</title>
-		<link rel="stylesheet" href="../css/style.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 		<!--[if IE 6]>
 			<link rel="stylesheet" href="css/ie6-style.css" type="text/css" media="all" />
 		<![endif]-->

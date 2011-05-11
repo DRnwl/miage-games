@@ -6,6 +6,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletPrincipal</servlet-name>
+        <url-pattern>/categorie</url-pattern>
         <url-pattern>/ServletPrincipal</url-pattern>
     </servlet-mapping>
     <session-config>

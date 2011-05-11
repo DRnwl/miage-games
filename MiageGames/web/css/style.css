@@ -14,6 +14,20 @@ body {
     text-align: left;
 }
 
+label.error {
+    /* Move the error above the input element. */
+    
+    color: red;
+    padding: 0 2px;
+}
+
+#erreurConnexion {
+    /* Move the error above the input element. */
+    
+    color: red;
+    padding: 0 2px;
+}
+
 a img { 
     border: 0; 
 }

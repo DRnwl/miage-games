@@ -17,30 +17,14 @@
         <!--[if IE 6]>
 			<link rel="stylesheet" href="css/ie6-style.css" type="text/css" media="all" />
 		<![endif]-->
-        <script src="js/jquery-1.4.2.js" type="text/javascript"></script>
+        <script src="js/jquery-1.6.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.js" type="text/javascript"></script>
 
         <!-- Script qui permet le changement de jeu dans le cadre principal -->
         <script src="js/fns.js" type="text/javascript"></script>
+        <script src="js/validerConnexion.js" type="text/javascript"></script>
         
-        <script type="text/javascript">
-            $(document).ready(function(){
-
-                $("#BoutonConnexion").click(function(){
-                    if ($("#formConnexion").is(":hidden")){
-                        $("#formConnexion").slideDown("slow");
-                    }
-                    else{
-                        $("#formConnexion").slideUp("slow");
-                    }
-                });
-                
-            });
-            
-            function fermerForm(){
-                $("#messageSent").show("slow");
-                setTimeout('$("#formConnexion").slideUp("slow")', 200);
-           }
-        </script>
+        <!-- setTimeout('$("#formConnexion").slideUp("slow")', 200); -->
     </head>
     <body>
         <%@include file="header.jsp" %>
