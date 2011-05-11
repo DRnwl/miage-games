@@ -53,16 +53,18 @@ public class CategorieAge implements Serializable {
     public CategorieAge() {
     }
 
-    public CategorieAge(Integer id) {
-        this.id = id;
+    public CategorieAge(String nom, String description) {
+        this.nom = nom;
+        this.description = description;
     }
 
-    public CategorieAge(Integer id, String nom, String description, String nomImage) {
-        this.id = id;
+    public CategorieAge(String nom, String description, String nomImage) {
         this.nom = nom;
         this.description = description;
         this.nomImage = nomImage;
     }
+
+    
 
     
     public Integer getId() {
