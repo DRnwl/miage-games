@@ -19,7 +19,10 @@ import javax.persistence.*;
     
     @NamedQuery(name = "Categorie.findById", query = "SELECT c FROM Categorie c WHERE c.id = :id"),
     
-    @NamedQuery(name = "Categorie.findByNom", query = "SELECT c FROM Categorie c WHERE c.nom = :nom")
+    @NamedQuery(name = "Categorie.findByNom", query = "SELECT c FROM Categorie c WHERE c.nom = :nom"),
+    
+    @NamedQuery(name = "Categorie.findByDescription", query = "SELECT c FROM Categorie c WHERE c.description = :description")
+
 })
 public class Categorie implements Serializable {
 
@@ -34,6 +37,10 @@ public class Categorie implements Serializable {
     @Column(name = "nom")
     private String nom;
     
+    @Basic(optional = false)
+    @Column(name = "description")
+    private String description;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
     private Collection<Produit> collectionProduit;
 
@@ -43,6 +50,13 @@ public class Categorie implements Serializable {
     public Categorie(String nom) {
         this.nom = nom;
     }
+
+    public Categorie(String nom, String description) {
+        this.nom = nom;
+        this.description = description;
+    }
+    
+    
 
     public Integer getId() {
         return id;
@@ -68,6 +82,17 @@ public class Categorie implements Serializable {
         this.collectionProduit = collectionProduit;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
