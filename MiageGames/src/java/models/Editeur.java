@@ -48,16 +48,12 @@ public class Editeur implements Serializable {
     public Editeur() {
     }
 
-    public Editeur(Integer id) {
-        this.id = id;
-    }
-
-    public Editeur(Integer id, String nomEditeur, String siteEditeur, Collection<Produit> collectionProduit) {
-        this.id = id;
+    public Editeur(String nomEditeur, String siteEditeur) {
         this.nomEditeur = nomEditeur;
         this.siteEditeur = siteEditeur;
-        this.collectionProduit = collectionProduit;
     }
+
+    
 
     public Collection<Produit> getCollectionProduit() {
         return collectionProduit;

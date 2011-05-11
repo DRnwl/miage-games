@@ -83,20 +83,14 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(Integer id) {
-        this.id = id;
-    }
-
-    public Client(Integer id, String login, String password) {
-        this.id = id;
+    public Client(String login, String password, String nom, String prenom) {
         this.login = login;
         this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
     }
-    
-    
 
-    public Client(Integer id, String login, String password, String nom, String prenom, String telephone, String email, String adresse) {
-        this.id = id;
+    public Client(String login, String password, String nom, String prenom, String telephone, String email, String adresse) {
         this.login = login;
         this.password = password;
         this.nom = nom;
@@ -106,6 +100,12 @@ public class Client implements Serializable {
         this.adresse = adresse;
     }
 
+    
+
+   
+    
+
+    
     public String getAdresse() {
         return adresse;
     }

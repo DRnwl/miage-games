@@ -47,12 +47,12 @@ public class Developpeur implements Serializable {
     public Developpeur() {
     }
 
-    public Developpeur(Integer id, String nomDeveloppeur, String siteDeveloppeur, Collection<Produit> collectionProduit) {
-        this.id = id;
+    public Developpeur(String nomDeveloppeur, String siteDeveloppeur) {
         this.nomDeveloppeur = nomDeveloppeur;
         this.siteDeveloppeur = siteDeveloppeur;
-        this.collectionProduit = collectionProduit;
     }
+
+    
 
     public Collection<Produit> getCollectionProduit() {
         return collectionProduit;
