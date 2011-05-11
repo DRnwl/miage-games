@@ -22,15 +22,16 @@
                 <div class="cl">&nbsp;</div>
                 
                     <div id="formConnexion" style="display:none">
-                        <form action="<c:url value=''/>" method=get>
+                        <form id ="formConnex" action="#" method=post>
                             <div id="loginBox" class="rounded">
+                                <span id="erreurConnexion"></span>  
                                 <p><strong>Nom du compte:</strong>
-                                    <input type="text" size="20" name=""></p>
-
+                                    <input type="text" size="20" name="login"></p>
+                                    
                                 <p><strong>Password:</strong>
-                                <input type="password" size="20" name=""></p>
+                                <input type="password" size="20" name="password"></p>
                                 <br />
-                                <input id="send" name="submit" onclick="fermerForm()" type="submit" />
+                                <input id="send" name="submit" onclick="fermerForm()"  type="submit" />
 
                             </div>
                         </form>

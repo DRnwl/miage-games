@@ -4,14 +4,11 @@
  */
 package controleur;
 
-import gestionnaire.GestionnaireCategorie;
-import gestionnaire.GestionnaireProduit;
 import java.io.IOException;
-import javax.ejb.EJB;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,33 +18,16 @@ import javax.servlet.http.HttpSession;
  *
  * @author Sangre
  */
-public class ServletPrincipal extends HttpServlet {
-    @EJB
-    private GestionnaireProduit gestionnaireProduit;
-    @EJB
-    private GestionnaireCategorie gestionnaireCategorie;
-    
-    
+public class ConnexionServlet extends HttpServlet {
 
-    @Override
+     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
 
         super.init(servletConfig);
-        
-        // Si aucune catégorie n'existe, on les crées
-        if(gestionnaireCategorie.count() < 1)
-             gestionnaireCategorie.creerCategoriesTest();
-        
-        if(gestionnaireProduit.count() < 1)
-            gestionnaireProduit.creerProduitsTest();
-        
-        
-        // On stock la liste des catégories 
-        getServletContext().setAttribute("categories", gestionnaireCategorie.findAll());
-        getServletContext().setAttribute("produits", gestionnaireProduit.findAll());
+       
     }
-
-    /** 
+     
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -56,26 +36,51 @@ public class ServletPrincipal extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         
-         String userPath = request.getServletPath();
-         HttpSession session = request.getSession();
-         
-         System.out.println(userPath);
-         
-         
-         if(userPath.equals("/categorie")){
-             RequestDispatcher dp = request.getRequestDispatcher("/vente/categorie.jsp");
-             dp.forward(request, response);
-         }
-         else{
-            RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
-            dp.forward(request, response);
-         }
+
+        String forwardTo = "";
+        String message = "";
+        String LeNom = request.getParameter("nom");
+        String motPasse = request.getParameter("motDePasse");
+        String pass = request.getParameter("pass");
+
+        HttpSession session = request.getSession();
+
+
+        if (LeNom == null) {
+            LeNom = "";
+        }
+        if (motPasse == null) {
+            motPasse = "";
+        }
+        if (pass == null) {
+            pass = "";
+        }
+
+        if (session.getAttribute("nom") == null) {
+            // cas ou l'utilisateur n'a rien mis
+            if (LeNom.equals("admin") && motPasse.equals("admin")) {
+                if (pass.equals("verifierLoginPassword")) {
+                    session.setAttribute("login", LeNom);
+                    session.setAttribute("password", motPasse);
+                    forwardTo = "home.jsp?action=todo";
+                    message = "Vous êtes loggé !";
+                }
+
+            } else {
+                forwardTo = "home.jsp?action=todo";
+                message = "Combinaison login/password incorrect!!";
+            }
+        } else {
+            forwardTo = "home.jsp?action=todo";
+        }
+
+        RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
+
+        dp.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -88,7 +93,7 @@ public class ServletPrincipal extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -101,7 +106,7 @@ public class ServletPrincipal extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */

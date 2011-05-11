@@ -2,6 +2,8 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:set var='view' value='/index' scope='session' />
+
 <!-- Page -->
 <div id="page" class="shell">
     <!-- Header -->
@@ -12,7 +14,7 @@
                 <li class="home"><a href="/MiageGames/index.jsp">Accueil</a></li>
                 <c:forEach var="categorie" items="${categories}">
 
-                    <li><a href="/MiageGames/vente/categorie.jsp?cat=${categorie.nom}">${categorie.nom}</a></li>
+                    <li><a href="<c:url value='categorie?cat=${categorie.nom}'/>">${categorie.nom}</a></li>
 
                 </c:forEach> 
             </ul>
