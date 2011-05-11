@@ -25,7 +25,10 @@ import javax.persistence.*;
     
     @NamedQuery(name = "Produit.findByPrix", query = "SELECT p FROM Produit p WHERE p.prix = :prix"),
     
-    @NamedQuery(name = "Produit.findBySortie", query = "SELECT p FROM Produit p WHERE p.sortie = :sortie")
+    @NamedQuery(name = "Produit.findBySortie", query = "SELECT p FROM Produit p WHERE p.sortie = :sortie"),
+    
+    @NamedQuery(name = "Produit.findByDescription", query = "SELECT p FROM Produit p WHERE p.description = :description")
+
     
 })
 public class Produit implements Serializable {
@@ -62,6 +65,12 @@ public class Produit implements Serializable {
     @Column(name = "sortie")
     private String sortie;
     
+    
+    @Basic(optional = false)
+    @Column(name = "description")
+    private String description;
+    
+    
     @JoinColumn(name = "categorieAge_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private CategorieAge categorieAge;
@@ -80,19 +89,28 @@ public class Produit implements Serializable {
     public Produit() {
     }
 
+    public Produit(String nom, BigDecimal prix, Categorie categorie) {
+        this.nom = nom;
+        this.prix = prix;
+        this.categorie = categorie;
+    }
 
-    public Produit(String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur, Collection<Produit_Commande> CollectionCommande_Produit) {
+    public Produit(String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, String description, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur) {
         this.nom = nom;
         this.prix = prix;
         this.categorie = categorie;
         this.distributeur = distributeur;
         this.tags = tags;
         this.sortie = sortie;
+        this.description = description;
         this.categorieAge = categorieAge;
         this.editeur = editeur;
         this.developpeur = developpeur;
-        this.CollectionProduitCommande = CollectionCommande_Produit;
     }
+
+
+    
+    
 
     public Collection<Produit_Commande> getCollectionCommande_Produit() {
         return CollectionProduitCommande;
@@ -181,6 +199,25 @@ public class Produit implements Serializable {
     public void setTags(ArrayList<String> tags) {
         this.tags = tags;
     }
+
+    public Collection<Produit_Commande> getCollectionProduitCommande() {
+        return CollectionProduitCommande;
+    }
+
+    public void setCollectionProduitCommande(Collection<Produit_Commande> CollectionProduitCommande) {
+        this.CollectionProduitCommande = CollectionProduitCommande;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
+    
 
     @Override
     public int hashCode() {
