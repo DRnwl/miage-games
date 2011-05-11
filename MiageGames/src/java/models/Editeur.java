@@ -5,6 +5,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 
@@ -51,7 +52,18 @@ public class Editeur implements Serializable {
     public Editeur(String nomEditeur, String siteEditeur) {
         this.nomEditeur = nomEditeur;
         this.siteEditeur = siteEditeur;
+        collectionProduit = new ArrayList<Produit>();
     }
+
+    public Editeur(String nomEditeur, String siteEditeur, Produit produit) {
+        this.nomEditeur = nomEditeur;
+        this.siteEditeur = siteEditeur;
+        collectionProduit = new ArrayList<Produit>();
+        collectionProduit.add(produit);
+    }
+    
+    
+    
 
     
 

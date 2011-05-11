@@ -5,6 +5,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 
@@ -51,7 +52,16 @@ public class Distributeur implements Serializable {
     public Distributeur(String nom_distributeur, String site_distributeur) {
         this.nom_distributeur = nom_distributeur;
         this.site_distributeur = site_distributeur;
+        collectionProduit = new ArrayList<Produit>();
     }
+
+    public Distributeur(String nom_distributeur, String site_distributeur, Produit produit) {
+        this.nom_distributeur = nom_distributeur;
+        this.site_distributeur = site_distributeur;
+        collectionProduit = new ArrayList<Produit>();
+        collectionProduit.add(produit);
+    }
+   
 
     
 

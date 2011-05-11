@@ -5,6 +5,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 
@@ -62,8 +63,19 @@ public class Commande_Client implements Serializable {
         this.date_achat = date_achat;
         this.numero_confirmation = numero_confirmation;
         this.client = client;
+        collectionProduitCommande = new ArrayList<Produit_Commande>();
     }
 
+    public Commande_Client(Integer montant, String date_achat, int numero_confirmation, Produit_Commande produitCommande, Client client) {
+        this.montant = montant;
+        this.date_achat = date_achat;
+        this.numero_confirmation = numero_confirmation;
+        collectionProduitCommande = new ArrayList<Produit_Commande>();
+        collectionProduitCommande.add(produitCommande);
+        this.client = client;
+    }
+
+    
    
 
     public Client getClient() {
