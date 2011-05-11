@@ -57,17 +57,14 @@ public class Commande_Client implements Serializable {
     public Commande_Client() {
     }
 
-    public Commande_Client(Integer id) {
-        this.id = id;
-    }
-
-    public Commande_Client(Integer id, Integer montant, String date_achat, int numero_confirmation, Client client) {
-        this.id = id;
+    public Commande_Client(Integer montant, String date_achat, int numero_confirmation, Client client) {
         this.montant = montant;
         this.date_achat = date_achat;
         this.numero_confirmation = numero_confirmation;
         this.client = client;
     }
+
+   
 
     public Client getClient() {
         return client;

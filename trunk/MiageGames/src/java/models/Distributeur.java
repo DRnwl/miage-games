@@ -48,12 +48,12 @@ public class Distributeur implements Serializable {
     public Distributeur() {
     }
 
-    public Distributeur(Integer id, String nom_distributeur, String site_distributeur, Collection<Produit> collectionProduit) {
-        this.id = id;
+    public Distributeur(String nom_distributeur, String site_distributeur) {
         this.nom_distributeur = nom_distributeur;
         this.site_distributeur = site_distributeur;
-        this.collectionProduit = collectionProduit;
     }
+
+    
 
     public Collection<Produit> getCollectionProduit() {
         return collectionProduit;
