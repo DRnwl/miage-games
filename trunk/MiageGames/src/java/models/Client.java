@@ -5,6 +5,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 
@@ -88,6 +89,7 @@ public class Client implements Serializable {
         this.password = password;
         this.nom = nom;
         this.prenom = prenom;
+        collectionCommandeClient = new ArrayList<Commande_Client>();
     }
 
     public Client(String login, String password, String nom, String prenom, String telephone, String email, String adresse) {
@@ -98,12 +100,24 @@ public class Client implements Serializable {
         this.telephone = telephone;
         this.email = email;
         this.adresse = adresse;
+        collectionCommandeClient = new ArrayList<Commande_Client>();
+
     }
 
-    
+    public Client(String login, String password, String nom, String prenom, String telephone, String email, String adresse, Commande_Client commandeClient) {
+        this.login = login;
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.email = email;
+        this.adresse = adresse;
+        collectionCommandeClient = new ArrayList<Commande_Client>();
+        collectionCommandeClient.add(commandeClient);
 
-   
+    }
     
+ 
 
     
     public String getAdresse() {

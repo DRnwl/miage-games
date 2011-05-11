@@ -5,6 +5,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 
@@ -56,14 +57,27 @@ public class CategorieAge implements Serializable {
     public CategorieAge(String nom, String description) {
         this.nom = nom;
         this.description = description;
+        collectionProduit = new ArrayList<Produit>();
     }
 
     public CategorieAge(String nom, String description, String nomImage) {
         this.nom = nom;
         this.description = description;
         this.nomImage = nomImage;
+        collectionProduit = new ArrayList<Produit>();
+
     }
 
+    public CategorieAge(String nom, String description, String nomImage, Produit produit) {
+        this.nom = nom;
+        this.description = description;
+        this.nomImage = nomImage;
+        collectionProduit = new ArrayList<Produit>();
+        collectionProduit.add(produit);
+
+        
+    }
+    
     
 
     

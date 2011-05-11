@@ -84,7 +84,7 @@ public class Produit implements Serializable {
     private Developpeur developpeur;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
-    private Collection<Produit_Commande> CollectionProduitCommande;
+    private Collection<Produit_Commande> collectionProduitCommande;
 
     public Produit() {
     }
@@ -93,6 +93,7 @@ public class Produit implements Serializable {
         this.nom = nom;
         this.prix = prix;
         this.categorie = categorie;
+        collectionProduitCommande = new ArrayList<Produit_Commande>();
     }
 
     public Produit(String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, String description, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur) {
@@ -106,18 +107,37 @@ public class Produit implements Serializable {
         this.categorieAge = categorieAge;
         this.editeur = editeur;
         this.developpeur = developpeur;
+        collectionProduitCommande = new ArrayList<Produit_Commande>();
+
     }
 
+    public Produit(String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, String description, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur, Produit_Commande produitCommande) {
+        this.nom = nom;
+        this.prix = prix;
+        this.categorie = categorie;
+        this.distributeur = distributeur;
+        this.tags = tags;
+        this.sortie = sortie;
+        this.description = description;
+        this.categorieAge = categorieAge;
+        this.editeur = editeur;
+        this.developpeur = developpeur;
+        collectionProduitCommande = new ArrayList<Produit_Commande>();
+        collectionProduitCommande.add(produitCommande);
 
+
+    }
     
+    
+   
     
 
     public Collection<Produit_Commande> getCollectionCommande_Produit() {
-        return CollectionProduitCommande;
+        return collectionProduitCommande;
     }
 
     public void setCollectionCommande_Produit(Collection<Produit_Commande> CollectionCommande_Produit) {
-        this.CollectionProduitCommande = CollectionCommande_Produit;
+        this.collectionProduitCommande = CollectionCommande_Produit;
     }
 
     public String getSortie() {
@@ -201,11 +221,11 @@ public class Produit implements Serializable {
     }
 
     public Collection<Produit_Commande> getCollectionProduitCommande() {
-        return CollectionProduitCommande;
+        return collectionProduitCommande;
     }
 
     public void setCollectionProduitCommande(Collection<Produit_Commande> CollectionProduitCommande) {
-        this.CollectionProduitCommande = CollectionProduitCommande;
+        this.collectionProduitCommande = CollectionProduitCommande;
     }
 
     public String getDescription() {
