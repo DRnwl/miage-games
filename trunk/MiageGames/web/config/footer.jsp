@@ -3,7 +3,9 @@
     Created on : 9 mai 2011, 20:39:59
     Author     : Sangre
 --%>
-
+<% if(session.getAttribute("groupeUtilisateur") == null) 
+    response.sendRedirect("index.jsp");
+%>
 <div class="cl">&nbsp;</div>
 <!-- Footer -->
 <div id="footer">

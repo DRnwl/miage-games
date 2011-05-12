@@ -3,7 +3,16 @@
     Created on : 8 mai 2011, 19:06:26
     Author     : Sangre
 --%>
+<% 
+// On verra plus tard pour ça -> on veut que si la personne lance cette page seul, elle soit redirigé sur l'accueil
 
+/*System.out.println(session.getAttribute("groupeUtilisateur"));
+
+if(session.getAttribute("groupeUtilisateur") == null) 
+    response.sendRedirect("index.jsp");
+System.out.println("");*/
+%>
+    
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,11 +32,10 @@
         <!-- Script qui permet le changement de jeu dans le cadre principal -->
         <script src="js/fns.js" type="text/javascript"></script>
         <script src="js/validerConnexion.js" type="text/javascript"></script>
-        
-        <!-- setTimeout('$("#formConnexion").slideUp("slow")', 200); -->
+
     </head>
     <body>
-        <%@include file="header.jsp" %>
+        <%@include file="/config/header.jsp" %>
         <div class="cl">&nbsp;</div>
         <!-- Content -->
         <div id="content">
@@ -63,7 +71,7 @@
                                                         </ul>
                                                     </div>
                                                     <div class="side-b">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum molestie urna, id scelerisque leo sodales sit amet. Curabitur volutpat lorem euismod nunc tincidunt condi- mentum. Suspendisse gravida elementum mauris, in vulputate justo ultrices sit amet.</p>
+                                                        <p>${produit.description}</p>
                                                     </div>
                                                     <div class="cl">&nbsp;</div>
                                                 </div>
@@ -116,8 +124,7 @@
         </div>
         <!-- / Content -->
         <!--  -->
-        <%@include file="menu.jsp" %>
-        <%@include file="footer.jsp" %>
-
+        <%@include file="/config/menu.jsp" %>
+        <%@include file="/config/footer.jsp" %>
     </body>
 </html>

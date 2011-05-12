@@ -11,11 +11,11 @@ import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Categorie;
 
 /**
  *
@@ -61,11 +61,41 @@ public class ServletPrincipal extends HttpServlet {
          String userPath = request.getServletPath();
          HttpSession session = request.getSession();
          
-         System.out.println(userPath);
          
+         
+         if(session.getAttribute("groupeUtilisateur") == null){
+             session.setAttribute("groupeUtilisateur", "visiteur");
+         }
+         
+         
+         System.out.println(session.getAttribute("groupeUtilisateur"));
          
          if(userPath.equals("/categorie")){
-             RequestDispatcher dp = request.getRequestDispatcher("/vente/categorie.jsp");
+             // On recupere la valeur de cat pour aller dans la categorie souhaitée
+             String nomCategorie = request.getParameter("cat");
+             
+             
+             if(nomCategorie != null && !nomCategorie.equals(""))
+             {
+                 //Envoie d'une erreur 500 si la categorie n'existe pas
+                 Categorie categorie = gestionnaireCategorie.findByNom(nomCategorie);
+                 if(categorie != null)
+                 {
+                     
+                 }
+                 // on dit qu'il n'y a aucun résultat
+                 else
+                 {
+                   nomCategorie = "";
+                 }
+                 
+             }
+             // on affiche tous les produits
+             else{
+                 
+             }
+             
+             RequestDispatcher dp = request.getRequestDispatcher("/vente/categorie.jsp?cat="+nomCategorie);
              dp.forward(request, response);
          }
          else{

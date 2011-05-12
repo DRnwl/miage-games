@@ -9,6 +9,19 @@ $(document).ready(function(){
         }
     });
     
+    $("#BoutonMenu").click(function(){
+        if ($("#menuDeroulantUser").is(":hidden")){
+            $("#menuDeroulantUser").slideDown("slow");
+        }
+        else{
+            $("#menuDeroulantUser").slideUp("slow");
+        }
+    });
+    
+    $("#BoutonDeconnexion").click(function(){
+        window.location.replace("DeconnexionServlet"); 
+    });   
+    
                 
                 
 
@@ -16,27 +29,61 @@ $(document).ready(function(){
             
 function fermerForm(){
 
-        $("#formConnex").submit(function () {  
-            $.ajax({  
-                type: "POST",  
-                url: "home.jsp",  
-                data: "login=" + $("#login").val() + "&password=" + $("#password").val(),  
-                success: function (msg) {  
-                   
-                    if (msg == 1) {  
-                        $('span#erreurConnexion').hide();
-                        $("span#erreurConnexion").html ("<center>Vous êtes connecté !</center>").fadeIn("slow");
-                    //window.location.replace("home.jsp");  
-                    }  
-                    else {  
-                        $('span#erreurConnexion').hide();
-                        $("span#erreurConnexion").html ("<center>Combinaison identifiant/mot de passe incorrecte ! </center>").fadeIn("slow");
-                        
-                    }  
+    $("#formConnex").submit(function () {  
+        $.ajax({  
+            type: "POST",  
+            url: "ConnexionServlet",  
+            data: "login=" + $("#login").val() + "&password=" + $("#password").val(),  
+            success: function (msg) {  
+                 
+                 
+                // Si l'utilisateur existe, on execute le if 
+                if (msg == 1) {  
+                    
+                    // On fait disparaitre le menu visiteur pour faire apparaitre celui de l'user'
+                    $('div#menuVisiteur').remove();
+                    $('div#menu').load("config/menu.jsp #menuUser");
+                    
+                    // On est obligé de rappeler chaque evenement utile ils n'ont pas été
+                    // fixé sur les nouveaux element, d'ou la methode live();
+                    $('#BoutonDeconnexion').live('click', function(){
+                        window.location.replace("DeconnexionServlet");                     
+                    });
+                    $("#BoutonMenu").live('click', function(){
+                        if ($("#menuDeroulantUser").is(":hidden")){
+                            $("#menuDeroulantUser").slideDown("slow");
+                        }
+                        else{
+                            $("#menuDeroulantUser").slideUp("slow");
+                        }
+                    });
                 }  
-            });  
-            return false;  
-        });
+                // Sinon fail
+                else {
+                    
+                    
+                    //Test :)
+                      
+                    /*$('div#menu').after("<div id='menuUser'>"+
+                    "<div id='menuDeroulantUser'>"+
+                        "<p><a href='#' id='BoutonTest' class='button'>Test</a></p>"+
+                    "</div>"+
+                    "<br>"+
+                    "<a href='#' id='BoutonMenu'class='button button-left'>Menu</a>"
++
+                    "<a href='#' id='BoutonDeconnexion' class='button button-right'>Deconnexion</a>"
++
+                    "<div class='cl'>&nbsp;</div>"+
+                "</div>");*/
+                   
+                    $('span#erreurConnexion').hide();
+                    $("span#erreurConnexion").html ("<center>Combinaison identifiant/mot de passe incorrecte ! </center>").fadeIn("slow");
+                        
+                }  
+            }  
+        });  
+        return false;  
+    });
     
                
 }

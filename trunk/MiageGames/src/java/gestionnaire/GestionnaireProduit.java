@@ -44,6 +44,8 @@ public class GestionnaireProduit extends GestionnaireCommun<Produit>{
         prod3.setNom("WoW");
         prod4.setNom("Crysis 2");
         
+        prod.setDescription("blablablablablablabla");
+        
         create(prod);
         create(prod1);
         create(prod2);

@@ -9,19 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                <title>Miage Games - ${param.cat}</title>
-		<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-		<!--[if IE 6]>
+        <title>Jeux vidéo ${param.cat} sur Miage Games</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+        <!--[if IE 6]>
 			<link rel="stylesheet" href="css/ie6-style.css" type="text/css" media="all" />
 		<![endif]-->
-		<script src="../js/jquery-1.4.2.js" type="text/javascript"></script>
-		<script src="../js/fns.js" type="text/javascript"></script>
+        <script src="js/jquery-1.6.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.js" type="text/javascript"></script>
+
+        <!-- Script qui permet le changement de jeu dans le cadre principal -->
+        <script src="js/fns.js" type="text/javascript"></script>
+        <script src="js/validerConnexion.js" type="text/javascript"></script>
     </head>
     <body>
-        <%@include file="/header.jsp" %>
-        <%@include file="/menu.jsp" %>
+        <%@include file="/config/header.jsp" %>
+        <%@include file="/config/menu.jsp" %>
         <h1>&nbsp;Categorie ${param.cat}</h1> 
-       <%@include file="/footer.jsp" %>
-        
+        <%@include file="/config/footer.jsp" %>
+
     </body>
 </html>
