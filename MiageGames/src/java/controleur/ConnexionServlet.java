@@ -20,13 +20,13 @@ import javax.servlet.http.HttpSession;
  */
 public class ConnexionServlet extends HttpServlet {
 
-     @Override
+    @Override
     public void init(ServletConfig servletConfig) throws ServletException {
 
         super.init(servletConfig);
-       
+
     }
-     
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -37,46 +37,47 @@ public class ConnexionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String forwardTo = "";
-        String message = "";
-        String LeNom = request.getParameter("nom");
-        String motPasse = request.getParameter("motDePasse");
-        String pass = request.getParameter("pass");
-
         HttpSession session = request.getSession();
-
-
+        String test = "utilisateur";
+        session.setAttribute("groupeUtilisateur", test);
+        
+        //On récupere le login et le password de la personne qui veut se logger;
+        request.getParameter("login");
+        /*
         if (LeNom == null) {
-            LeNom = "";
+        LeNom = "";
         }
         if (motPasse == null) {
-            motPasse = "";
+        motPasse = "";
         }
         if (pass == null) {
-            pass = "";
+        pass = "";
         }
-
+        
         if (session.getAttribute("nom") == null) {
-            // cas ou l'utilisateur n'a rien mis
-            if (LeNom.equals("admin") && motPasse.equals("admin")) {
-                if (pass.equals("verifierLoginPassword")) {
-                    session.setAttribute("login", LeNom);
-                    session.setAttribute("password", motPasse);
-                    forwardTo = "home.jsp?action=todo";
-                    message = "Vous êtes loggé !";
-                }
-
-            } else {
-                forwardTo = "home.jsp?action=todo";
-                message = "Combinaison login/password incorrect!!";
-            }
-        } else {
-            forwardTo = "home.jsp?action=todo";
+        // cas ou l'utilisateur n'a rien mis
+        if (LeNom.equals("admin") && motPasse.equals("admin")) {
+        if (pass.equals("verifierLoginPassword")) {
+        session.setAttribute("login", LeNom);
+        session.setAttribute("password", motPasse);
+        forwardTo = "home.jsp?action=todo";
+        message = "Vous êtes loggé !";
         }
-
-        RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
-
-        dp.forward(request, response);
+        
+        } else {
+        forwardTo = "home.jsp?action=todo";
+        message = "Combinaison login/password incorrect!!";
+        }
+        } else {
+        forwardTo = "home.jsp?action=todo";
+        }*/
+        
+        // On envoit la reponse a la page pour savoir si oui ou non l'utilisateur existe
+        response.setContentType("text/plain");
+        PrintWriter out = response.getWriter();
+        out.println("1");
+        out.flush();
+        out.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

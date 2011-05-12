@@ -37,6 +37,14 @@ public class GestionnaireCategorie extends GestionnaireCommun<Categorie> {
         create(new Categorie("3DS"));
         create(new Categorie("PS3"));
     }
+    
+    public Categorie findByNom(String nom){
+        try{
+            return (Categorie)em.createNamedQuery("Categorie.findByNom").setParameter("nom", nom).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
+    }
 
     
 }

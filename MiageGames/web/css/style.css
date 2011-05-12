@@ -390,7 +390,7 @@ a:hover {
     background: url(images/sign-button.gif) no-repeat 0 0; 
 }
 #sign .button:hover { 
-    background-position: 0 bottom; 
+    background-position: 0; 
 }
 #sign .button-left { 
     float: left; 
@@ -400,6 +400,7 @@ a:hover {
     float: right; 
     display: inline; 
 }
+
 #sign .center { 
     text-align: center; 
     font-size: 11px; 
