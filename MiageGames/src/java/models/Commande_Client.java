@@ -37,7 +37,7 @@ public class Commande_Client implements Serializable {
     
     @Basic(optional = false)
     @Column(name="montant")
-    private Integer montant;
+    private Double montant;
     
     @Basic(optional = false)
     @Column(name = "date_achat")
@@ -58,7 +58,7 @@ public class Commande_Client implements Serializable {
     public Commande_Client() {
     }
 
-    public Commande_Client(Integer montant, String date_achat, int numero_confirmation, Client client) {
+    public Commande_Client(Double montant, String date_achat, int numero_confirmation, Client client) {
         this.montant = montant;
         this.date_achat = date_achat;
         this.numero_confirmation = numero_confirmation;
@@ -66,7 +66,7 @@ public class Commande_Client implements Serializable {
         collectionProduitCommande = new ArrayList<Produit_Commande>();
     }
 
-    public Commande_Client(Integer montant, String date_achat, int numero_confirmation, Produit_Commande produitCommande, Client client) {
+    public Commande_Client(Double montant, String date_achat, int numero_confirmation, Produit_Commande produitCommande, Client client) {
         this.montant = montant;
         this.date_achat = date_achat;
         this.numero_confirmation = numero_confirmation;
@@ -90,7 +90,7 @@ public class Commande_Client implements Serializable {
         return id;
     }
 
-    public Integer getMontant() {
+    public Double getMontant() {
         return montant;
     }
 
@@ -114,7 +114,7 @@ public class Commande_Client implements Serializable {
         this.id = id;
     }
 
-    public void setMontant(Integer montant) {
+    public void setMontant(Double montant) {
         this.montant = montant;
     }
 

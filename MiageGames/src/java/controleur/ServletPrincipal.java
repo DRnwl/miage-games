@@ -4,9 +4,11 @@
  */
 package controleur;
 
+import gestionnaire.Gestion;
 import gestionnaire.GestionnaireCategorie;
 import gestionnaire.GestionnaireProduit;
 import java.io.IOException;
+import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -16,33 +18,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Categorie;
+import models.Produit;
 
 /**
  *
  * @author Sangre
  */
 public class ServletPrincipal extends HttpServlet {
+
     @EJB
     private GestionnaireProduit gestionnaireProduit;
     @EJB
     private GestionnaireCategorie gestionnaireCategorie;
-    
-    
+    @EJB
+    private Gestion gestion;
 
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
 
         super.init(servletConfig);
-        
-        // Si aucune catégorie n'existe, on les crées
-        if(gestionnaireCategorie.count() < 1)
-             gestionnaireCategorie.creerCategoriesTest();
-        
-        if(gestionnaireProduit.count() < 1)
-            gestionnaireProduit.creerProduitsTest();
-        
-        
-        // On stock la liste des catégories 
+
+        // Si aucune catÃ©gorie n'existe, on les crÃ©es
+        if (gestionnaireCategorie.count() < 1) {
+            gestion.creerDonnees();
+        }
+
+
+
+
+        // On stock la liste des catÃ©gories 
         getServletContext().setAttribute("categories", gestionnaireCategorie.findAll());
         getServletContext().setAttribute("produits", gestionnaireProduit.findAll());
     }
@@ -56,52 +60,53 @@ public class ServletPrincipal extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         
-         String userPath = request.getServletPath();
-         HttpSession session = request.getSession();
-         
-         
-         
-         if(session.getAttribute("groupeUtilisateur") == null){
-             session.setAttribute("groupeUtilisateur", "visiteur");
-         }
-         
-         
-         System.out.println(session.getAttribute("groupeUtilisateur"));
-         
-         if(userPath.equals("/categorie")){
-             // On recupere la valeur de cat pour aller dans la categorie souhaitée
-             String nomCategorie = request.getParameter("cat");
-             
-             
-             if(nomCategorie != null && !nomCategorie.equals(""))
-             {
-                 //Envoie d'une erreur 500 si la categorie n'existe pas
-                 Categorie categorie = gestionnaireCategorie.findByNom(nomCategorie);
-                 if(categorie != null)
-                 {
-                     
-                 }
-                 // on dit qu'il n'y a aucun résultat
-                 else
-                 {
-                   nomCategorie = "";
-                 }
-                 
-             }
-             // on affiche tous les produits
-             else{
-                 
-             }
-             
-             RequestDispatcher dp = request.getRequestDispatcher("/vente/categorie.jsp?cat="+nomCategorie);
-             dp.forward(request, response);
-         }
-         else{
+
+
+        String userPath = request.getServletPath();
+        HttpSession session = request.getSession();
+        Categorie categorie = null;
+        Collection<Produit> categoryProducts;
+
+
+
+
+        if (session.getAttribute("groupeUtilisateur") == null) {
+            session.setAttribute("groupeUtilisateur", "visiteur");
+        }
+
+
+        System.out.println(session.getAttribute("groupeUtilisateur"));
+
+        if (userPath.equals("/categorie")) {
+            // On recupere la valeur de cat pour aller dans la categorie souhaitée
+            String nomCategorie = request.getParameter("cat");
+
+
+            if (nomCategorie != null && !nomCategorie.equals("")) {
+                //Envoie d'une erreur 500 si la categorie n'existe pas
+                 categorie = gestionnaireCategorie.findByNom(nomCategorie);
+                if (categorie != null) {
+                } // on dit qu'il n'y a aucun résultat
+                else {
+                    nomCategorie = "";
+                }
+
+            } // on affiche tous les produits
+            else {
+                
+                
+                session.setAttribute("categorie", categorie);
+                categoryProducts = categorie.getCollectionProduit();
+                session.setAttribute("categoryProducts", categoryProducts);
+                
+            }
+
+            RequestDispatcher dp = request.getRequestDispatcher("/vente/categorie.jsp?cat=" + nomCategorie);
+            dp.forward(request, response);
+        } else {
             RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
             dp.forward(request, response);
-         }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
