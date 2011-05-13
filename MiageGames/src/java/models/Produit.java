@@ -92,6 +92,13 @@ public class Produit implements Serializable {
     public Produit(String nom) {
         this.nom = nom;
     }
+
+    public Produit(String nom, Double prix) {
+        this.nom = nom;
+        this.prix = prix;
+    }
+    
+    
     
     
 

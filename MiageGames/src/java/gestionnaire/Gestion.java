@@ -37,22 +37,7 @@ public class Gestion {
     public void creerDonnees() {
 
 
-        /****************************************************/
-        /* Categories */
-        Categorie PC = new Categorie("PC", "categorie PC");
-        Categorie DS = new Categorie("DS", "categorie DS");
-        Categorie WII = new Categorie("WII", "categorie WII");
-        Categorie PSP = new Categorie("PSP", "categorie PSP");
-        Categorie XBOX360 = new Categorie("XBOX360", "categorie XBOX360");
-        Categorie PS3 = new Categorie("PS3", "categorie PS3");
-
-
-        gestionnaireCategorie.create(PC);
-        gestionnaireCategorie.create(DS);
-        gestionnaireCategorie.create(WII);
-        gestionnaireCategorie.create(PSP);
-        gestionnaireCategorie.create(XBOX360);
-        gestionnaireCategorie.create(PS3);
+        
 
         /****************************************************/
         /* CategorieAge*/
@@ -71,21 +56,40 @@ public class Gestion {
         /****************************************************/
         /* Produit*/
         /* categorie PC*/
-        Produit prod1 = new Produit("The Wicher2", 49.99, PC, categorie3);
-        Produit prod2 = new Produit("Brink", 50.31, DS, categorie12);
-        Produit prod3 = new Produit("Tales Of Monkey Island", 20.5, PC, categorie18);
-        Produit prod4 = new Produit("Sbk 2011", 10.5, WII, categorie7);
-        Produit prod5 = new Produit("Portal", 11.5, PS3, categorie18);
+        Produit prod1 = new Produit("prod1", 12.5);
+        
+        Produit prod2 = new Produit("Brink", 50.31);
+        Produit prod3 = new Produit("Tales Of Monkey Island", 20.5);
+        Produit prod4 = new Produit("Sbk 2011", 10.5);
+        Produit prod5 = new Produit("Portal", 11.5);
 
 
-        Produit prod6 = new Produit("The Blood", 9.99, XBOX360, categorie7);
-        Produit prod7 = new Produit("West", 31.5, DS, categorie12);
-        Produit prod8 = new Produit("Monkey", 2.5, WII, categorie18);
-        Produit prod9 = new Produit("Sbk 20", 40.5, WII, categorie7);
-        Produit prod10 = new Produit("Portal Deys", 11.5, PS3, categorie18);
+        Produit prod6 = new Produit("The Blood", 9.99);
+        Produit prod7 = new Produit("West", 31.5);
+        Produit prod8 = new Produit("Monkey", 2.5);
+        Produit prod9 = new Produit("Sbk 20", 40.5);
+        Produit prod10 = new Produit("Portal Deys", 11.5);
 
 
 
+       
+        
+        
+        
+        /****************************************************/
+        /* Categories */
+        Categorie PC = new Categorie("PC", "categorie PC", prod1);
+        
+        
+        Categorie DS = new Categorie("DS", "categorie DS", prod10);
+        Categorie WII = new Categorie("WII", "categorie WII", prod2);
+        Categorie PSP = new Categorie("PSP", "categorie PSP", prod4);
+        Categorie XBOX360 = new Categorie("XBOX360", "categorie XBOX360", prod5);
+        Categorie PS3 = new Categorie("PS3", "categorie PS3", prod3);
+
+
+        
+        
         gestionnaireProduit.create(prod1);
         gestionnaireProduit.create(prod2);
         gestionnaireProduit.create(prod3);
@@ -98,6 +102,16 @@ public class Gestion {
         gestionnaireProduit.create(prod8);
         gestionnaireProduit.create(prod9);
         gestionnaireProduit.create(prod10);
+        
+        
+        
+        
+        gestionnaireCategorie.create(PC);
+        gestionnaireCategorie.create(DS);
+        gestionnaireCategorie.create(WII);
+        gestionnaireCategorie.create(PSP);
+        gestionnaireCategorie.create(XBOX360);
+        gestionnaireCategorie.create(PS3);
 
 
         /****** LES CLIENTS *******/

@@ -26,6 +26,40 @@
         <%@include file="/config/menu.jsp" %>
         <h1>&nbsp;Categorie ${param.cat}</h1> 
 
+
+        <div id="categoryRightColumn">
+
+            
+
+            <table id="productTable">
+
+                <c:forEach var="produit" items="${categoryProducts}" varStatus="iter">
+
+                    <tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
+                       
+
+                        <td>
+                            <br>
+                           <fmt:message key='${produit.nom}'/></span>
+                        </td>
+
+
+                       
+                    </tr>
+
+                </c:forEach>
+
+            </table>
+        </div>
+
+
+
+
+
+
+
+
+
         <%@include file="/config/footer.jsp" %>
 
     </body>

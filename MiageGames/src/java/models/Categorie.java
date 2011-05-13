@@ -56,13 +56,13 @@ public class Categorie implements Serializable {
         this.nom = nom;
         this.description = description;
         collectionProduit = new ArrayList<Produit>();
-        collectionProduit.add(produit);
+    collectionProduit.add(produit);
     }
 
     public Categorie(String nom, String description) {
         this.nom = nom;
         this.description = description;
-        collectionProduit = new ArrayList<Produit>();
+       // collectionProduit = new ArrayList<Produit>();
     }
     
    

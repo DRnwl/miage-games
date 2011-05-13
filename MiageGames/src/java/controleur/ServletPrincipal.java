@@ -83,21 +83,38 @@ public class ServletPrincipal extends HttpServlet {
 
 
             if (nomCategorie != null && !nomCategorie.equals("")) {
+
+
                 //Envoie d'une erreur 500 si la categorie n'existe pas
-                 categorie = gestionnaireCategorie.findByNom(nomCategorie);
+                categorie = gestionnaireCategorie.findByNom(nomCategorie);
+                System.out.println("categorie :" + categorie.getNom());
+
+
+
+
                 if (categorie != null) {
+
+
+                    session.setAttribute("categorie", categorie);
+                    categoryProducts = categorie.getCollectionProduit();
+                    session.setAttribute("categoryProducts", categoryProducts);
+
+                    for (int i = 0; i < categoryProducts.size(); i++) {
+                        System.out.println("nbr produit" + i);
+                    }
+
+
+
+
                 } // on dit qu'il n'y a aucun résultat
                 else {
                     nomCategorie = "";
+
                 }
 
             } // on affiche tous les produits
             else {
                 
-                
-                session.setAttribute("categorie", categorie);
-                categoryProducts = categorie.getCollectionProduit();
-                session.setAttribute("categoryProducts", categoryProducts);
                 
             }
 
