@@ -36,6 +36,7 @@ System.out.println("");*/
     </head>
     <body>
         <%@include file="/config/header.jsp" %>
+        
         <div class="cl">&nbsp;</div>
         <!-- Content -->
         <div id="content">
@@ -125,6 +126,9 @@ System.out.println("");*/
         <!-- / Content -->
         <!--  -->
         <%@include file="/config/menu.jsp" %>
+        
         <%@include file="/config/footer.jsp" %>
+        
+
     </body>
 </html>

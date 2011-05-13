@@ -46,7 +46,7 @@ public class Produit implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "prix")
-    private BigDecimal prix;
+    private Double prix;
     
     // categorie_id reference la cle primaire "id" de la table "Categorie"
     @JoinColumn(name = "categorie_id", referencedColumnName = "id")
@@ -89,14 +89,30 @@ public class Produit implements Serializable {
     public Produit() {
     }
 
-    public Produit(String nom, BigDecimal prix, Categorie categorie) {
+    public Produit(String nom) {
+        this.nom = nom;
+    }
+    
+    
+
+    public Produit(String nom, Double prix, Categorie categorie) {
         this.nom = nom;
         this.prix = prix;
         this.categorie = categorie;
         collectionProduitCommande = new ArrayList<Produit_Commande>();
     }
 
-    public Produit(String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, String description, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur) {
+    public Produit(String nom, Double prix, Categorie categorie, CategorieAge categorieAge) {
+        this.nom = nom;
+        this.prix = prix;
+        this.categorie = categorie;
+        this.categorieAge = categorieAge;
+    }
+    
+    
+    
+
+    public Produit(String nom, Double prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, String description, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur) {
         this.nom = nom;
         this.prix = prix;
         this.categorie = categorie;
@@ -111,7 +127,7 @@ public class Produit implements Serializable {
 
     }
 
-    public Produit(String nom, BigDecimal prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, String description, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur, Produit_Commande produitCommande) {
+    public Produit(String nom, Double prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, String description, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur, Produit_Commande produitCommande) {
         this.nom = nom;
         this.prix = prix;
         this.categorie = categorie;
@@ -204,11 +220,11 @@ public class Produit implements Serializable {
         this.nom = nom;
     }
 
-    public BigDecimal getPrix() {
+    public Double getPrix() {
         return prix;
     }
 
-    public void setPrix(BigDecimal prix) {
+    public void setPrix(Double prix) {
         this.prix = prix;
     }
 

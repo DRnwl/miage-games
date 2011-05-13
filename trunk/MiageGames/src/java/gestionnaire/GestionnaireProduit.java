@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.*;
+import models.Categorie;
 import models.Produit;
 /**
  *
@@ -30,27 +31,9 @@ public class GestionnaireProduit extends GestionnaireCommun<Produit>{
         super(Produit.class);
     }
     
-    public void creerProduitsTest(){
-        
-        Produit prod = new Produit();
-        Produit prod1 = new Produit();
-        Produit prod2 = new Produit();
-        Produit prod3 = new Produit();
-        Produit prod4 = new Produit();
-        
-        prod.setNom("FarCry");
-        prod1.setNom("NWN2");
-        prod2.setNom("Aion");
-        prod3.setNom("WoW");
-        prod4.setNom("Crysis 2");
-        
-        prod.setDescription("blablablablablablabla");
-        
-        create(prod);
-        create(prod1);
-        create(prod2);
-        create(prod3);
-        create(prod4);
-        
-    }
+    
+    
+    
+    
+    
 }

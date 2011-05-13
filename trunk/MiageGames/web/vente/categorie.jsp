@@ -25,6 +25,7 @@
         <%@include file="/config/header.jsp" %>
         <%@include file="/config/menu.jsp" %>
         <h1>&nbsp;Categorie ${param.cat}</h1> 
+
         <%@include file="/config/footer.jsp" %>
 
     </body>
