@@ -17,8 +17,8 @@
         <servlet-class>controleur.ServletAdmin</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ServletUtilisateur</servlet-name>
-        <servlet-class>controleur.ServletUtilisateur</servlet-class>
+        <servlet-name>ServletClient</servlet-name>
+        <servlet-class>controleur.ServletClient</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreerEditerCompteServlet</servlet-name>
@@ -37,14 +37,14 @@
         <url-pattern>/ServletAdmin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletUtilisateur</servlet-name>
-        <url-pattern>/ServletUtilisateur</url-pattern>
+        <servlet-name>ServletClient</servlet-name>
+        <url-pattern>/ServletClient</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletPrincipal</servlet-name>
         <url-pattern>/categorie</url-pattern>
         <url-pattern>/ServletPrincipal</url-pattern>
-        <url-pattern>/creerUtilisateur</url-pattern>
+        <url-pattern>/creerClient</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreerEditerCompteServlet</servlet-name>

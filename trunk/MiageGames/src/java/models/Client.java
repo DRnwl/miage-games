@@ -9,40 +9,28 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 
-
 /**
  *
  * @author Pierro
  */
 @Entity
 @Table(name = "Client")
-
 @NamedQueries({
     @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c"),
-    
     @NamedQuery(name = "Client.findById", query = "SELECT c FROM Client c WHERE c.id = :id"),
-    
     @NamedQuery(name = "Client.findByLogin", query = "SELECT c FROM Client c WHERE c.login = :login"),
-    
     @NamedQuery(name = "Client.findByPassword", query = "SELECT c FROM Client c WHERE c.password = :password"),
-    
     @NamedQuery(name = "Client.findByNom", query = "SELECT c FROM Client c WHERE c.nom = :nom"),
-    
     @NamedQuery(name = "Client.findByPrenom", query = "SELECT c FROM Client c WHERE c.prenom = :prenom"),
-    
     @NamedQuery(name = "Client.findByTelephone", query = "SELECT c FROM Client c WHERE c.telephone = :telephone"),
-    
     @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email"),
-    
-    @NamedQuery(name = "Client.findByAdresse", query = "SELECT c FROM Client c WHERE c.adresse = :adresse")
+    @NamedQuery(name = "Client.findByLoginEmail", query = "SELECT c FROM Client c WHERE c.login = :login and c.email = :email")
 })
-
 public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     // @Basic
     // C'est l'annotation la plus simple pour indiquer qu'une propriété est persistante 
     //(c'est-à-dire gérée par JPA).
@@ -75,13 +63,40 @@ public class Client implements Serializable {
     private String email;
     
     @Basic(optional = false)
-    @Column(name = "adresse")
-    private String adresse;
+    @Column(name = "adresse_facturation")
+    private String adrFact;
+    
+    @Basic(optional = false)
+    @Column(name = "code_postal_facturation")
+    private String adrFactZip;
+    
+    @Basic(optional = false)
+    @Column(name = "ville_facturation")
+    private String adrFactVille;
+    
+    @Basic(optional = false)
+    @Column(name = "adresse_livraison")
+    private String adrLivraison;
+    
+    @Basic(optional = false)
+    @Column(name = "code_postal_livraison")
+    private String adrLivrZip;
+    
+    @Basic(optional = false)
+    @Column(name = "ville_livraison")
+    private String adrLivrVille;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
     private Collection<Commande_Client> collectionCommandeClient;
 
     public Client() {
+    }
+
+    public Client(String login, String password, String email) {
+        this.login = login;
+        this.email = email;
+        this.password = password;
+        collectionCommandeClient = new ArrayList<Commande_Client>();
     }
 
     public Client(String login, String password, String nom, String prenom) {
@@ -99,29 +114,8 @@ public class Client implements Serializable {
         this.prenom = prenom;
         this.telephone = telephone;
         this.email = email;
-        this.adresse = adresse;
         collectionCommandeClient = new ArrayList<Commande_Client>();
 
-    }
-
-    public Client(String login, String password, String nom, String prenom, String telephone, String email, String adresse, Commande_Client commandeClient) {
-        this.login = login;
-        this.password = password;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.telephone = telephone;
-        this.email = email;
-        this.adresse = adresse;
-        collectionCommandeClient = new ArrayList<Commande_Client>();
-        collectionCommandeClient.add(commandeClient);
-
-    }
-    
- 
-
-    
-    public String getAdresse() {
-        return adresse;
     }
 
     public String getEmail() {
@@ -154,10 +148,6 @@ public class Client implements Serializable {
 
     public String getTelephone() {
         return telephone;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
     }
 
     public void setEmail(String email) {
@@ -196,8 +186,56 @@ public class Client implements Serializable {
         this.collectionCommandeClient = collectionClient_commande;
     }
 
-    
-    
+    public String getAdrFact() {
+        return adrFact;
+    }
+
+    public void setAdrFact(String adrFact) {
+        this.adrFact = adrFact;
+    }
+
+    public String getAdrFactVille() {
+        return adrFactVille;
+    }
+
+    public void setAdrFactVille(String adrFactVille) {
+        this.adrFactVille = adrFactVille;
+    }
+
+    public String getAdrFactZip() {
+        return adrFactZip;
+    }
+
+    public void setAdrFactZip(String adrFactZip) {
+        this.adrFactZip = adrFactZip;
+    }
+
+    public String getAdrLivrVille() {
+        return adrLivrVille;
+    }
+
+    public void setAdrLivrVille(String adrLivrVille) {
+        this.adrLivrVille = adrLivrVille;
+    }
+
+    public String getAdrLivrZip() {
+        return adrLivrZip;
+    }
+
+    public void setAdrLivrZip(String adrLivrZip) {
+        this.adrLivrZip = adrLivrZip;
+    }
+
+    public String getAdrLivraison() {
+        return adrLivraison;
+    }
+
+    public void setAdrLivraison(String adrLivraison) {
+        this.adrLivraison = adrLivraison;
+    }
+
+
+
     @Override
     public int hashCode() {
         int hash = 0;

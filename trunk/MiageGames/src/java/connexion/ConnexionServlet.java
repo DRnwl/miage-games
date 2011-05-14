@@ -47,8 +47,11 @@ public class ConnexionServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-
-
+        
+        // On recupere ce que l'client a choisi comme login/password
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        String groupe = request.getParameter("groupe");
 
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
@@ -56,54 +59,95 @@ public class ConnexionServlet extends HttpServlet {
         // on vérifie que la session est bien visiteur.
         if (session.getAttribute("groupeUtilisateur") == "visiteur") {
 
-            // On recupere ce que l'utilisateur a choisi comme login/password
-            String login = request.getParameter("login");
-            String password = request.getParameter("password");
-
             // Jquery a deja verifie, mais on le fait par soucis de sécurité
             if (login != null && password != null && !login.equals("") && !password.equals("")) {
+                // Si on veut se logger en client
+                if (groupe.equals("usr")) {
+                    // On cherche le client
+                    Client cl = gestionnaireClient.findByLogin(login);
 
-                // On cherche le client
-                Client cl = gestionnaireClient.findByLogin(login);
+                    // On verifie qu'on a bien trouvé quelquechose
+                    if (cl != null) {
 
-                // On verifie qu'on a bien trouvé quelquechose
-                if (cl != null) {
-
-                    //On vérifie que le couple login/password est bon
-                    if (cl.getPassword().equals(password)) {
-                        out.println("1");
-                        session.setAttribute("groupeUtilisateur", "utilisateur");
-                    } else {
-                        out.println("-1");
+                        //On vérifie que le couple login/password est bon
+                        if (cl.getPassword().equals(password)) {
+                            // 1 -> Success
+                            out.println("1");
+                            session.setAttribute("groupeUtilisateur", "client");
+                            session.setAttribute("login", login);
+                        } else {
+                            // -1 -> erreur Le login existe mais le mdp est mauvais
+                            out.println("-1");
+                        }
+                    } 
+                    else {
+                        // -2 -> Le compte n'existe pas
+                        out.println("-2");
                     }
-                } // Le compte n'existe pas
-                else {
+                }
+                // Si on veut se logger en admin
+                else if (groupe.equals("adm")) {
                     Administrateur adm = gestionnaireAdministrateur.findByLogin(login);
                     if (adm != null) {
 
                         //On vérifie que le couple login/password est bon
                         if (adm.getPassword().equals(password)) {
-                            out.println("2");
+                            // 1 -> Success
+                            out.println("1");
                             session.setAttribute("groupeUtilisateur", "administrateur");
+                            session.setAttribute("login", login);
                         } else {
+                             // -1 -> erreur Le login existe mais le mdp est mauvais
                             out.println("-1");
                         }
 
                     } else {
+                        // -2 -> Le compte n'existe pas
                         out.println("-2");
                     }
 
                 }
+                else
+                    out.println("-1");
             } // On indique a la jsp qu'il y a eu une erreur
             else {
                 out.println("-1");
             }
 
         }
+        // L'client peut passer sur un compte administrateur
+        else if(session.getAttribute("groupeUtilisateur") == "client")
+        {
+             if (login != null && password != null && !login.equals("") && !password.equals("")) {
+                 Administrateur adm = gestionnaireAdministrateur.findByLogin(login);
+                    if (adm != null) {
+
+                        //On vérifie que le couple login/password est bon
+                        if (adm.getPassword().equals(password)) {
+                            // 1 -> Success
+                            out.println("1");
+                            session.setAttribute("groupeUtilisateur", "administrateur");
+                            session.setAttribute("login", login);
+                        } else {
+                            // -1 -> erreur Le login existe mais le mdp est mauvais
+                            out.println("-1");
+                        }
+
+                    } else {
+                        // -2 -> erreur Le compte n'existe pas
+                        out.println("-2");
+                    }
+             }
+             else {
+                 // -1 -> erreur 
+                out.println("-1");
+            }
+        }
         out.flush();
         out.close();
     }
 
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
