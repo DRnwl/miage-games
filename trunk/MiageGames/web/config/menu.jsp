@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <div id="sidebar">
     <!-- Search -->
     <div id="search" class="block">
@@ -14,6 +15,18 @@
             </div>
         </div>
     </div>
+
+    <div id="bienvenue" class="block">
+        <div class="block-bot">
+            <div class="block-cnt">
+                <h3>Bienvenue 
+                    <% if (session.getAttribute("groupeUtilisateur") == "visiteur") {%> 
+                    visiteur
+                    <%}%>
+                </h3>
+            </div>
+        </div>
+    </div>
     <!-- / Search -->
     <!-- Sign In -->
     <div id="sign" class="block">
@@ -24,22 +37,22 @@
                     <% if (session.getAttribute("groupeUtilisateur") == "visiteur") {%>
                     <div id="menuVisiteur" >
                         <div id="formConnexion" style="display:none">
-                            <form id ="formConnex" name="session" action="#" method=post>
+                            <form id ="formConnex" name="session" action="" method=post>
                                 <div id="loginBox" class="rounded">
                                     <span id="erreurConnexion"></span>  
                                     <p><strong>Nom du compte:</strong></p>
-                                    <p> <input type="text" size="20" id="login"></p>
+                                    <p> <input type="text" size="20" name="login" id="login"></p>
 
                                     <p><strong>Password:</strong></p>
-                                    <p><input type="password" size="20" id="password"></p>
+                                    <p><input type="password" size="20" name="password" id="password"></p>
                                     <br />
-                                    <input id="send" value=" Valider " name="Valider" onclick="fermerForm()"  type="submit" />
+                                    <input id="ValiderConnexion" class="button" value=" Valider " name="Valider"   type="submit" />
 
                                 </div>
                             </form>
                             <br>
                         </div>
-                        <a href="#" class="button button-left">Creer compte</a>
+                        <a href="creerUtilisateur" class="button button-left">Creer compte</a>
                         <a href="#" id="BoutonConnexion" class="button button-right">Connexion</a>
                         <div class='cl'>&nbsp;</div>
                     </div>
@@ -48,11 +61,25 @@
                     <div id="menuUser"> 
 
                         <div id="menuDeroulantUser">
-                            <p align="center"><a href="categorie?cat=PC" id="BoutonTest" class="button">Test</a></p>
+                            <a href="categorie?cat=PC" id="BoutonTest" class="button">Test</a></p>
                         </div>
 
                         <br>
-                        <a href="#" id="BoutonMenu"class="button button-left">Menu</a>
+                        <a href="#" id="BoutonMenuU"class="button button-left">Menu</a>
+
+                        <a href="#" id="BoutonDeconnexion" class="button button-right">Deconnexion</a>
+
+                        <div class="cl">&nbsp;</div>
+                    </div>
+                    <%} else if (session.getAttribute("groupeUtilisateur") == "administrateur") {%>
+                    <div id="menuAdmin"> 
+
+                        <div id="menuDeroulantAdmin">
+                            <a href="categorie?cat=PC" id="BoutonTest" class="button">Test</a></p>
+                        </div>
+
+                        <br>
+                        <a href="#" id="BoutonMenuA"class="button button-left">Menu</a>
 
                         <a href="#" id="BoutonDeconnexion" class="button button-right">Deconnexion</a>
 
@@ -62,6 +89,18 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="connAdmin" title="Connexion OO">
+        <p class="validateTips">Tous les champs sont requis</p>
+
+        <form id ="formConnexA" name="session" action="" method=post>
+            <fieldset>
+                <label for="nom_a">Nom de compte</label>
+                <input type="text" name="nom_a" id="nom_a" class="text ui-widget-content ui-corner-all" />
+                <label for="password_a">Password</label>
+                <input type="password" name="password_a" id="password_a" value="" class="text ui-widget-content ui-corner-all" />
+            </fieldset>
+        </form>
     </div>
     <!-- / Sign In -->
 </div>

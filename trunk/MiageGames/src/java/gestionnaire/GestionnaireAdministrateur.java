@@ -30,5 +30,12 @@ public class GestionnaireAdministrateur extends  GestionnaireCommun<Administrate
         super(Administrateur.class);
     }
     
+    public Administrateur findByLogin(String login){
+        try{
+            return (Administrateur)em.createNamedQuery("Administrateur.findByLogin").setParameter("login", login).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
+    }
     
 }

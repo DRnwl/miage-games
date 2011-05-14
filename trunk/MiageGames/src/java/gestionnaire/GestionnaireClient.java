@@ -31,6 +31,12 @@ public class GestionnaireClient  extends  GestionnaireCommun<Client> {
         super(Client.class);
     }
     
-    
+    public Client findByLogin(String login){
+        try{
+            return (Client)em.createNamedQuery("Client.findByLogin").setParameter("login", login).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
+    }
     
 }

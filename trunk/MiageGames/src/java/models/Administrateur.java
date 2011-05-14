@@ -14,6 +14,24 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Administrateur")
 
+@NamedQueries({
+    @NamedQuery(name = "Administrateur.findAll", query = "SELECT a FROM Administrateur a"),
+    
+    @NamedQuery(name = "Administrateur.findById", query = "SELECT a FROM Administrateur a WHERE a.id = :id"),
+    
+    @NamedQuery(name = "Administrateur.findByLogin", query = "SELECT a FROM Administrateur a WHERE a.login = :login"),
+
+    @NamedQuery(name = "Administrateur.findByPassword", query = "SELECT a FROM Administrateur a WHERE a.password = :password"),
+    
+    @NamedQuery(name = "Administrateur.findByNom", query = "SELECT a FROM Administrateur a WHERE a.nom = :nom"),
+
+    
+    @NamedQuery(name = "Administrateur.findByTelephone", query = "SELECT a FROM Administrateur a WHERE a.telephone = :telephone"),
+    
+    @NamedQuery(name = "Administrateur.findByEmail", query = "SELECT a FROM Administrateur a WHERE a.email = :email")
+
+})
+
 public class Administrateur implements Serializable {
 
     @Id
