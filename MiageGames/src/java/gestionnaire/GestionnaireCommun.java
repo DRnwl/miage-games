@@ -5,7 +5,7 @@
 package gestionnaire;
 
 
-import java.util.Collections;
+
 import java.util.List;
 import javax.persistence.*;
 import javax.persistence.criteria.*;

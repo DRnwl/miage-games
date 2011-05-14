@@ -16,7 +16,7 @@
                 <li class="home"><a href="/MiageGames/index.jsp">Accueil</a></li>
                 <c:forEach var="categorie" items="${categories}">
 
-                    <li><a href="<c:url value='categorie?cat=${categorie.nom}'/>">${categorie.nom}</a></li>
+                    <li><a href="<c:url value='categorie?cat=${categorie.nom}'/>" >${categorie.nom}</a></li>
 
                 </c:forEach> 
             </ul>

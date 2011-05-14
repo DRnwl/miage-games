@@ -6,17 +6,24 @@
     </servlet>
     <servlet>
         <servlet-name>ConnexionServlet</servlet-name>
-        <servlet-class>controleur.ConnexionServlet</servlet-class>
+        <servlet-class>connexion.ConnexionServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeconnexionServlet</servlet-name>
-        <servlet-class>controleur.DeconnexionServlet</servlet-class>
+        <servlet-class>connexion.DeconnexionServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletPrincipal</servlet-name>
-        <url-pattern>/categorie</url-pattern>
-        <url-pattern>/ServletPrincipal</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletAdmin</servlet-name>
+        <servlet-class>controleur.ServletAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletUtilisateur</servlet-name>
+        <servlet-class>controleur.ServletUtilisateur</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreerEditerCompteServlet</servlet-name>
+        <servlet-class>connexion.CreerEditerCompteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnexionServlet</servlet-name>
         <url-pattern>/ConnexionServlet</url-pattern>
@@ -25,6 +32,24 @@
         <servlet-name>DeconnexionServlet</servlet-name>
         <url-pattern>/DeconnexionServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAdmin</servlet-name>
+        <url-pattern>/ServletAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletUtilisateur</servlet-name>
+        <url-pattern>/ServletUtilisateur</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPrincipal</servlet-name>
+        <url-pattern>/categorie</url-pattern>
+        <url-pattern>/ServletPrincipal</url-pattern>
+        <url-pattern>/creerUtilisateur</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreerEditerCompteServlet</servlet-name>
+        <url-pattern>/CreerEditerCompteServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -32,24 +57,4 @@
     </session-config>
     <jsp-config>
     </jsp-config>
-    <security-constraint>
-        <display-name>Admin</display-name>
-        <web-resource-collection>
-            <web-resource-name>Administration</web-resource-name>
-            <description>Accès à l'interface administrateur</description>
-            <url-pattern>/admin/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>AdminMG</role-name>
-        </auth-constraint>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
-    <security-role>
-        <description>Accès à la console admin</description>
-        <role-name>AdminMG</role-name>
-    </security-role>
 </web-app>

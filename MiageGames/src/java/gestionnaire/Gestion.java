@@ -5,6 +5,7 @@
 package gestionnaire;
 
 import javax.ejb.*;
+import models.Administrateur;
 import models.Categorie;
 import models.CategorieAge;
 import models.CategorieAge;
@@ -115,8 +116,8 @@ public class Gestion {
 
 
         /****** LES CLIENTS *******/
-        Client client1 = new Client("chad", "sez", "Charles", "Alex");
-        Client client2 = new Client("kad", "tez", "Kader", "Al");
+        Client client1 = new Client("Vincent", "Vincent", "Charles", "Alex");
+        Client client2 = new Client("Pierre", "Pierre", "Kader", "Al");
 
         gestionnaireClient.create(client1);
         gestionnaireClient.create(client2);
@@ -130,7 +131,8 @@ public class Gestion {
         // client1 va commande prod10
         
         
-
+        /****** LES Admins *******/
+        Administrateur admin1 = new Administrateur("Vincent", "Claver");
 
 
 

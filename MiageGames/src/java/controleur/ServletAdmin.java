@@ -6,28 +6,18 @@ package controleur;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Sangre
  */
-public class ConnexionServlet extends HttpServlet {
+public class ServletAdmin extends HttpServlet {
 
-    @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
-
-        super.init(servletConfig);
-
-    }
-
-    /**
+    /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -36,52 +26,26 @@ public class ConnexionServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
-        String test = "utilisateur";
-        session.setAttribute("groupeUtilisateur", test);
-        
-        //On récupere le login et le password de la personne qui veut se logger;
-        request.getParameter("login");
-        /*
-        if (LeNom == null) {
-        LeNom = "";
-        }
-        if (motPasse == null) {
-        motPasse = "";
-        }
-        if (pass == null) {
-        pass = "";
-        }
-        
-        if (session.getAttribute("nom") == null) {
-        // cas ou l'utilisateur n'a rien mis
-        if (LeNom.equals("admin") && motPasse.equals("admin")) {
-        if (pass.equals("verifierLoginPassword")) {
-        session.setAttribute("login", LeNom);
-        session.setAttribute("password", motPasse);
-        forwardTo = "home.jsp?action=todo";
-        message = "Vous êtes loggé !";
-        }
-        
-        } else {
-        forwardTo = "home.jsp?action=todo";
-        message = "Combinaison login/password incorrect!!";
-        }
-        } else {
-        forwardTo = "home.jsp?action=todo";
-        }*/
-        
-        // On envoit la reponse a la page pour savoir si oui ou non l'utilisateur existe
-        response.setContentType("text/plain");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("1");
-        out.flush();
-        out.close();
+        try {
+            /* TODO output your page here
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletAdmin</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ServletAdmin at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+             */
+        } finally {            
+            out.close();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
+    /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -94,7 +58,7 @@ public class ConnexionServlet extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -107,7 +71,7 @@ public class ConnexionServlet extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
+    /** 
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */

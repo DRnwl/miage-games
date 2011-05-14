@@ -252,18 +252,18 @@ $.extend($.validator, {
 	},
 
 	messages: {
-		required: "This field is required.",
+		required: "Ce champs est requis",
                 login: "Vous devez entrer un login",
                 password: "Vous devez entrer un mot de passe",
 		remote: "Please fix this field.",
-		email: "Please enter a valid email address.",
+		email: "Veuillez entrer un e-mail valide",
 		url: "Please enter a valid URL.",
 		date: "Please enter a valid date.",
 		dateISO: "Please enter a valid date (ISO).",
 		number: "Please enter a valid number.",
-		digits: "Please enter only digits.",
+		digits: "Veuillez n'entrer que des numéros",
 		creditcard: "Please enter a valid credit card number.",
-		equalTo: "Please enter the same value again.",
+		equalTo: "Ce champs doit être le même que votre mot de passe",
 		accept: "Please enter a value with a valid extension.",
 		maxlength: $.validator.format("{0} caractères maximum."),
 		minlength: $.validator.format("{0} caractères minimum."),
@@ -629,7 +629,7 @@ $.extend($.validator, {
 				label.attr("generated") && label.html(message);
 			} else {
 				// create label
-				label = $("<br /><" + this.settings.errorElement + "/>")
+				label = $("<" + this.settings.errorElement + "/>")
 					.attr({"for":  this.idOrName(element), generated: true})
 					.addClass(this.settings.errorClass)
 					.html(message || "");

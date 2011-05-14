@@ -13,12 +13,12 @@
         <div class="navs-bot">
             <div class="cl">&nbsp;</div>
             <ul>
-                <li><a href="#">A remplir</a></li>
+                <li><input id="BoutonAdmin" size="12.5" class="boutonlien"type="link"value="Administration" ></li>
             </ul>	
             <div class="cl">&nbsp;</div>
         </div>
     </div>
-    <p class="copy">&copy; Miage Games.</p>					
+    <p class="copy">&copy; Miage Games.</p>
 </div>
 <!-- / Footer -->	
 </div>
