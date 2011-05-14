@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Sangre
  */
-public class ServletUtilisateur extends HttpServlet {
+public class ServletClient extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,10 +32,10 @@ public class ServletUtilisateur extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletUtilisateur</title>");  
+            out.println("<title>Servlet ServletClient</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletUtilisateur at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ServletClient at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */

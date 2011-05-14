@@ -63,10 +63,18 @@ public class Administrateur implements Serializable {
     public Administrateur() {
     }
 
+    public Administrateur(String login, String password, String email) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+    }
+
     public Administrateur(String login, String password) {
         this.login = login;
         this.password = password;
     }
+    
+    
 
     public Administrateur(String login, String password, String nom, String email, String telephone) {
         this.login = login;

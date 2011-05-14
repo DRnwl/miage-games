@@ -22,6 +22,8 @@ import models.Produit_CommandePK;
 @Stateless
 @LocalBean
 public class Gestion {
+    @EJB
+    private GestionnaireAdministrateur gestionnaireAdministrateur;
 
     @EJB
     private GestionnaireProduit gestionnaireProduit;
@@ -133,7 +135,7 @@ public class Gestion {
         
         /****** LES Admins *******/
         Administrateur admin1 = new Administrateur("Vincent", "Claver");
-
+        gestionnaireAdministrateur.create(admin1);
 
 
 

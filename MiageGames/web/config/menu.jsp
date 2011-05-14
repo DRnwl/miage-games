@@ -52,16 +52,17 @@
                             </form>
                             <br>
                         </div>
-                        <a href="creerUtilisateur" class="button button-left">Creer compte</a>
+                        <a href="creerClient" class="button button-left">Creer compte</a>
                         <a href="#" id="BoutonConnexion" class="button button-right">Connexion</a>
                         <div class='cl'>&nbsp;</div>
                     </div>
                     <% }
-                        if (session.getAttribute("groupeUtilisateur") == "utilisateur") {%>
+                        if (session.getAttribute("groupeUtilisateur") == "client") {%>
                     <div id="menuUser"> 
 
                         <div id="menuDeroulantUser">
-                            <a href="categorie?cat=PC" id="BoutonTest" class="button">Test</a></p>
+                            <a href="categorie?cat=PC" id="ModifierCompte" class="button button-center">Modifier Compte</a>
+                            <a href="categorie?cat=PC" id="VoirCommande" class="button button-center">Voir commande</a>                   
                         </div>
 
                         <br>
@@ -75,7 +76,10 @@
                     <div id="menuAdmin"> 
 
                         <div id="menuDeroulantAdmin">
-                            <a href="categorie?cat=PC" id="BoutonTest" class="button">Test</a></p>
+                            <a href="categorie?cat=PC" id="ModifierInfo" class="button button-center">Mon Compte</a>
+                            <a href="categorie?cat=PC" id="Commandes" class="button button-center">Commandes</a>
+                            <a href="categorie?cat=PC" id="Clients" class="button button-center">Clients</a>
+                            <a href="categorie?cat=PC" id="Produits" class="button button-center">Produits</a>
                         </div>
 
                         <br>
@@ -87,20 +91,25 @@
                     </div>
                     <%}%>
                 </div>
+                <div id="connAdmin" title="Connexion">
+                    <p class="validateTips">Tous les champs sont requis</p>
+
+                    <form id ="formConnexA" name="session" action="" method=post>
+                        <fieldset>
+                            <label for="login_a">Nom de compte</label>
+                            <input type="text" name="login_a" id="login_a" class="text ui-widget-content ui-corner-all" />
+                            <label for="password_a">Password</label>
+                            <input type="password" name="password_a" id="password_a" value="" class="text ui-widget-content ui-corner-all" />
+                            
+                        </fieldset>
+                        <div style="display:none"><input type="submit" id="BoutonConnexionA"/></div>
+                        
+                        
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <div id="connAdmin" title="Connexion OO">
-        <p class="validateTips">Tous les champs sont requis</p>
 
-        <form id ="formConnexA" name="session" action="" method=post>
-            <fieldset>
-                <label for="nom_a">Nom de compte</label>
-                <input type="text" name="nom_a" id="nom_a" class="text ui-widget-content ui-corner-all" />
-                <label for="password_a">Password</label>
-                <input type="password" name="password_a" id="password_a" value="" class="text ui-widget-content ui-corner-all" />
-            </fieldset>
-        </form>
-    </div>
     <!-- / Sign In -->
 </div>

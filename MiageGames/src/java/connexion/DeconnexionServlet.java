@@ -20,6 +20,7 @@ public class DeconnexionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        // On detruit la session et on renvoit la personne sur la page d'accueil
         request.getSession().invalidate();
         response.sendRedirect(response.encodeRedirectURL("ServletPrincipal"));
     }

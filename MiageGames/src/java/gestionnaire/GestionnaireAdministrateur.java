@@ -38,4 +38,12 @@ public class GestionnaireAdministrateur extends  GestionnaireCommun<Administrate
         }
     }
     
+    public Administrateur findByEmail(String email){
+        try{
+            return (Administrateur)em.createNamedQuery("Administrateur.findByEmail").setParameter("email", email).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
 }

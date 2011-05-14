@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Miage Games - Creer un utilisateur</title>
+        <title>Miage Games - Creer un client</title>
         <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-        
+
         <!--[if IE 6]>
 			<link rel="stylesheet" href="css/ie6-style.css" type="text/css" media="all" />
 		<![endif]-->
@@ -31,17 +31,18 @@
             <h2>Création de compte</h2>
             <div class="block">
                 <br />
+                <span id="erreurCreation" style="display:none"></span>
                 <form class="creer-client" id ="formCreation" name="session" action="" method=post>
                     <fieldset>
                         <legend>Information du compte</legend>
-                        <label class="texte" for="login">Nom de compte: </label>
-                        <input name="login" id="login" />
+                        <label class="texte" for="login_c">Nom de compte: </label>
+                        <input name="login_c" id="login_c" />
                         <br />
                         <label class="texte" for="password_c">Password:</label>
-                        <input type="text" name="password" id="password_c" />
+                        <input type="password" name="password_c" id="password_c" />
                         <br />
                         <label class="texte" for="password_ver"></label>
-                        <input  type="text" name="password_ver" id="password_ver" />
+                        <input  type="password" name="password_ver" id="password_ver" />
                         <br />
                     </fieldset>
                     <fieldset>
@@ -60,15 +61,40 @@
                         <br />
                     </fieldset>
                     <fieldset>
-                        <legend>Adresse</legend>
-                        <label class="texte"  for="adresse">Adresse: </label>
-                        <input type="text" name="adresse" id="adresse" />
+                        <legend>Adresse Facturation</legend>
+                        <label class="texte"  for="adresse_f">Adresse: </label>
+                        <input type="text" name="adresse_f" id="adresse_f" />
+                        <br />
+                        <label class="texte"  for="adresse_f_suite"></label>
+                        <input type="text" name="adresse_f_suite" id="adresse_f_suite" />
+                        <br />
+                        <label class="texte"  for="adresse_f_zip">Zip: </label>
+                        <input type="text" name="adresse_f_zip" id="adresse_f_zip" />
+                        <br />
+                        <label class="texte"  for="adresse_f_ville">Ville: </label>
+                        <input type="text" name="adresse_f_ville" id="adresse_f_ville" />
                         <br />
                     </fieldset>
+                    <fieldset>
+                        <legend>Adresse Livraison</legend>
+                        <label class="texte"  for="adresse_l">Adresse: </label>
+                        <input type="text" name="adresse_l" id="adresse_l" />
+                        <br />
+                        <label class="texte"  for="adresse_l_suite"></label>
+                        <input type="text" name="adresse_l_suite" id="adresse_l_suite" />
+                        <br />
+                        <label class="texte"  for="adresse_l_zip">Zip: </label>
+                        <input type="text" name="adresse_l_zip" id="adresse_l_zip" />
+                        <br />
+                        <label class="texte"  for="adresse_l_ville">Ville: </label>
+                        <input type="text" name="adresse_l_ville" id="adresse_l_ville" />
+                        <br />
+                    </fieldset>
+
                     <br />
                     <input id="ValiderCreationBouton" class="button" value=" Valider " name="Valider" type="submit" />
                 </form>
-                
+
                 <br />
             </div>
         </div>
