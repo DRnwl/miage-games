@@ -1,6 +1,6 @@
 <%-- 
-    Document   : categorie
-    Created on : 8 mai 2011, 20:25:48
+    Document   : modifierClient
+    Created on : 15 mai 2011, 14:19:27
     Author     : Sangre
 --%>
 
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Miage Games - Creer un client</title>
+        <title>Miage Games - Modifier Compte</title>
         <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 
@@ -28,76 +28,77 @@
     <body>
         <%@include file="/config/header.jsp" %>
         <div id="content">
+
             <div class="block">
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3>Création de compte</h3>
+                            <h3>Modifier votre compte</h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
-                    <span id="erreurCreation" style="display:none"></span>
-                    <form class="formulaire" id ="formCreationC" name="session" action="" method=post>
+                    <span id="erreurModification" style="display:none"></span>
+                    <form class="formulaire" id ="formModificationC" name="session" action="" method=post>
                         <fieldset>
                             <legend>Information du compte</legend>
                             <label class="texte" for="login_c">Nom de compte: </label>
-                            <input name="login_c" id="login_c" />
+                            <input type ="text"name="login_c" id="login_c" value="${typeUtilisateur.login}" disabled="disabled"/>
                             <br />
                             <label class="texte" for="password_c">Password:</label>
-                            <input type="password" name="password_c" id="password_c" />
+                            <input type="password" name="password_c" id="password_c" value="${typeUtilisateur.password}"/>
                             <br />
                             <label class="texte" for="password_ver"></label>
-                            <input  type="password" name="password_ver" id="password_ver" />
+                            <input  type="password" name="password_ver" id="password_ver" value="${typeUtilisateur.password}"/>
                             <br />
                         </fieldset>
                         <fieldset>
                             <legend>Informations personnelles</legend>
                             <label class="texte" for="nom">Nom: </label>
-                            <input type="text" name="nom" id="nom" />
+                            <input type="text" name="nom" id="nom" value="${typeUtilisateur.nom}"/>
                             <br />
                             <label class="texte" for="prenom">Prénom:</label>
-                            <input type="text" name="prenom" id="prenom" />
+                            <input type="text" name="prenom" id="prenom" value="${typeUtilisateur.prenom}"/>
                             <br />
                             <label class="texte" for="email">E-mail:</label>
-                            <input type="text" name="email" id="email" />
+                            <input type="text" name="email" id="email" value="${typeUtilisateur.email}"/>
                             <br />
                             <label class="texte" for="num_tel">Numéro de téléphone:</label>
-                            <input type="text" name="num_tel" id="num_tel" />
+                            <input type="text" name="num_tel" id="num_tel" value="${typeUtilisateur.telephone}"/>
                             <br />
                         </fieldset>
                         <fieldset>
                             <legend>Adresse Facturation</legend>
                             <label class="texte"  for="adresse_f">Adresse: </label>
-                            <input type="text" name="adresse_f" id="adresse_f" />
+                            <input type="text" name="adresse_f" id="adresse_f" value="${typeUtilisateur.adrFact}"/>
                             <br />
                             <label class="texte"  for="adresse_f_suite"></label>
                             <input type="text" name="adresse_f_suite" id="adresse_f_suite" />
                             <br />
                             <label class="texte"  for="adresse_f_zip">Zip: </label>
-                            <input type="text" name="adresse_f_zip" id="adresse_f_zip" />
+                            <input type="text" name="adresse_f_zip" id="adresse_f_zip" value="${typeUtilisateur.adrFactZip}" />
                             <br />
                             <label class="texte"  for="adresse_f_ville">Ville: </label>
-                            <input type="text" name="adresse_f_ville" id="adresse_f_ville" />
+                            <input type="text" name="adresse_f_ville" id="adresse_f_ville" value="${typeUtilisateur.adrFactVille}"/>
                             <br />
                         </fieldset>
                         <fieldset>
                             <legend>Adresse Livraison</legend>
                             <label class="texte"  for="adresse_l">Adresse: </label>
-                            <input type="text" name="adresse_l" id="adresse_l" />
+                            <input type="text" name="adresse_l" id="adresse_l" value="${typeUtilisateur.adrLivraison}"/>
                             <br />
                             <label class="texte"  for="adresse_l_suite"></label>
-                            <input type="text" name="adresse_l_suite" id="adresse_l_suite" />
+                            <input type="text" name="adresse_l_suite" id="adresse_l_suite"/>
                             <br />
                             <label class="texte"  for="adresse_l_zip">Zip: </label>
-                            <input type="text" name="adresse_l_zip" id="adresse_l_zip" />
+                            <input type="text" name="adresse_l_zip" id="adresse_l_zip" value="${typeUtilisateur.adrLivrZip}"/>
                             <br />
                             <label class="texte"  for="adresse_l_ville">Ville: </label>
-                            <input type="text" name="adresse_l_ville" id="adresse_l_ville" />
+                            <input type="text" name="adresse_l_ville" id="adresse_l_ville" value="${typeUtilisateur.adrLivrVille}"/>
                             <br />
                         </fieldset>
 
                         <br />
-                        <input id="ValiderCreationBouton" class="button" value=" Valider " name="Valider" type="submit" />
+                        <input id="ValiderModifierBouton" class="button" value=" Valider " name="Valider" type="submit" />
                     </form>
 
                     <br />
@@ -109,3 +110,4 @@
 
     </body>
 </html>
+

@@ -75,6 +75,13 @@ public class Commande_Client implements Serializable {
         this.client = client;
     }
 
+    public Commande_Client(Double montant, String date_achat, Collection<Produit_Commande> collectionProduitCommande, Client client) {
+        this.montant = montant;
+        this.date_achat = date_achat;
+        this.collectionProduitCommande = collectionProduitCommande;
+        this.client = client;
+    }
+
     
    
 

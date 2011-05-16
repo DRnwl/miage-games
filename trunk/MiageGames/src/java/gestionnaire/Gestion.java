@@ -120,6 +120,7 @@ public class Gestion {
         /****** LES CLIENTS *******/
         Client client1 = new Client("Vincent", "Vincent", "Charles", "Alex");
         Client client2 = new Client("Pierre", "Pierre", "Kader", "Al");
+        
 
         gestionnaireClient.create(client1);
         gestionnaireClient.create(client2);
@@ -134,10 +135,8 @@ public class Gestion {
         
         
         /****** LES Admins *******/
-        Administrateur admin1 = new Administrateur("Vincent", "Claver");
+        Administrateur admin1 = new Administrateur("Vincent", "Claver", "Vincent", "admin@admin.com", "0000000000");
         gestionnaireAdministrateur.create(admin1);
-
-
-
+        
     }
 }

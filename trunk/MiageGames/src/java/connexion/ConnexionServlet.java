@@ -57,7 +57,7 @@ public class ConnexionServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         // on vérifie que la session est bien visiteur.
-        if (session.getAttribute("groupeUtilisateur") == "visiteur") {
+        if (session.getAttribute("groupeUtilisateur").equals("visiteur")) {
 
             // Jquery a deja verifie, mais on le fait par soucis de sécurité
             if (login != null && password != null && !login.equals("") && !password.equals("")) {
@@ -75,6 +75,7 @@ public class ConnexionServlet extends HttpServlet {
                             out.println("1");
                             session.setAttribute("groupeUtilisateur", "client");
                             session.setAttribute("login", login);
+                            session.setAttribute("typeUtilisateur", cl);
                         } else {
                             // -1 -> erreur Le login existe mais le mdp est mauvais
                             out.println("-1");
@@ -96,6 +97,7 @@ public class ConnexionServlet extends HttpServlet {
                             out.println("1");
                             session.setAttribute("groupeUtilisateur", "administrateur");
                             session.setAttribute("login", login);
+                            session.setAttribute("typeUtilisateur", adm);
                         } else {
                              // -1 -> erreur Le login existe mais le mdp est mauvais
                             out.println("-1");
@@ -116,7 +118,7 @@ public class ConnexionServlet extends HttpServlet {
 
         }
         // L'client peut passer sur un compte administrateur
-        else if(session.getAttribute("groupeUtilisateur") == "client")
+        else if(session.getAttribute("groupeUtilisateur").equals("client"))
         {
              if (login != null && password != null && !login.equals("") && !password.equals("")) {
                  Administrateur adm = gestionnaireAdministrateur.findByLogin(login);
@@ -128,6 +130,7 @@ public class ConnexionServlet extends HttpServlet {
                             out.println("1");
                             session.setAttribute("groupeUtilisateur", "administrateur");
                             session.setAttribute("login", login);
+                            session.setAttribute("typeUtilisateur", adm);
                         } else {
                             // -1 -> erreur Le login existe mais le mdp est mauvais
                             out.println("-1");

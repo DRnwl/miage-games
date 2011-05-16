@@ -5,11 +5,14 @@
 package controleur;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.Client;
 
 /**
  *
@@ -26,21 +29,25 @@ public class ServletClient extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletClient</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletClient at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-             */
-        } finally {            
-            out.close();
+
+        HttpSession session = request.getSession();
+        String userPath = request.getServletPath();
+
+        if (session.getAttribute("groupeUtilisateur") != null) {
+            if (session.getAttribute("groupeUtilisateur").equals("client")) {
+               if (userPath.equals("/modifierC")) {
+                    
+                    RequestDispatcher dp = request.getRequestDispatcher("/utilisateur/modifierCompte.jsp");
+                    dp.forward(request, response);
+                }
+                if(userPath.equals("/voirCommandes")){
+                    RequestDispatcher dp = request.getRequestDispatcher("/utilisateur/voirCommandes.jsp");
+                    dp.forward(request, response);
+                }
+            }
+        } else {
+            RequestDispatcher dp = request.getRequestDispatcher("index.jsp");
+            dp.forward(request, response);
         }
     }
 

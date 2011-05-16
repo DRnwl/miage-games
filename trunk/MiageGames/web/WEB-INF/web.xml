@@ -33,14 +33,6 @@
         <url-pattern>/DeconnexionServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletAdmin</servlet-name>
-        <url-pattern>/ServletAdmin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletClient</servlet-name>
-        <url-pattern>/ServletClient</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ServletPrincipal</servlet-name>
         <url-pattern>/categorie</url-pattern>
         <url-pattern>/ServletPrincipal</url-pattern>
@@ -49,6 +41,18 @@
     <servlet-mapping>
         <servlet-name>CreerEditerCompteServlet</servlet-name>
         <url-pattern>/CreerEditerCompteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletClient</servlet-name>
+        <url-pattern>/ServletClient</url-pattern>
+        <url-pattern>/modifierC</url-pattern>
+        <url-pattern>/voirCommandes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAdmin</servlet-name>
+        <url-pattern>/modifierA</url-pattern>
+        <url-pattern>/ServletAdmin</url-pattern>
+        <url-pattern>/voirAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

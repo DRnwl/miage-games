@@ -178,13 +178,14 @@ public class Client implements Serializable {
         this.telephone = telephone;
     }
 
-    public Collection<Commande_Client> getCollectionClient_commande() {
+    public Collection<Commande_Client> getCollectionCommandeClient() {
         return collectionCommandeClient;
     }
 
-    public void setCollectionClient_commande(Collection<Commande_Client> collectionClient_commande) {
-        this.collectionCommandeClient = collectionClient_commande;
+    public void setCollectionCommandeClient(Collection<Commande_Client> collectionCommandeClient) {
+        this.collectionCommandeClient = collectionCommandeClient;
     }
+
 
     public String getAdrFact() {
         return adrFact;
