@@ -65,44 +65,53 @@ public class ServletPrincipal extends HttpServlet {
         Collection<Produit> categoryProducts;
 
 
-        if (session.getAttribute("groupeUtilisateur") == null) {
-            session.setAttribute("groupeUtilisateur", "visiteur");
-        }
+        if (session.getAttribute("groupeUtilisateur") != null) {
+
+            System.out.println(session.getAttribute("groupeUtilisateur"));
+
+            if (userPath.equals("/categorie")) {
+                // On recupere la valeur de cat pour aller dans la categorie souhaitée
+                String nomCategorie = request.getParameter("cat");
 
 
-        System.out.println(session.getAttribute("groupeUtilisateur"));
+                if (nomCategorie != null && !nomCategorie.equals("")) {
 
-        if (userPath.equals("/categorie")) {
-            // On recupere la valeur de cat pour aller dans la categorie souhaitée
-            String nomCategorie = request.getParameter("cat");
+                    categorie = gestionnaireCategorie.findByNom(nomCategorie);
+                    if (categorie != null) {
+                        session.setAttribute("categorie", categorie);
+                        categoryProducts = categorie.getCollectionProduit();
+                        session.setAttribute("categoryProducts", categoryProducts);
 
-
-            if (nomCategorie != null && !nomCategorie.equals("")) {
-                
-                categorie = gestionnaireCategorie.findByNom(nomCategorie);
-                if (categorie != null) {
-                    session.setAttribute("categorie", categorie);
-                    categoryProducts = categorie.getCollectionProduit();
-                    session.setAttribute("categoryProducts", categoryProducts);
-
-                    for (int i = 0; i < categoryProducts.size(); i++) {
-                        System.out.println("nbr produit" + i);
+                        for (int i = 0; i < categoryProducts.size(); i++) {
+                            System.out.println("nbr produit" + i);
+                        }
+                    } // on dit qu'il n'y a aucun résultat
+                    else {
+                        nomCategorie = "";
                     }
-                } // on dit qu'il n'y a aucun résultat
+
+                } // on affiche tous les produits
                 else {
-                    nomCategorie = "";
                 }
 
-            } // on affiche tous les produits
-            else {
+                RequestDispatcher dp = request.getRequestDispatcher("/vente/categorie.jsp?cat=" + nomCategorie);
+                dp.forward(request, response);
+            } else if (userPath.equals("/creerClient")) {
+                if (!session.getAttribute("groupeUtilisateur").equals("visiteur")) {
+                    RequestDispatcher dp = request.getRequestDispatcher("/creerClient.jsp");
+                    dp.forward(request, response);
+                }
+                else{
+                    RequestDispatcher dp = request.getRequestDispatcher("/home.jsp");
+                    dp.forward(request, response);
+                }
+            } else {
+                RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
+                dp.forward(request, response);
             }
-
-            RequestDispatcher dp = request.getRequestDispatcher("/vente/categorie.jsp?cat=" + nomCategorie);
-            dp.forward(request, response);
-        } else if (userPath.equals("/creerClient")) {
-            RequestDispatcher dp = request.getRequestDispatcher("/creerClient.jsp");
-            dp.forward(request, response);
         } else {
+            session.setAttribute("groupeUtilisateur", "visiteur");
+            System.out.println(session.getAttribute("groupeUtilisateur"));
             RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
             dp.forward(request, response);
         }

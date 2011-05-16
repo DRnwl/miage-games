@@ -50,19 +50,149 @@ public class CreerEditerCompteServlet extends HttpServlet {
         //  un client
         String but = request.getParameter("but");
 
-        if (groupe.equals("client")) {
-            // On crée un nouvel client
-            if (but.equals("creerU")) {
+        if (groupe.equals("visiteur")) {
+            if (but.equals("creerC")) {
                 creerClient(out, request);
-            } else if (but.equals("modifierU")) {
+            }
+        } else if (groupe.equals("client")) {
+            // Un client veut modifier son compte
+            if (but.equals("modifierC")) {
+                String email = request.getParameter("email");
+                int i = 0;
+                Client cl = (Client) session.getAttribute("typeUtilisateur");
+                if (!cl.getEmail().equals(email)) {
+                    if (gestionnaireClient.findByEmail(email) == null) {
+                        cl.setEmail(email);
+                        i++;
+                    } else {
+                        out.print("-1");
+                        return;
+                    }
+                }
+
+                if (!cl.getPassword().equals(request.getParameter("password"))) {
+                    cl.setPassword(request.getParameter("password"));
+                    i++;
+                }
+                if (!cl.getNom().equals(request.getParameter("nom"))) {
+                    cl.setNom(request.getParameter("nom"));
+                    i++;
+                }
+                if (!cl.getPrenom().equals(request.getParameter("prenom"))) {
+                    cl.setPrenom(request.getParameter("prenom"));
+                    i++;
+                }
+                if (!cl.getAdrFact().equals(request.getParameter("adresse_f"))) {
+                    cl.setAdrFact(request.getParameter("adresse_f"));
+                    i++;
+                }
+                if (!cl.getAdrFactZip().equals(request.getParameter("adresse_f_zip"))) {
+                    cl.setAdrFactZip(request.getParameter("adresse_f_zip"));
+                    i++;
+                }
+                if (!cl.getAdrFactVille().equals(request.getParameter("adresse_f_ville"))) {
+                    cl.setAdrFactVille(request.getParameter("adresse_f_ville"));
+                    i++;
+                }
+                if (!cl.getAdrLivraison().equals(request.getParameter("adresse_l"))) {
+                    cl.setAdrLivraison(request.getParameter("adresse_l"));
+                    i++;
+                }
+                if (!cl.getAdrLivrZip().equals(request.getParameter("adresse_l_zip"))) {
+                    cl.setAdrLivrZip(request.getParameter("adresse_l_zip"));
+                    i++;
+
+                }
+                if (!cl.getAdrLivrVille().equals(request.getParameter("adresse_l_ville"))) {
+                    cl.setAdrLivrVille(request.getParameter("adresse_l_ville"));
+                    i++;
+                }
+                if (request.getParameter("num_tel") != null) {
+                    cl.setTelephone("");
+                }
+                if (!cl.getTelephone().equals(request.getParameter("num_tel"))) {
+                    cl.setTelephone(request.getParameter("num_tel"));
+                    i++;
+                }
+                if (i > 0) {
+                    gestionnaireClient.edit(cl);
+                    session.setAttribute("typeUtilisateur", cl);
+                    out.print("1");
+                } else {
+                    out.print("-2");
+                }
             }
         } else if (groupe.equals("administrateur")) {
             if (but.equals("creerA")) {
                 creerAdmin(out, request);
             } else if (but.equals("modifierA")) {
-            } else if (but.equals("modifierU")) {
-            } 
-            else if (but.equals("supprimerU")) {
+
+                String login = request.getParameter("login");
+                String email = request.getParameter("email");
+                boolean change = false;
+                //On regarde si une modification a bien été effectuée
+                int i = 0;
+                
+                if(session.getAttribute("modifCompte").equals(session.getAttribute("typeUtilisateur")))
+                {
+                    change = true;
+                }
+                Administrateur adm = (Administrateur) session.getAttribute("modifCompte");
+                if (!adm.getEmail().equals(email)) {
+                    
+                    if (gestionnaireAdministrateur.findByEmail(email) == null) {
+                        adm.setEmail(email);
+                        i++;
+                    } else {
+                        out.print("-1");
+                        return;
+                    }
+                }
+                if (!adm.getLogin().equals(login)) {
+                    if (gestionnaireAdministrateur.findByLogin(login) == null) {
+                        adm.setLogin(login);
+                        i++;
+                    } else {
+                        out.print("-2");
+                        return;
+                    }
+                }
+                if (!adm.getPassword().equals(request.getParameter("password"))) {
+                    adm.setPassword(request.getParameter("password"));
+                    i++;
+                }
+                if (!adm.getNom().equals(request.getParameter("nom"))) {
+                    adm.setNom(request.getParameter("nom"));
+                    i++;
+                }
+                if (request.getParameter("num_tel") == null) {
+                    adm.setTelephone("");
+                }
+                if (!adm.getTelephone().equals(request.getParameter("num_tel"))) {
+                    adm.setTelephone(request.getParameter("num_tel"));
+                    i++;
+                }
+                if (i > 0) {
+                    if(change)
+                    {
+                        session.setAttribute("login", login);
+                        session.setAttribute("typeUtilisateur", adm);
+                    }
+                    else
+                    {
+                        session.setAttribute("modifCompte", adm);
+                    }
+                    gestionnaireAdministrateur.edit(adm);
+                    
+                   
+                    out.print("1");
+                } else {
+                    out.print("-3");
+                }
+
+
+            } else if (but.equals("modifierC")) {
+            } else if (but.equals("supprimerC")) {
                 String login = request.getParameter("login");
 
                 Client cl = gestionnaireClient.findByLogin(login);
@@ -72,11 +202,10 @@ public class CreerEditerCompteServlet extends HttpServlet {
                 } else {
                     out.print("-1");
                 }
-            } 
-            else if (but.equals("supprimerA")) {
+            } else if (but.equals("supprimerA")) {
                 String login = request.getParameter("login");
 
-                // On verifie que l'admin ne veut pas supprimer son propre compte
+                // On verifie que l'admin ne peut pas supprimer son propre compte
                 if (((String) session.getAttribute("login")).equals(login)) {
                     out.print("-2");
                 } else {
@@ -90,6 +219,7 @@ public class CreerEditerCompteServlet extends HttpServlet {
                 }
             }
         }
+
 
         out.flush();
 
@@ -130,6 +260,8 @@ public class CreerEditerCompteServlet extends HttpServlet {
 
                 if (request.getParameter("num_tel") != null) {
                     cl.setTelephone(request.getParameter("num_tel"));
+                } else {
+                    cl.setTelephone("");
                 }
                 gestionnaireClient.create(cl);
 
@@ -177,8 +309,7 @@ public class CreerEditerCompteServlet extends HttpServlet {
             } else {
 
                 // on cree l'client
-                adm = new Administrateur(login, mail);
-                adm.setPassword(request.getParameter("password"));
+                adm = new Administrateur(login, request.getParameter("password"), mail);
                 adm.setNom(request.getParameter("nom"));
 
                 if (request.getParameter("num_tel") != null) {

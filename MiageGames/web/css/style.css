@@ -42,7 +42,7 @@ label.error {
     padding: 0 2px;
 }
 
-#erreurCreation {
+#erreurCreation,#erreurModification,#erreurRecherche,#erreurCreation {
     /* Move the error above the input element. */
 font:115%/1 sans-serif;
     color: red;
@@ -274,6 +274,60 @@ a:hover {
     background: url(images/nav-active-bg.gif) repeat-x 0 0; 
 }
 
+.formulaire fieldset{
+    padding: 1em;
+    font:100%/1 sans-serif;
+    border:1px solid gray;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.formulaire label {
+
+    float:right;
+    width:25%;
+    margin-right:1em;
+    padding-top:0.2em;
+    text-align:right;
+    font-weight:bold;
+
+}
+.formulaire label.texte{
+    float:left;
+    margin-left:9em;
+}
+.formulaire  .button { 
+
+    display: block; 
+    font-size: 11px; 
+    font-weight: bold; 
+    text-align: center; 
+    color: #fff; 
+    text-decoration: none; 
+    text-transform: uppercase; 
+    line-height: 29px; 
+    margin-left: auto ;
+    margin-right: auto ;
+}
+.formulaire .button { 
+    width: 105px; 
+    height: 29px; 
+    background: url(images/sign-button.gif) no-repeat 0 0; 
+}
+.formulaire .button:hover { 
+    background-position: 0; 
+}
+
+.formulaire .center { 
+    text-align: center; 
+    font-size: 11px; 
+    line-height: 16px; 
+    margin-top: 4px; 
+}
+.formulaire .center input { 
+    color: #35cfd9; 
+}
+
 form.creer-client fieldset{
 
     padding: 1em;
@@ -393,10 +447,19 @@ form.creer-client .center input {
     text-decoration: none; 
     text-align: center; 
 }
+
 .block .head .view-all:hover { 
     text-decoration: underline; 
 }
 
+.block .head a{
+    text-decoration: none;
+    display:block;
+    width:100%;
+    height:100%;
+    color: #262727; 
+    
+}
 #content .block { 
     background-image: url(images/content-block-top.gif); 
     background-color: #313131; 
@@ -447,7 +510,49 @@ form.creer-client .center input {
 #search .button { 
     background: url(images/search-button.gif) no-repeat 0 0; 
 }
+.search .block-cnt { 
+    padding: 5px 5px 5px 4px; 
+}
 
+.search .fieldplace { 
+    float: left; 
+    display: inline; 
+    width: 170px; 
+    height: 22px; 
+    background: url(images/search-field.gif) no-repeat 0 0; 
+    padding-left: 18px; 
+    margin-right: auto;
+    margin-left: auto;
+}
+.search .fieldplace .field { 
+    padding: 3px 6px 4px; 
+    width: 158px; 
+    border: none; 
+    background: none;
+    
+}
+.search label.error {
+    /* Move the error above the input element. */
+    margin-top: 14px;
+    color: red;
+    padding: 0 2px;
+    width:130%;
+}
+
+.search .button { 
+    float: left; 
+    display: inline; 
+    width: 29px; 
+    height: 22px; 
+    font-size: 0; 
+    line-height: 0; 
+    text-indent: -4000px; 
+    cursor: pointer;
+    border: 0;
+}
+.search .button { 
+    background: url(images/search-button.gif) no-repeat 0 0; 
+}
 #bienvenue .block-cnt { 
     padding: 5px 5px 5px 4px; 
 }
@@ -503,7 +608,7 @@ form.creer-client .center input {
     line-height: 16px; 
     margin-top: 4px; 
 }
-#sign .center a { 
+#sign .center a  { 
     color: #35cfd9; 
 }
 

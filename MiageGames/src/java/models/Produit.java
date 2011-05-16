@@ -114,6 +114,7 @@ public class Produit implements Serializable {
         this.prix = prix;
         this.categorie = categorie;
         this.categorieAge = categorieAge;
+        collectionProduitCommande = new ArrayList<Produit_Commande>();
     }
     
     

@@ -25,7 +25,7 @@
         <div class="cl">&nbsp;</div>
         <!-- Logo -->
         <div id="logo">
-            <h1><a href="#">Miage <span>Games</span></a></h1>
+            <h1><a href="/MiageGames/index.jsp">Miage <span>Games</span></a></h1>
             <p class="description">Votre zone de jeu</p>
         </div>
         <!-- / Logo -->

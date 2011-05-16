@@ -19,11 +19,7 @@
     <div id="bienvenue" class="block">
         <div class="block-bot">
             <div class="block-cnt">
-                <h3>Bienvenue 
-                    <% if (session.getAttribute("groupeUtilisateur") == "visiteur") {%> 
-                    visiteur
-                    <%}%>
-                </h3>
+                <center> <h3>Bienvenue ${login}<br /> Vous êtes un ${groupeUtilisateur} </h3></center>
             </div>
         </div>
     </div>
@@ -34,7 +30,7 @@
             <div class="block-cnt">
                 <div class="cl">&nbsp;</div>
                 <div id="menu">
-                    <% if (session.getAttribute("groupeUtilisateur") == "visiteur") {%>
+                    <% if (session.getAttribute("groupeUtilisateur").equals("visiteur")) {%>
                     <div id="menuVisiteur" >
                         <div id="formConnexion" style="display:none">
                             <form id ="formConnex" name="session" action="" method=post>
@@ -53,44 +49,48 @@
                             <br>
                         </div>
                         <a href="creerClient" class="button button-left">Creer compte</a>
-                        <a href="#" id="BoutonConnexion" class="button button-right">Connexion</a>
+                        <a href="#" id="BoutonConnexion" class="button button-right" onClick="return false">Connexion</a>
                         <div class='cl'>&nbsp;</div>
                     </div>
                     <% }
-                        if (session.getAttribute("groupeUtilisateur") == "client") {%>
+                        if (session.getAttribute("groupeUtilisateur").equals("client")) {%>
                     <div id="menuUser"> 
 
                         <div id="menuDeroulantUser">
-                            <a href="categorie?cat=PC" id="ModifierCompte" class="button button-center">Modifier Compte</a>
-                            <a href="categorie?cat=PC" id="VoirCommande" class="button button-center">Voir commande</a>                   
+                            <a href="modifierC" id="ModifierCompte" class="button button-center">Modifier Compte</a>
+                            <a href="voirCommandes" id="VoirCommande" class="button button-center">Voir commande</a>                   
+                            <br />
                         </div>
 
-                        <br>
-                        <a href="#" id="BoutonMenuU"class="button button-left">Menu</a>
 
-                        <a href="#" id="BoutonDeconnexion" class="button button-right">Deconnexion</a>
+                        <a href="#" id="BoutonMenuU"class="button button-left" onClick="return false">Menu</a>
+
+                        <a href="#" id="BoutonDeconnexion" class="button button-right" onClick="return false">Deconnexion</a>
 
                         <div class="cl">&nbsp;</div>
                     </div>
-                    <%} else if (session.getAttribute("groupeUtilisateur") == "administrateur") {%>
+                    <%} else if (session.getAttribute("groupeUtilisateur").equals("administrateur")) {%>
                     <div id="menuAdmin"> 
 
                         <div id="menuDeroulantAdmin">
-                            <a href="categorie?cat=PC" id="ModifierInfo" class="button button-center">Mon Compte</a>
-                            <a href="categorie?cat=PC" id="Commandes" class="button button-center">Commandes</a>
-                            <a href="categorie?cat=PC" id="Clients" class="button button-center">Clients</a>
-                            <a href="categorie?cat=PC" id="Produits" class="button button-center">Produits</a>
+                            <a href="modifierA" id="ModifierInfo" class="button button-center">Modifier Compte</a>
+                            <a href="voirAdmin" id="Admin" class="button button-center">Admin</a>
+                            <a href="voirClients" id="Clients" class="button button-center">Clients</a>
+                            <a href="voirCommandesA" id="Commandes" class="button button-center">Commandes</a>
+                            <a href="voirProduits" id="Produits" class="button button-center">Produits</a>
+                            <br>
                         </div>
 
-                        <br>
-                        <a href="#" id="BoutonMenuA"class="button button-left">Menu</a>
 
-                        <a href="#" id="BoutonDeconnexion" class="button button-right">Deconnexion</a>
+                        <a href="#" id="BoutonMenuA"class="button button-left" onClick="return false">Menu</a>
+
+                        <a href="#" id="BoutonDeconnexion" class="button button-right" onClick="return false">Deconnexion</a>
 
                         <div class="cl">&nbsp;</div>
                     </div>
                     <%}%>
                 </div>
+                <%if (!session.getAttribute("groupeUtilisateur").equals("administrateur")) {%>
                 <div id="connAdmin" title="Connexion">
                     <p class="validateTips">Tous les champs sont requis</p>
 
@@ -100,13 +100,14 @@
                             <input type="text" name="login_a" id="login_a" class="text ui-widget-content ui-corner-all" />
                             <label for="password_a">Password</label>
                             <input type="password" name="password_a" id="password_a" value="" class="text ui-widget-content ui-corner-all" />
-                            
+
                         </fieldset>
                         <div style="display:none"><input type="submit" id="BoutonConnexionA"/></div>
-                        
-                        
+
+
                     </form>
                 </div>
+                <% }%>
             </div>
         </div>
     </div>
