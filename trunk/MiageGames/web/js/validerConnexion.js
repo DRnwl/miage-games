@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     // On ouvre/cache le formulaire de connexion
-    $("#BoutonConnexion").click(function(){
+    $("#BoutonConnexion").live('click',function(){
         if ($("#formConnexion").is(":hidden")){
             $("#formConnexion").slideDown("slow");
         }
@@ -11,7 +11,7 @@ $(document).ready(function(){
     });
     
     // On ouvre/cache le menu client
-    $("#BoutonMenuU").click(function(){
+    $("#BoutonMenuU").live('click',function(){
         if ($("#menuDeroulantUser").is(":hidden")){
             $("#menuDeroulantUser").slideDown("slow");
         }
@@ -21,7 +21,7 @@ $(document).ready(function(){
     });
     
     // On ouvre/cache le menu administrateur
-    $("#BoutonMenuA").click(function(){
+    $("#BoutonMenuA").live('click',function(){
         if ($("#menuDeroulantAdmin").is(":hidden")){
             $("#menuDeroulantAdmin").slideDown("slow");
         }
@@ -31,17 +31,28 @@ $(document).ready(function(){
     });
     
     // le clique sur le bouton de deconnexion nous envoit sur la servlet de déco
-    $("#BoutonDeconnexion").click(function(){
+    $("#BoutonDeconnexion").live('click',function(){
         window.location.replace("DeconnexionServlet"); 
     });
     
     $("#AjoutAdm").click(function(){
         if ($("#toggleCrea").is(":hidden")){
+            effacer("#formRechercheA");
+            effacer("#formSupprimmerA");
+            
+            $("#erreurRecherche").hide();
+            $("#erreurSuppression").hide();
+            
+            $("#menuModif").empty();
+            $("#erreurModification").empty();
+            $("#afficherAdmin").empty();
+            
             $("#toggleCrea").slideDown("slow");
             $("#toggleModif").slideUp("fast");
             $("#toggleSupp").slideUp("fast");
-            effacer("#formRechercheA");
-            effacer("#formSupprimmerA");
+            $("#toggleVoir").slideUp("fast");
+            
+            
         }
         else{
             $("#toggleCrea").slideUp("slow");
@@ -50,11 +61,19 @@ $(document).ready(function(){
     
     $("#RechMAdmin").click(function(){
         if ($("#toggleModif").is(":hidden")){
+            effacer("#formCreationA");
+            effacer("#formSupprimmerA");
+            $("#erreurCreation").hide();
+            $("#erreurSuppression").hide();
+            $("#afficherAdmin").empty();
+            
             $("#toggleModif").slideDown("slow");
             $("#toggleCrea").slideUp("fast");
             $("#toggleSupp").slideUp("fast");
-            effacer("#formCreationA");
-            effacer("#formSupprimmerA");
+            $("#toggleVoir").slideUp("fast");
+            
+            
+            
         }
         else{
             $("#toggleModif").slideUp("slow");
@@ -63,21 +82,191 @@ $(document).ready(function(){
     
     $("#SupprAdm").click(function(){
         if ($("#toggleSupp").is(":hidden")){
+            
+            effacer("#formCreationA");
+            effacer("#formRechercheA");
+            $("#erreurCreation").hide();
+            $("#erreurRecherche").hide();
+            $("#menuModif").empty();
+            $("#erreurModification").empty();
+            $("#afficherAdmin").empty();
+            
             $("#toggleSupp").slideDown("slow");
             $("#toggleCrea").slideUp("fast");
             $("#toggleModif").slideUp("fast");
-            effacer("#formCreationA");
-            effacer("#formRechercheA");
+            $("#toggleVoir").slideUp("fast");
+            
         }
         else{
             $("#toggleSupp").slideUp("slow");
         }
     });
     
+    $("#VoirTousAdm").click(function(){
+        if ($("#toggleVoir").is(":hidden")){
+            
+            effacer("#formCreationA");
+            effacer("#formRechercheA");
+            effacer("#formSupprimmerA");
+            
+            $("#erreurCreation").hide();
+            $("#erreurRecherche").hide();
+            $("#menuModif").empty();
+            $("#erreurModification").empty();
+            
+            $("#toggleVoir").slideDown("slow");
+            $("#toggleCrea").slideUp("fast");
+            $("#toggleModif").slideUp("fast");
+            $("#toggleSupp").slideUp("fast");
+            
+
+            
+            loadDataA(1);
+            
+        }
+        else{
+            $("#toggleVoir").slideUp("slow");
+        }
+    });
+    
                 
+    
+    $('#voirAdmin .pagination li.active').live('click',function(){
+        var page = $(this).attr('p');
+        loadDataA(page);
+    }); 
+    
+    
+    
+    $("#AjoutClt").click(function(){
+        if ($("#toggleCrea").is(":hidden")){
+            
+                        
+            effacer("#formRechercheC");
+            effacer("#formSupprimmerC");
+            
+            $("#erreurRecherche").hide();
+            $("#erreurSuppression").hide();
+            
+            $("#menuModifC").empty();
+            $("#erreurModification").empty();
+            $("#voirClt").empty();
+            
+            $("#toggleCrea").slideDown("slow");
+            $("#toggleModif").slideUp("fast");
+            $("#toggleSupp").slideUp("fast");
+            $("#toggleVoir").slideUp("fast");
+
+        }
+        else{
+            $("#toggleCrea").slideUp("slow");
+        }
+    });
+    
+    $("#RechMClt").click(function(){
+        if ($("#toggleModif").is(":hidden")){
+            
+            effacer("#formCreationC");
+            effacer("#formSupprimmerC");
+            $("#erreurCreation").hide();
+            $("#erreurSuppression").hide();
+            $("#voirClt").empty();
+            
+            $("#toggleModif").slideDown("slow");
+            $("#toggleCrea").slideUp("fast");
+            $("#toggleSupp").slideUp("fast");
+            $("#toggleVoir").slideUp("fast");
+            
+            
+        }
+        else{
+            $("#toggleModif").slideUp("slow");
+        }
+    });
+    
+    $("#SupprClt").click(function(){
+        if ($("#toggleSupp").is(":hidden")){
+            
+            effacer("#formCreationC");
+            effacer("#formRechercheC");
+            $("#erreurCreation").hide();
+            $("#erreurRecherche").hide();
+            $("#menuModifC").empty();
+            $("#erreurModification").empty();
+            $("#voirClt").empty();
+            
+            $("#toggleSupp").slideDown("slow");
+            $("#toggleCrea").slideUp("fast");
+            $("#toggleModif").slideUp("fast");
+            $("#toggleVoir").slideUp("fast");
+            
+            
+            
+        }
+        else{
+            $("#toggleSupp").slideUp("slow");
+        }
+    });
+    
+    $("#VoirTousClt").click(function(){
+        if ($("#toggleVoir").is(":hidden")){
+            
+            effacer("#formCreationC");
+            effacer("#formRechercheC");
+            effacer("#formSupprimmerC");
+            
+            $("#erreurCreation").hide();
+            $("#erreurRecherche").hide();
+            $("#menuModifC").empty();
+            $("#erreurModification").empty();
+            
+            $("#toggleVoir").slideDown("slow");
+            $("#toggleCrea").slideUp("fast");
+            $("#toggleModif").slideUp("fast");
+            $("#toggleSupp").slideUp("fast");
+            
+
+            
+            loadDataA(1);
+            
+        }
+        else{
+            $("#toggleVoir").slideUp("slow");
+        }
+    });
+    
                 
+    
+    $('#voirClt .pagination li.active').live('click',function(){
+        var page = $(this).attr('p');
+        loadDataA(page);
+    }); 
+
+           
 
 }); 
+
+function loadDataA(page)
+{ 
+    $.ajax
+    ({
+        type: "POST",
+        url: "paginationAdmin",
+        data: "page="+page,
+        success: function(msg)
+        {
+            
+            $("#afficherAdmin").ajaxComplete(function(event, request, settings)
+            {
+                // A remplir quand y aura le css
+                $("#afficherAdmin").html(msg);
+            });
+            
+        }
+    });
+    return false;
+}
+    
 function effacer (nomForm) {
     $(':input',nomForm)
     .not(':button, :submit, :reset, :hidden')
@@ -91,13 +280,13 @@ jQuery(document).ready(function() {
         rules: {
             "login":{
                 "login": true,
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             },
             "password": {
                 "password": true,
                 "maxlength": 20,
-                "minlength": 5
+                "minlength": 3
             }
         },
         submitHandler: function(){
@@ -107,26 +296,14 @@ jQuery(document).ready(function() {
                 data: "groupe=usr&login=" + $("#login").val() + "&password=" + $("#password").val(),  
                 success: function (msg) {  
 
-                    // Si l'client existe, on execute le if 
+                    // Si le client existe, on execute le if 
                     if (msg == 1) { 
                         // On fait disparaitre le menu visiteur pour faire apparaitre celui de l'user'
                         $('div#menuVisiteur').remove();
                         $('div#bienvenue').load("config/menu.jsp #bienvenue");
                         $('div#menu').load("config/menu.jsp #menuUser");
-                    
-                        // On est obligé de rappeler chaque evenement utile ils n'ont pas été
-                        // fixé sur les nouveaux element, d'ou la methode live();
-                        $('#BoutonDeconnexion').live('click', function(){
-                            window.location.replace("DeconnexionServlet");                     
-                        });
-                        $("#BoutonMenuU").live('click', function(){
-                            if ($("#menuDeroulantUser").is(":hidden")){
-                                $("#menuDeroulantUser").slideDown("slow");
-                            }
-                            else{
-                                $("#menuDeroulantUser").slideUp("slow");
-                            }
-                        });
+
+                        
                     }
                     // Si l'administrateur existe, on execute le if 
                     else if (msg == 2) { 
@@ -167,22 +344,22 @@ jQuery(document).ready(function() {
         rules: {
             "login_c":{
                 "login": true,
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             },
             "password_c": {
                 "password": true,
                 "maxlength": 20,
-                "minlength": 5
+                "minlength": 3
             },
             "nom":{
                 "required": true,
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             },
             "prenom":{
                 "required": true,
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             },
             "num_tel":{
@@ -194,12 +371,12 @@ jQuery(document).ready(function() {
                 "required": true,
                 "email": true,
                 "minlength": 4,
-                "maxlength": 30
+                "maxlength": 60
             },
             "password_ver":{
                 "password": true,
                 "equalTo": "#password_c",
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             },
             "adresse_f":{
@@ -260,7 +437,7 @@ jQuery(document).ready(function() {
                     if (msg == 1) {  
                         $('form#formCreationC').remove();
                         $('span#erreurCreation').hide();
-                        $("span#erreurCreation").html ("<center> Votre compte a bien été crée.</center><br /><center> Vous pouvez utiliser le menu Connexion pour pouvoir y accèder ou retourner à l'<a href='home.jsp'>accueil </center>").fadeIn("slow");
+                        $("span#erreurCreation").html ("<center> Le compte a bien été crée.</center><br /><center> Vous pouvez utiliser le menu Connexion pour pouvoir y accèder ou retourner à l'<a href='home.jsp'>accueil </center>").fadeIn("slow");
                         
                     } 
                     else if (msg == -1){
@@ -293,16 +470,16 @@ jQuery(document).ready(function() {
             "password_c": {
                 "password": true,
                 "maxlength": 20,
-                "minlength": 5
+                "minlength": 3
             },
             "nom":{
                 "required": true,
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             },
             "prenom":{
                 "required": true,
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             },
             "num_tel":{
@@ -314,12 +491,12 @@ jQuery(document).ready(function() {
                 "required": true,
                 "email": true,
                 "minlength": 4,
-                "maxlength": 30
+                "maxlength": 60
             },
             "password_ver":{
                 "password": true,
                 "equalTo": "#password_c",
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             },
             "adresse_f":{
@@ -415,16 +592,16 @@ jQuery(document).ready(function() {
             "login_aa": {
                 "login": true,
                 "maxlength": 20,
-                "minlength": 5
+                "minlength": 3
             },
             "password_aa": {
                 "password": true,
                 "maxlength": 20,
-                "minlength": 5
+                "minlength": 3
             },
             "nom_a":{
                 "required": true,
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             },
             "num_tel_a":{
@@ -436,12 +613,12 @@ jQuery(document).ready(function() {
                 "required": true,
                 "email": true,
                 "minlength": 4,
-                "maxlength": 30
+                "maxlength": 60
             },
             "password_ver_a":{
                 "password": true,
                 "equalTo": "#password_aa",
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             }
 
@@ -493,16 +670,16 @@ jQuery(document).ready(function() {
             "login_a": {
                 "login": true,
                 "maxlength": 20,
-                "minlength": 5
+                "minlength": 3
             },
             "password_a": {
                 "password": true,
                 "maxlength": 20,
-                "minlength": 5
+                "minlength": 3
             },
             "nom":{
                 "required": true,
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             },
             "num_tel":{
@@ -514,12 +691,12 @@ jQuery(document).ready(function() {
                 "required": true,
                 "email": true,
                 "minlength": 4,
-                "maxlength": 30
+                "maxlength": 60
             },
             "password_ver":{
                 "password": true,
                 "equalTo": "#password_a",
-                "minlength": 5,
+                "minlength": 3,
                 "maxlength": 20
             }
 
@@ -537,7 +714,6 @@ jQuery(document).ready(function() {
                     if (msg == 1) {  
                         $('div#bienvenue').load("config/menu.jsp #bienvenue");
                         
-                        $('form#formCreationA').remove();
                         $('span#erreurModification').hide();
                         $("span#erreurModification").html ("<center> Le compte a bien été modifié.</center><br />").fadeIn("slow");
                         
@@ -578,7 +754,7 @@ jQuery(document).ready(function() {
             "login_ar": {
                 "login": true,
                 "maxlength": 20,
-                "minlength": 5
+                "minlength": 3
             }
         },
         submitHandler: function(){
@@ -590,24 +766,116 @@ jQuery(document).ready(function() {
                  
                     // Si l'admin existe, on execute le if 
                     if (msg == 1) {
+                        $('span#erreurRecherche').empty();
                         $('span#erreurModification').load("admin/modifierAdmin.jsp #erreurModification");
+                        
                         $('div#menuModif').load("admin/modifierAdmin.jsp #formModificationA");
                         $('div#menuModif').show();
+ 
+                        $("#ValiderModifierBouton").live('click',function(){
+                            jQuery("#formModificationA").validate({
+                                rules: {
+                                    "login_a": {
+                                        "login": true,
+                                        "maxlength": 20,
+                                        "minlength": 3
+                                    },
+                                    "password_a": {
+                                        "password": true,
+                                        "maxlength": 20,
+                                        "minlength": 3
+                                    },
+                                    "nom":{
+                                        "required": true,
+                                        "minlength": 3,
+                                        "maxlength": 20
+                                    },
+                                    "num_tel":{
+                                        "digits": true,
+                                        "minlength": 10,
+                                        "maxlength": 10
+                                    },
+                                    "email":{
+                                        "required": true,
+                                        "email": true,
+                                        "minlength": 4,
+                                        "maxlength": 60
+                                    },
+                                    "password_ver":{
+                                        "password": true,
+                                        "equalTo": "#password_a",
+                                        "minlength": 3,
+                                        "maxlength": 20
+                                    }
+
+            
+                                },
+                                submitHandler: function(){
+                                    $.ajax({  
+                                        type: "POST",  
+                                        url: "CreerEditerCompteServlet",  
+                                        data: "but=modifierA&login=" + $("#login_a").val() + "&password=" + $("#password_a").val()
+                                        +"&nom=" + $("#nom").val() +"&email=" + $("#email").val() + "&num_tel=" + $("#num_tel").val(),
+                                        success: function (msg) {  
+                 
+                                            // Si l'admin existe, on execute le if 
+                                            if (msg == 1) {  
+                                               
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Le compte a bien été modifié.</center><br />").fadeIn("slow");
                         
+                                            } 
+                                            else if (msg == -1){
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Email déja utilisé ! </center>").fadeIn("slow");
+                        
+                                            }
+                                            else if(msg == -2)
+                                            {
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Login déjà utilisé ! </center>").fadeIn("slow");
+                        
+                                            }
+                                            else if(msg == -3)
+                                            {
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Vous n'avez effectué aucune modification ! </center>").fadeIn("slow");
+                        
+                                            }
+                                            else
+                                            {
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                         
+                                            }
+                                        }  
+                                    });  
+                                    return false;  
+            
+                                }
+
+                            })
+                        });
                         
                     } 
                     else if (msg == -1){
+                        $('span#erreurModification').empty();
+                        $('div#menuModif').empty();
                         $('span#erreurRecherche').hide();
                         $("span#erreurRecherche").html ("<center> Le compte recherché n'existe pas ! </center>").fadeIn("slow");
                         
                     }
                     else if (msg == -2){
+                        $('span#erreurModification').empty();
+                        $('div#menuModif').empty();
                         $('span#erreurRecherche').hide();
                         $("span#erreurRecherche").html ("<center> Vous devez aller sur cette <a href='modifierA'>page</a> pour modifier vos informations de compte ! </center>").fadeIn("slow");
                         
                     }
                     else
                     {
+                        $('span#erreurModification').empty();
+                        $('div#menuModif').empty();
                         $('span#erreurRecherche').hide();
                         $("span#erreurRecherche").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
                          
@@ -625,7 +893,7 @@ jQuery(document).ready(function() {
             "login_as": {
                 "login": true,
                 "maxlength": 20,
-                "minlength": 5
+                "minlength": 3
             }
         },
         submitHandler: function(){
@@ -652,6 +920,221 @@ jQuery(document).ready(function() {
                     else if (msg == -2){
                         $('span#erreurSuppression').hide();
                         $("span#erreurSuppression").html ("<center> Vous ne pouvez pas supprimer votre compte ! </center>").fadeIn("slow");
+                        
+                    }
+                    else
+                    {
+                        $('span#erreurSuppression').hide();
+                        $("span#erreurSuppression").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                         
+                    }
+                }  
+            });  
+            return false;  
+            
+        }
+
+    }),
+    
+    jQuery("#formRechercheC").validate({
+        rules: {
+            "login_cr": {
+                "login": true,
+                "maxlength": 20,
+                "minlength": 3
+            }
+        },
+        submitHandler: function(){
+            $.ajax({  
+                type: "POST",  
+                url: "modifierCl",  
+                data: "login=" + $("#login_cr").val(),
+                success: function (msg) {  
+                 
+  
+                    if (msg == 1) {
+                        $('span#erreurRecherche').empty();
+                        $('span#erreurModification').load("admin/modifierClient.jsp #erreurModification");
+                        $('div#menuModifC').load("admin/modifierClient.jsp #formModificationC");
+                        $('div#menuModifC').show();
+                        $("#ValiderModifierBoutonC").live('click',function(){
+                            jQuery("#formModificationC").validate({
+                                rules: {
+                                    "login_cm": {
+                                        "login": true,
+                                        "maxlength": 20,
+                                        "minlength": 3
+                                    },
+                                    "password_cm": {
+                                        "password": true,
+                                        "maxlength": 20,
+                                        "minlength": 3
+                                    },
+                                    "nom_cm":{
+                                        "required": true,
+                                        "minlength": 3,
+                                        "maxlength": 20
+                                    },
+                                    "num_tel_cm":{
+                                        "digits": true,
+                                        "minlength": 10,
+                                        "maxlength": 10
+                                    },
+                                    "email_cm":{
+                                        "required": true,
+                                        "email": true,
+                                        "minlength": 4,
+                                        "maxlength": 60
+                                    },
+                                    "password_ver_cm":{
+                                        "password": true,
+                                        "equalTo": "#password_cm",
+                                        "minlength": 3,
+                                        "maxlength": 20
+                                    },
+                                    "adresse_f_cm":{
+                                        "required": true,
+                                        "minlength": 10,
+                                        "maxlength": 500
+                                    },
+                                    "adresse_f_suite_cm":{
+                                        "maxlength": 40
+                                    },
+                                    "adresse_f_zip_cm":{
+                                        "required": true,
+                                        "digits": true,
+                                        "minlength": 5,
+                                        "maxlength": 5
+                                    },
+                                    "adresse_f_ville_cm":{
+                                        "required": true,
+                                        "minlength": 4,
+                                        "maxlength": 20
+                                    },
+                                    "adresse_l_cm":{
+                                        "required": true,
+                                        "minlength": 10,
+                                        "maxlength": 500
+                                    },
+                                    "adresse_l_suite_cm":{
+                                        "maxlength": 40
+                                    },
+                                    "adresse_l_zip_cm":{
+                                        "required": true,
+                                        "digits": true,
+                                        "minlength": 5,
+                                        "maxlength": 5
+                                    },
+                                    "adresse_l_ville_cm":{
+                                        "required": true,
+                                        "minlength": 4,
+                                        "maxlength": 20
+                                    }
+
+            
+                                },
+                                submitHandler: function(){
+                                    $.ajax({  
+                                        type: "POST",  
+                                        url: "CreerEditerCompteServlet",  
+                                        data: "but=modifierC&login=" + $("#login_cm").val() + "&password=" + $("#password_cm").val()
+                                        +"&nom=" + $("#nom_cm").val() +"&email=" + $("#email_cm").val() + "&num_tel=" + $("#num_tel_cm").val()
+                                        +"&adresse_f=" + $("#adresse_f_cm").val() +" "+ $("#adresse_f_suite_cm").val() 
+                                        +"&adresse_f_zip=" + $("#adresse_f_zip_cm").val() + "&adresse_f_ville=" + $("#adresse_f_ville_cm").val()
+                                        +"&adresse_l=" + $("#adresse_l_cm").val() +" "+ $("#adresse_l_suite_cm").val() 
+                                        +"&adresse_l_zip=" + $("#adresse_l_zip_cm").val() + "&adresse_l_ville=" + $("#adresse_l_ville_cm").val(),
+           
+                                        success: function (msg) {  
+                                            window.alert(msg);
+                                            // Si l'admin existe, on execute le if 
+                                            if (msg == 1) {  
+                                               
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Le compte a bien été modifié.</center><br />").fadeIn("slow");
+                        
+                                            } 
+                                            else if (msg == -1){
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Email déja utilisé ! </center>").fadeIn("slow");
+                        
+                                            }
+                                            else if(msg == -2)
+                                            {
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Login déjà utilisé ! </center>").fadeIn("slow");
+                        
+                                            }
+                                            else if(msg == -3)
+                                            {
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Vous n'avez effectué aucune modification ! </center>").fadeIn("slow");
+                        
+                                            }
+                                            else
+                                            {
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                         
+                                            }
+                                        }  
+                                    });  
+                                    return false;  
+            
+                                }
+
+                            })
+                        });
+                        
+                    } 
+                    else if (msg == -1){
+                        $('span#erreurRecherche').hide();
+                        $("span#erreurRecherche").html ("<center> Le compte recherché n'existe pas ! </center>").fadeIn("slow");
+                        $('span#erreurModification').empty();
+                        $('div#menuModifC').empty();
+                    }
+                    else
+                    {
+                        $('span#erreurModification').empty();
+                        $('div#menuModifC').empty();
+                        $('span#erreurRecherche').hide();
+                        $("span#erreurRecherche").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                         
+                    }
+                }  
+            });  
+            return false;  
+            
+        }
+
+    }),
+    
+    jQuery("#formSupprimmerC").validate({
+        rules: {
+            "login_cs": {
+                "login": true,
+                "maxlength": 20,
+                "minlength": 3
+            }
+        },
+        submitHandler: function(){
+            $.ajax({  
+                type: "POST",  
+                url: "CreerEditerCompteServlet",  
+                data: "but=supprimerC&login=" + $("#login_cs").val(),
+                success: function (msg) {  
+                 
+
+                    if (msg == 1) {
+                        
+                        
+                        $('span#erreurSuppression').hide();
+                        $("span#erreurSuppression").html ("<center> Le compte a été supprimé ! </center>").fadeIn("slow");
+                        
+                        
+                    } 
+                    else if (msg == -1){
+                        $('span#erreurSuppression').hide();
+                        $("span#erreurSuppression").html ("<center> Le compte à supprimer n'existe pas ! </center>").fadeIn("slow");
                         
                     }
                     else
@@ -739,8 +1222,8 @@ $(function() {
         var bValid = true;
         allFields.removeClass( "ui-state-error" );
 
-        bValid = bValid && checkLength( name, "nom du compte", 5, 20 );
-        bValid = bValid && checkLength( password, "password", 5, 20 );
+        bValid = bValid && checkLength( name, "nom du compte", 3, 20 );
+        bValid = bValid && checkLength( password, "password", 3, 20 );
 
 
         bValid = bValid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, begin with a letter." );
@@ -760,19 +1243,7 @@ $(function() {
                         $('div#menu').load("config/menu.jsp #menuAdmin");
                         $('#footer').load("config/footer.jsp #footer");
                         $('div#bienvenue').load("config/menu.jsp #bienvenue");
-                        // On est obligé de rappeler chaque evenement utile ils n'ont pas été
-                        // fixé sur les nouveaux element, d'ou la methode live();
-                        $('#BoutonDeconnexion').live('click', function(){
-                            window.location.replace("DeconnexionServlet");                     
-                        });
-                        $("#BoutonMenuA").live('click', function(){
-                            if ($("#menuDeroulantAdmin").is(":hidden")){
-                                $("#menuDeroulantAdmin").slideDown("slow");
-                            }
-                            else{
-                                $("#menuDeroulantAdmin").slideUp("slow");
-                            }
-                        });
+                        
                         $( $("#connAdmin") ).dialog( "close" );
                     }
                     else if(msg == -1){

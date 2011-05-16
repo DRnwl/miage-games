@@ -47,7 +47,7 @@ $.extend($.fn, {
 			}
 
 			// validate the form on submit
-			this.submit( function( event ) {
+                        this.submit( function( event ) {
 				if ( validator.settings.debug )
 					// prevent form submit to be able to see console output
 					event.preventDefault();

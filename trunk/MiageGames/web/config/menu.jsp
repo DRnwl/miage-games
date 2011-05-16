@@ -1,4 +1,4 @@
-<%@page import="java.io.PrintWriter"%>
+
 <div id="sidebar">
     <!-- Search -->
     <div id="search" class="block">
@@ -74,10 +74,10 @@
 
                         <div id="menuDeroulantAdmin">
                             <a href="modifierA" id="ModifierInfo" class="button button-center">Modifier Compte</a>
-                            <a href="voirAdmin" id="Admin" class="button button-center">Admin</a>
-                            <a href="voirClients" id="Clients" class="button button-center">Clients</a>
-                            <a href="voirCommandesA" id="Commandes" class="button button-center">Commandes</a>
-                            <a href="voirProduits" id="Produits" class="button button-center">Produits</a>
+                            <a href="voirAdmin" id="Admin" class="button button-center">Admins</a>
+                            <a href="voirClient" id="Clients" class="button button-center">Clients</a>
+                            <a href="voirCommande" id="Commandes" class="button button-center">Commandes</a>
+                            <a href="voirProduit" id="Produits" class="button button-center">Produits</a>
                             <br>
                         </div>
 

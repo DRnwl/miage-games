@@ -4,6 +4,7 @@
  */
 package gestionnaire;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.*;

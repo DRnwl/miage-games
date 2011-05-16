@@ -1,6 +1,6 @@
 <%-- 
-    Document   : voirAdmin
-    Created on : 15 mai 2011, 20:10:43
+    Document   : voirClient
+    Created on : 15 mai 2011, 21:21:43
     Author     : Sangre
 --%>
 
@@ -35,38 +35,73 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a id="AjoutAdm" href="#" onClick="return false">Ajouter un administrateur</a></h3>
+                            <h3><a id="AjoutClt" href="#" onClick="return false">Ajouter un client</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
                     <div style="display:none" id="toggleCrea">
                         <span id="erreurCreation" style="display:none"></span>
-                        <form class="formulaire" id ="formCreationA" name="session" action="" method=post>
+                        <form class="formulaire" id ="formCreationC" name="session" action="" method=post>
                             <fieldset>
                                 <legend>Information du compte</legend>
-                                <label class="texte" for="login_aa">Nom de compte: </label>
-                                <input type ="text" name="login_aa" id="login_aa" />
+                                <label class="texte" for="login_c">Nom de compte: </label>
+                                <input name="login_c" id="login_c" />
                                 <br />
-                                <label class="texte" for="password_aa">Password:</label>
-                                <input type="password" name="password_aa" id="password_aa" />
+                                <label class="texte" for="password_c">Password:</label>
+                                <input type="password" name="password_c" id="password_c" />
                                 <br />
-                                <label class="texte" for="password_ver_a"></label>
-                                <input  type="password" name="password_ver_a" id="password_ver_a"/>
+                                <label class="texte" for="password_ver"></label>
+                                <input  type="password" name="password_ver" id="password_ver" />
                                 <br />
                             </fieldset>
                             <fieldset>
                                 <legend>Informations personnelles</legend>
-                                <label class="texte" for="nom_a">Nom: </label>
-                                <input type="text" name="nom_a" id="nom_a"/>
+                                <label class="texte" for="nom">Nom: </label>
+                                <input type="text" name="nom" id="nom" />
                                 <br />
-                                <label class="texte" for="email_a">E-mail:</label>
-                                <input type="text" name="email_a" id="email_a"/>
+                                <label class="texte" for="prenom">Prénom:</label>
+                                <input type="text" name="prenom" id="prenom" />
                                 <br />
-                                <label class="texte" for="num_tel_a">Numéro de téléphone:</label>
-                                <input type="text" name="num_tel_a" id="num_tel_a"/>
+                                <label class="texte" for="email">E-mail:</label>
+                                <input type="text" name="email" id="email" />
+                                <br />
+                                <label class="texte" for="num_tel">Numéro de téléphone:</label>
+                                <input type="text" name="num_tel" id="num_tel" />
                                 <br />
                             </fieldset>
+                            <fieldset>
+                                <legend>Adresse Facturation</legend>
+                                <label class="texte"  for="adresse_f">Adresse: </label>
+                                <input type="text" name="adresse_f" id="adresse_f" />
+                                <br />
+                                <label class="texte"  for="adresse_f_suite"></label>
+                                <input type="text" name="adresse_f_suite" id="adresse_f_suite" />
+                                <br />
+                                <label class="texte"  for="adresse_f_zip">Zip: </label>
+                                <input type="text" name="adresse_f_zip" id="adresse_f_zip" />
+                                <br />
+                                <label class="texte"  for="adresse_f_ville">Ville: </label>
+                                <input type="text" name="adresse_f_ville" id="adresse_f_ville" />
+                                <br />
+                            </fieldset>
+                            <fieldset>
+                                <legend>Adresse Livraison</legend>
+                                <label class="texte"  for="adresse_l">Adresse: </label>
+                                <input type="text" name="adresse_l" id="adresse_l" />
+                                <br />
+                                <label class="texte"  for="adresse_l_suite"></label>
+                                <input type="text" name="adresse_l_suite" id="adresse_l_suite" />
+                                <br />
+                                <label class="texte"  for="adresse_l_zip">Zip: </label>
+                                <input type="text" name="adresse_l_zip" id="adresse_l_zip" />
+                                <br />
+                                <label class="texte"  for="adresse_l_ville">Ville: </label>
+                                <input type="text" name="adresse_l_ville" id="adresse_l_ville" />
+                                <br />
+                            </fieldset>
+
                             <br />
+
                             <input id="ValiderAjouterBouton" class="button" value=" Valider " name="Valider" type="submit" />
                             <br />
                         </form>
@@ -79,7 +114,7 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a id="RechMAdmin" href="#" onClick="return false"> Modifier un administrateur</a></h3>
+                            <h3><a id="RechMClt" href="#" onClick="return false">Modifier un client</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
@@ -87,15 +122,15 @@
                         <div class="search" >
                             <span id="erreurRecherche" style="display:none"></span>
 
-                            <form   class="formulaire" id ="formRechercheA" name="session" action="" method=post>
+                            <form   class="formulaire" id ="formRechercheC" name="session" action="" method=post>
 
                                 <fieldset>
-                                    <legend>Recherche d'un administrateur</legend>
+                                    <legend>Recherche d'un client</legend>
 
                                     <div class="fieldplace">
-                                        <input class="field" type ="text" name="login_ar" id="login_ar" />
+                                        <input class="field" type ="text" name="login_cr" id="login_cr" />
                                     </div>
-                                    <input id="ValiderRechercheABouton" class="button" value=" Valider " name="Valider" type="submit" />
+                                    <input id="ValiderRechercheBouton" class="button" value=" Valider " name="Valider" type="submit" />
 
                                 </fieldset>
                                 <br />
@@ -104,7 +139,7 @@
 
                         </div>
                         <span id="erreurModification" style="display:none"></span>
-                        <div class="formulaire" id="menuModif" style="display:none"></div>
+                        <div class="formulaire" id="menuModifC" style="display:none"></div>
                     </div>
                 </div>
             </div>
@@ -112,18 +147,18 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a  id="SupprAdm" href="#" onClick="return false"> Supprimer un administrateur</a></h3>
+                            <h3><a  id="SupprClt" href="#" onClick="return false"> Supprimer un client</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
                     <div style="display:none" id="toggleSupp">
                         <div class="search" >
                             <span id="erreurSuppression" style="display:none"></span>
-                            <form class="formulaire" id ="formSupprimmerA" name="session" action="" method=post>
+                            <form class="formulaire" id ="formSupprimmerC" name="session" action="" method=post>
                                 <fieldset>
                                     <legend>Identifiant du compte</legend>
                                     <div class="fieldplace">
-                                        <input class="field" type ="text" name="login_as" id="login_as" />
+                                        <input class="field" type ="text" name="login_cs" id="login_cs" />
                                     </div>
                                     <input id="ValiderSuppressionBouton" class="button" value=" Valider " name="Valider" type="submit" />
                                     <br />
@@ -135,21 +170,20 @@
                     </div>
                 </div>
             </div>
-
             <div class="block">
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a  id="VoirTousAdm" href="#" onClick="return false"> Voir tous les admins</a></h3>
+                            <h3><a  id="VoirTousClt" href="#" onClick="return false"> Voir tous les clients</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
                     <div style="display:none" id="toggleVoir">
                         <span id="erreurVoir" style="display:none"></span>
-                        <div id="voirAdm" class="formulaire">
+                        <div id="voirClt" class="formulaire">
                             <fieldset>
-                                <legend >Admins</legend>
-                                <div id="afficherAdmin" class="formulaire"></div>
+                                <legend >Client</legend>
+                                <div id="afficherClt" class="formulaire"></div>
                             </fieldset>
                             <br />
                             <br />
