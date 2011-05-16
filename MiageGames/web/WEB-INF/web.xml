@@ -54,6 +54,12 @@
         <url-pattern>/ServletAdmin</url-pattern>
         <url-pattern>/voirAdmin</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPrincipal</servlet-name>
+        <url-pattern>/categorie</url-pattern>
+        <url-pattern>/ServletPrincipal</url-pattern>
+        <url-pattern>/information</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

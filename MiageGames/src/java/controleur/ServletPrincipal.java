@@ -6,6 +6,7 @@ package controleur;
 
 import gestionnaire.Gestion;
 import gestionnaire.GestionnaireCategorie;
+import gestionnaire.GestionnaireCategorieAge;
 import gestionnaire.GestionnaireProduit;
 import java.io.IOException;
 import java.util.Collection;
@@ -43,7 +44,10 @@ public class ServletPrincipal extends HttpServlet {
             gestion.creerDonnees();
         }
 
-        // On stock la liste des catégories 
+
+
+
+        // On stock la liste des categories 
         getServletContext().setAttribute("categories", gestionnaireCategorie.findAll());
         getServletContext().setAttribute("produits", gestionnaireProduit.findAll());
     }
@@ -82,33 +86,50 @@ public class ServletPrincipal extends HttpServlet {
                         categoryProducts = categorie.getCollectionProduit();
                         session.setAttribute("categoryProducts", categoryProducts);
 
-                        for (int i = 0; i < categoryProducts.size(); i++) {
-                            System.out.println("nbr produit" + i);
-                        }
-                    } // on dit qu'il n'y a aucun résultat
+
+
+
+                    } // on affiche tous les produits
                     else {
-                        nomCategorie = "";
                     }
 
-                } // on affiche tous les produits
-                else {
+                    RequestDispatcher dp = request.getRequestDispatcher("/vente/categorie.jsp?cat=" + nomCategorie);
+                    dp.forward(request, response);
                 }
 
-                RequestDispatcher dp = request.getRequestDispatcher("/vente/categorie.jsp?cat=" + nomCategorie);
-                dp.forward(request, response);
+
             } else if (userPath.equals("/creerClient")) {
-                if (!session.getAttribute("groupeUtilisateur").equals("visiteur")) {
+                if (session.getAttribute("groupeUtilisateur").equals("visiteur")) {
                     RequestDispatcher dp = request.getRequestDispatcher("/creerClient.jsp");
                     dp.forward(request, response);
-                }
-                else{
-                    RequestDispatcher dp = request.getRequestDispatcher("/home.jsp");
+                } else {
+                    RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
                     dp.forward(request, response);
                 }
+
+            } else if (userPath.equals("/information")) {
+
+                String nomProduit = request.getParameter("nomProduit");
+
+
+
+                request.setAttribute("nomProduit", nomProduit);
+
+                getServletContext().setAttribute("produitRecherche", gestionnaireProduit.findByNom(nomProduit));
+
+
+                RequestDispatcher dp = request.getRequestDispatcher("/vente/information.jsp?nomProduit=" + nomProduit);
+                dp.forward(request, response);
+
+
+
+
             } else {
                 RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
                 dp.forward(request, response);
             }
+
+
         } else {
             session.setAttribute("groupeUtilisateur", "visiteur");
             System.out.println(session.getAttribute("groupeUtilisateur"));
@@ -116,8 +137,8 @@ public class ServletPrincipal extends HttpServlet {
             dp.forward(request, response);
         }
     }
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request

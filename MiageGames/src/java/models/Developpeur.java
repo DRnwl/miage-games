@@ -48,18 +48,12 @@ public class Developpeur implements Serializable {
     public Developpeur() {
     }
 
-    public Developpeur(String nomDeveloppeur, String siteDeveloppeur) {
+    public Developpeur(String nomDeveloppeur) {
         this.nomDeveloppeur = nomDeveloppeur;
-        this.siteDeveloppeur = siteDeveloppeur;
         collectionProduit = new ArrayList<Produit>();
     }
 
-    public Developpeur(String nomDeveloppeur, String siteDeveloppeur, Produit produit) {
-        this.nomDeveloppeur = nomDeveloppeur;
-        this.siteDeveloppeur = siteDeveloppeur;
-        collectionProduit = new ArrayList<Produit>();
-        collectionProduit.add(produit);
-    }
+   
     
     
 

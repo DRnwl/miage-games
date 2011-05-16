@@ -48,21 +48,12 @@ public class Categorie implements Serializable {
     public Categorie() {
     }
 
-    public Categorie(String nom) {
-        this.nom = nom;
-    }
-
-    public Categorie(String nom, String description,  Produit produit) {
-        this.nom = nom;
-        this.description = description;
-        collectionProduit = new ArrayList<Produit>();
-    collectionProduit.add(produit);
-    }
+ 
 
     public Categorie(String nom, String description) {
         this.nom = nom;
         this.description = description;
-       // collectionProduit = new ArrayList<Produit>();
+        collectionProduit = new ArrayList<Produit>();
     }
     
    

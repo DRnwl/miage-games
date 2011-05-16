@@ -60,6 +60,24 @@ a:hover {
     text-decoration: none; 
 }
 
+
+
+.clear{
+    clear: both;
+}
+
+.last{
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.flottante{
+    margin: 30px;
+    float:left;
+    width: 100px;
+    
+}
+
 .left { 
     float: left; 
     display: inline;

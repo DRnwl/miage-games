@@ -32,6 +32,15 @@ public class GestionnaireProduit extends GestionnaireCommun<Produit>{
     }
     
     
+    public Produit findByNom(String nom){
+        try{
+            return (Produit)em.createNamedQuery("Produit.findByNom").setParameter("nom", nom).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
+    
     
     
     

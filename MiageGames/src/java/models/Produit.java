@@ -27,7 +27,10 @@ import javax.persistence.*;
     
     @NamedQuery(name = "Produit.findBySortie", query = "SELECT p FROM Produit p WHERE p.sortie = :sortie"),
     
-    @NamedQuery(name = "Produit.findByDescription", query = "SELECT p FROM Produit p WHERE p.description = :description")
+    @NamedQuery(name = "Produit.findByDescription", query = "SELECT p FROM Produit p WHERE p.description = :description"),
+    
+    @NamedQuery(name = "Produit.findByImage", query = "SELECT p FROM Produit p WHERE p.image = :image")
+
 
     
 })
@@ -65,6 +68,10 @@ public class Produit implements Serializable {
     @Column(name = "sortie")
     private String sortie;
     
+    @Basic(optional = false)
+    @Column(name = "image")
+    private String image;
+    
     
     @Basic(optional = false)
     @Column(name = "description")
@@ -89,25 +96,30 @@ public class Produit implements Serializable {
     public Produit() {
     }
 
-    public Produit(String nom) {
-        this.nom = nom;
-    }
+   
 
-    public Produit(String nom, Double prix) {
-        this.nom = nom;
-        this.prix = prix;
-    }
-    
-    
-    
-    
+ 
 
-    public Produit(String nom, Double prix, Categorie categorie) {
+    public Produit(String nom, Double prix, Categorie categorie, String image, CategorieAge categorieAge,String sortie, Developpeur developpeur,Editeur editeur) {
         this.nom = nom;
         this.prix = prix;
         this.categorie = categorie;
+        this.image = image;
+        categorie.getCollectionProduit().add(this);
         collectionProduitCommande = new ArrayList<Produit_Commande>();
+        this.categorieAge = categorieAge;
+        categorieAge.getCollectionProduit().add(this);
+        this.sortie = sortie;
+        this.developpeur = developpeur;
+        developpeur.getCollectionProduit().add(this);
+        this.editeur = editeur;
+        editeur.getCollectionProduit().add(this);
     }
+    
+    
+    
+    
+    
 
     public Produit(String nom, Double prix, Categorie categorie, CategorieAge categorieAge) {
         this.nom = nom;
@@ -120,49 +132,17 @@ public class Produit implements Serializable {
     
     
 
-    public Produit(String nom, Double prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, String description, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur) {
-        this.nom = nom;
-        this.prix = prix;
-        this.categorie = categorie;
-        this.distributeur = distributeur;
-        this.tags = tags;
-        this.sortie = sortie;
-        this.description = description;
-        this.categorieAge = categorieAge;
-        this.editeur = editeur;
-        this.developpeur = developpeur;
-        collectionProduitCommande = new ArrayList<Produit_Commande>();
-
-    }
-
-    public Produit(String nom, Double prix, Categorie categorie, Distributeur distributeur, ArrayList<String> tags, String sortie, String description, CategorieAge categorieAge, Editeur editeur, Developpeur developpeur, Produit_Commande produitCommande) {
-        this.nom = nom;
-        this.prix = prix;
-        this.categorie = categorie;
-        this.distributeur = distributeur;
-        this.tags = tags;
-        this.sortie = sortie;
-        this.description = description;
-        this.categorieAge = categorieAge;
-        this.editeur = editeur;
-        this.developpeur = developpeur;
-        collectionProduitCommande = new ArrayList<Produit_Commande>();
-        collectionProduitCommande.add(produitCommande);
-
-
-    }
     
     
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
    
-    
-
-    public Collection<Produit_Commande> getCollectionCommande_Produit() {
-        return collectionProduitCommande;
-    }
-
-    public void setCollectionCommande_Produit(Collection<Produit_Commande> CollectionCommande_Produit) {
-        this.collectionProduitCommande = CollectionCommande_Produit;
-    }
 
     public String getSortie() {
         return sortie;
