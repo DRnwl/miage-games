@@ -1,9 +1,15 @@
+<%-- 
+    Document   : categorie
+    Created on : 8 mai 2011, 20:25:48
+    Author     : Sangre
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Jeux vidÃ©o ${param.cat} sur Miage Games</title>
+        <title>Jeux vidéo ${param.cat} sur Miage Games</title>
         <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
         
@@ -17,39 +23,90 @@
         <!-- Script qui permet le changement de jeu dans le cadre principal -->
         <script src="js/fns.js" type="text/javascript"></script>
         <script src="js/validerConnexion.js" type="text/javascript"></script>
+        <script src="js/paginator.js"></script>
+
+        <script type="text/javascript">
+	
+            $(function () {  $("#item").pagination();  });
+	
+        </script>
+
     </head>
     <body>
         <%@include file="/config/header.jsp" %>
         <%@include file="/config/menu.jsp" %>
-        <h1>&nbsp;Categorie ${param.cat}</h1> 
+
+        <div id="content">
 
 
-        <div id="categoryRightColumn">
 
-            
+            <div class="block">
+                <div class="block-bot">
 
-            <table id="productTable">
+                    <div class="head">
+                        <div class="head-cnt">
+                            <h3>La sélection Miage Games "${param.cat}" </h3>
+                            <div class="cl">&nbsp;</div>
+                        </div>
+                    </div>
 
-                <c:forEach var="produit" items="${categoryProducts}" varStatus="iter">
-
-                    <tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
-                       
-
-                        <td>
-                            <br>
-                           <fmt:message key='${produit.nom}'/></span>
-                        </td>
+                    <ul>
+                        <div id="item">
 
 
-                       
-                    </tr>
+                            <c:forEach var="produit" items="${categoryProducts}">
 
-                </c:forEach>
+                                <div >
+                                    <div class="cl">&nbsp;</div>
+                                    <div class="article">
 
-            </table>
+                                        <div class="flottante">
+                                            <a href="<c:url value='information?nomProduit=${produit.nom}'/>"> <img src="${produit.image}" alt="" /></a>
+                                        </div>
+
+                                        <div class ="flottante" >
+                                            <h4><a href="<c:url value='information?nomProduit=${produit.nom}'/>">${produit.nom}</a></h4> 
+
+
+                                            <p class="grey">
+
+                                                Editeur :
+                                                <br>
+                                                Genre :
+
+                                                Classification:
+                                                </br>
+                                            </p>
+
+                                        </div>
+
+                                        <div class ="flottante">  
+                                            <strong class="price">Prix : ${produit.prix}</strong> €
+                                            <a title="Acheter" href="#">
+                                                <img alt="Acheter" src="http://www.micromania.fr/v3b/micromania/images/button-acheter-mini.gif"></img>
+                                            </a>
+
+                                            <br>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <br class="clear">
+
+
+                                </div>
+
+                            </c:forEach>
+
+
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
         </div>
-
-
 
 
 

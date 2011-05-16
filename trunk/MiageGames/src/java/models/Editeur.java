@@ -49,22 +49,13 @@ public class Editeur implements Serializable {
     public Editeur() {
     }
 
-    public Editeur(String nomEditeur, String siteEditeur) {
+    public Editeur(String nomEditeur) {
         this.nomEditeur = nomEditeur;
-        this.siteEditeur = siteEditeur;
         collectionProduit = new ArrayList<Produit>();
     }
 
-    public Editeur(String nomEditeur, String siteEditeur, Produit produit) {
-        this.nomEditeur = nomEditeur;
-        this.siteEditeur = siteEditeur;
-        collectionProduit = new ArrayList<Produit>();
-        collectionProduit.add(produit);
-    }
-    
-    
-    
-
+   
+   
     
 
     public Collection<Produit> getCollectionProduit() {

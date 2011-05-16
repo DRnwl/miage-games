@@ -3,16 +3,16 @@
     Created on : 8 mai 2011, 19:06:26
     Author     : Sangre
 --%>
-<% 
+<%
 // On verra plus tard pour ça -> on veut que si la personne lance cette page seul, elle soit redirigé sur l'accueil
 
-/*System.out.println(session.getAttribute("groupeUtilisateur"));
-
-if(session.getAttribute("groupeUtilisateur") == null) 
-    response.sendRedirect("index.jsp");
-System.out.println("");*/
-%>
+    /*System.out.println(session.getAttribute("groupeUtilisateur"));
     
+    if(session.getAttribute("groupeUtilisateur") == null) 
+    response.sendRedirect("index.jsp");
+    System.out.println("");*/
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,103 +35,114 @@ System.out.println("");*/
         <!-- Script qui permet le changement de jeu dans le cadre principal -->
         <script src="js/fns.js" type="text/javascript"></script>
         <script src="js/validerConnexion.js" type="text/javascript"></script>
+        <script src="js/paginator.js"></script>
+
+        <script type="text/javascript">
+	
+            $(function () {  $("#divListeProduits").pagination();  });
+	
+        </script>
 
     </head>
     <body>
         <%@include file="/config/header.jsp" %>
-        
+
         <div class="cl">&nbsp;</div>
         <!-- Content -->
+
+
+
         <div id="content">
 
-            <div class="block"> 
-                <div class="block-bot">
-                    <div class="block-cnt">
-                        <div id="slider">
-                            <div class="buttons">
-                                <span class="prev">prev</span>
-                                <span class="next">next</span>
-                            </div>
-                            <div class="holder">
-                                <div class="frame">&nbsp;</div>
-                                <div class="content">
-                                    <ul>
-                                        <c:forEach var="produit" items="${produits}">
-                                            <li class="fragment">
-                                                <div class="image">
-                                                    <a href="#"><img src="css/images/img10.jpg" alt="" /></a>
-                                                </div>
-                                                <div class="cnt">
-                                                    <div class="cl">&nbsp;</div>
-                                                    <div class="side-a">
-                                                        <h4>${produit.nom}</h4>
-                                                        <ul class="rating">
-                                                            <li><span class="star full-star">&nbsp;</span></li>
-                                                            <li><span class="star full-star">&nbsp;</span></li>
-                                                            <li><span class="star full-star">&nbsp;</span></li>
-                                                            <li><span class="star full-star">&nbsp;</span></li>
-                                                            <li><span class="star empty-star">&nbsp;</span></li>
-                                                            <li><span class="votes">1.456 votes</span></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="side-b">
-                                                        <p>${produit.description}</p>
-                                                    </div>
-                                                    <div class="cl">&nbsp;</div>
-                                                </div>
-                                            </li>
-                                        </c:forEach>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
             <div class="block">
                 <div class="block-bot">
+
                     <div class="head">
                         <div class="head-cnt">
-                            <a href="#" class="view-all">view all</a>
-                            <h3>Top Reviews</h3>
+                            <h3>Tous les jeux de la Miage Games</h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
-                    <div class="col-articles articles">
-                        <div class="cl">&nbsp;</div>
-                        <div class="article">
-                            <div class="image">
-                                <a href="#"><img src="css/images/img4.jpg" alt="" /></a>
-                            </div>
-                            <h4><a href="#">F.E.A.R.2</a></h4>
-                            <p class="console"><strong>PSP3</strong></p>
+
+                    <ul>
+
+                        <div id="divListeProduits">
+
+                            <c:forEach var="produit" items="${produits}">
+
+                                <div >
+                                    <div class="cl">&nbsp;</div>
+                                    <div class="article">
+
+                                        <div class="flottante">
+                                            <a href="<c:url value='information?nomProduit=${produit.nom}'/>"><img src="${produit.image}" alt="" /> </a>
+                                        </div>
+
+                                        <div class ="flottante" >
+
+
+                                            <h3><li><a href="<c:url value='information?nomProduit=${produit.nom}'/>">${produit.nom}</a></h3> 
+
+                                            <br>
+
+                                            <h4 style="font-size: 11px"> Sortie : <br> ${produit.sortie} </h4>
+
+
+                                            <br>
+
+                                            <h5> Categorie: ${produit.categorie.nom} </h5>
+
+                                            <br>
+
+                                            <h6 style="font-size: 12px">  Classification: <br> ${produit.categorieAge.nom}</h6>
+
+
+
+                                        </div>
+
+                                        <div class ="flottante">  
+                                            <strong class="price">Prix : ${produit.prix}</strong> €
+                                            <a title="Acheter" href="#">
+                                                <img alt="Acheter" src="http://www.micromania.fr/v3b/micromania/images/button-acheter-mini.gif"></img>
+                                            </a>
+
+                                            <br>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <br class="clear">
+
+
+                                </div>
+
+                            </c:forEach>
+
                         </div>
-                        <div class="article">
-                            <div class="image">
-                                <a href="#"><img src="css/images/img5.jpg" alt="" /></a>
-                            </div>
-                            <h4><a href="#">FALLOUT 3</a></h4>
-                            <p class="console"><strong>PC</strong></p>
-                        </div>
-                        <div class="article">
-                            <div class="image">
-                                <a href="#"><img src="css/images/img6.jpg" alt="" /></a>
-                            </div>
-                            <h4><a href="#">STARCRAF II</a></h4>
-                            <p class="console"><strong>PC</strong></p>
-                        </div>
-                        <div class="cl">&nbsp;</div>
-                    </div>
+                    </ul>
+
+
+
                 </div>
             </div>
 
         </div>
+
+
+
+
+
+
         <!-- / Content -->
         <!--  -->
         <%@include file="/config/menu.jsp" %>
-        
+
         <%@include file="/config/footer.jsp" %>
-        
+
 
     </body>
 </html>

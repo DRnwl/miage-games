@@ -54,30 +54,12 @@ public class CategorieAge implements Serializable {
     public CategorieAge() {
     }
 
-    public CategorieAge(String nom, String description) {
+    public CategorieAge(String nom, String nomImage) {
         this.nom = nom;
-        this.description = description;
-        collectionProduit = new ArrayList<Produit>();
-    }
-
-    public CategorieAge(String nom, String description, String nomImage) {
-        this.nom = nom;
-        this.description = description;
         this.nomImage = nomImage;
         collectionProduit = new ArrayList<Produit>();
-
     }
 
-    public CategorieAge(String nom, String description, String nomImage, Produit produit) {
-        this.nom = nom;
-        this.description = description;
-        this.nomImage = nomImage;
-        collectionProduit = new ArrayList<Produit>();
-        collectionProduit.add(produit);
-
-        
-    }
-    
     
 
     

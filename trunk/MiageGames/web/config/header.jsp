@@ -1,5 +1,5 @@
 
-    
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -32,11 +32,10 @@
         <!-- Main Navigation -->
         <div id="main-nav">
             <div class="bg-right">
-                <div class="bg-left">
-                    <ul>
-                        <li><a href="#">Mettre les différents tags</a></li>
-                    </ul>
-                </div>
+
+                <h3><li><a href="<c:url value='#'/>">Votre panier</a></h3> 
+
+
             </div>
         </div>
         <!-- / Main Navigation -->
