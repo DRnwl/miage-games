@@ -24,9 +24,9 @@ import models.Produit_CommandePK;
 @Stateless
 @LocalBean
 public class Gestion {
+
     @EJB
     private GestionnaireAdministrateur gestionnaireAdministrateur;
-
     @EJB
     private GestionnaireProduit gestionnaireProduit;
     @EJB
@@ -338,7 +338,7 @@ public class Gestion {
         /****** LES CLIENTS *******/
         Client client1 = new Client("Vincent", "Vincent", "Charles", "Alex");
         Client client2 = new Client("Pierre", "Pierre", "Kader", "Al");
-        
+
 
         gestionnaireClient.create(client1);
         gestionnaireClient.create(client2);
@@ -353,8 +353,133 @@ public class Gestion {
 
 
         /****** LES Admins *******/
+        /************************/
         Administrateur admin1 = new Administrateur("Vincent", "Claver", "Vincent", "admin@admin.com", "0000000000");
+
+        Administrateur admin2 = new Administrateur("Jackson", "Madison", "Elmo", "risus@seddolorFusce.com", "0000000000");
+        Administrateur admin3 = new Administrateur("Hamilton", "Lillian", "Zeus", "egestas.ligula.Nullam@vitae.edu", "0000000000");
+        Administrateur admin4 = new Administrateur("Brent", "Leigh", "Hiram", "Mauris.vel@necenim.ca", "0000000000");
+        Administrateur admin5 = new Administrateur("Thane", "Helen", "Welch", "nunc@libero.ca", "0000000000");
+        Administrateur admin6 = new Administrateur("Len", "Virginia", "Maddox", "eu.nulla.at@enimsit.org", "3857147266");
+        Administrateur admin7 = new Administrateur("Elmo", "Nevada", "Mullen", "malesuada@mitempor.ca", "3857147266");
+        Administrateur admin8 = new Administrateur("Oscar", "Joan", "Hodges", "leo.elementum@non.org", "3857147266");
+        Administrateur admin9 = new Administrateur("Lucius", "Blythe", "Barnes", "mauris.sagittis@risusIn.ca", "3857147266");
+        Administrateur admin10 = new Administrateur("Cade", "Camille", "Oliver", "euismod.est@urnaNunc.ca", "3857147266");
+        Administrateur admin11 = new Administrateur("Travis", "Gillian", "Giles", "In.ornare@Curae;.ca", "3857147266");
+        Administrateur admin12 = new Administrateur("Amal", "Yetta", "Castaneda", "elementum@malesuadafamesac.com", "3857147266");
+        Administrateur admin13 = new Administrateur("Nigel", "Willa", "Nolan", "consequat.auctor.nunc@mollis.ca", "3857147266");
+        Administrateur admin14 = new Administrateur("Kasimir", "Aiko", "Mcneil", "at.augue.id@Proin.edu", "3857147266");
+        Administrateur admin15 = new Administrateur("Cullen", "Maia", "Quinn", "volutpat.Nulla.facilisis@milacinia.org", "9139588791");
+        Administrateur admin16 = new Administrateur("Eaton", "Janna", "Mckee", "aliquam.arcu.Aliquam@tempuseu.ca", "9139588791");
+        Administrateur admin17 = new Administrateur("Ashton", "Beverly", "Williamson", "sit.amet@ligulaNullamfeugiat.ca", "9139588791");
+        Administrateur admin18 = new Administrateur("Amery", "Mayo", "Noah", "risus.Donec.nibh@ultriciesornare.org", "9139588791");
+        Administrateur admin19 = new Administrateur("Dolan", "Amela", "Lambert", "sem.Nulla.interdum@infaucibusorci.org", "9139588791");
+        Administrateur admin20 = new Administrateur("Dean", "Sade", "Beau", "eu.metus@egestaslacinia.com", "9139588791");
+        Administrateur admin21 = new Administrateur("Sylvester", "Jana", "Mathews", "Cum.sociis@Aliquam.edu", "9139588791");
+        Administrateur admin22 = new Administrateur("Jelani", "Debra", "Wheeler", "tempor.arcu@pellentesque.com", "9139588791");
+        Administrateur admin23 = new Administrateur("Kenttt", "Zena", "Graves", "consectetuer.adipiscing@aodiosemper.edu", "9139588791");
+        Administrateur admin24 = new Administrateur("Louis", "Rina", "Sanford", "Cras.dolor.dolor@Curabiturdictum.ca", "9139588791");
+        Administrateur admin25 = new Administrateur("Dennis", "Minerva", "Hayes", "Nunc@sit.ca", "9139588791");
+        Administrateur admin26 = new Administrateur("Marshall", "Germaine", "Noel", "Curabitur.sed@sit.com", "9139588791");
+        Administrateur admin27 = new Administrateur("Brenden", "Jade", "Benjamin", "Cras.eu.tellus@parturientmontesnascetur.com", "6519276286");
+        Administrateur admin28 = new Administrateur("Tucker", "Chelsea", "Ortiz", "gravida.sagittis.Duis@vitaesodales.com", "6519276286");
+        Administrateur admin29 = new Administrateur("Lyle", "Ruth", "Mcclure", "ipsum@Sed.org", "6519276286");
+        Administrateur admin30 = new Administrateur("Eagan", "Daphne", "Elliott", "vehicula.risus@lectusantedictum.edu", "6519276286");
+        Administrateur admin31 = new Administrateur("Clarke", "Amanda", "Cameron", "mi.pede.nonummy@accumsaninterdumlibero.ca", "6519276286");
+        Administrateur admin32 = new Administrateur("Orlando", "Judith", "Roy", "Sed.dictum@augueSedmolestie.org", "6519276286");
+        Administrateur admin33 = new Administrateur("Samson", "Jescie", "Burgess", "quis.arcu@seddolorFusce.edu", "6519276286");
+        Administrateur admin34 = new Administrateur("Price", "Camille", "Wilkinson", "porta.elit.a@Aenean.org", "6519276286");
+        Administrateur admin35 = new Administrateur("Lane", "Dorothy", "Griffin", "mauris.Morbi.non@lacusMauris.ca", "6519276286");
+        Administrateur admin36 = new Administrateur("Abbot", "Calista", "Oneill", "Vestibulum.ante.ipsum@turpisvitaepurus.edu", "6519276286");
+        Administrateur admin37 = new Administrateur("Laurenzoo", "Wynter", "Rocha", "in@inceptoshymenaeosMauris.org", "4965133818");
+        Administrateur admin38 = new Administrateur("Kane", "Claire", "Jin", "rutrum.justo@lacusUtnec.edu", "4965133818");
+        Administrateur admin39 = new Administrateur("Malcolm", "Nita", "Jason", "Proin.dolor.Nulla@velfaucibus.ca", "4965133818");
+        Administrateur admin40 = new Administrateur("Mohammad", "Angela", "Wilcox", "non.vestibulum@etpede.com", "4965133818");
+        Administrateur admin41 = new Administrateur("Wazza", "Sandra", "Mejia", "in.felis.Nulla@est.org", "4965133818");
+        Administrateur admin42 = new Administrateur("Silas", "Lael", "Ramirez", "sagittis@egetipsum.com", "4965133818");
+        Administrateur admin43 = new Administrateur("Ivor", "Yuri", "Gates", "aliquet.vel@ametanteVivamus.ca", "4965133818");
+        Administrateur admin44 = new Administrateur("Lionel", "Noel", "Crane", "dignissim.lacus@loremtristique.edu", "4965133818");
+        Administrateur admin45 = new Administrateur("Asher", "Breanna", "Willis", "hendrerit.Donec.porttitor@ultriciesdignissimlacus.com", "4965133818");
+        Administrateur admin46 = new Administrateur("Griffith", "Reagan", "Stuart", "Proin@tristiquealiquetPhasellus.org", "4965133818");
+        Administrateur admin47 = new Administrateur("Shad", "Marny", "Reyes", "Donec.tincidunt.Donec@at.org", "4965133818");
+        Administrateur admin48 = new Administrateur("Victor", "Lara", "Bullock", "nec.imperdiet.nec@Proin.org", "4965133818");
+        Administrateur admin49 = new Administrateur("Callum", "Shelby", "Manning", "laoreet.posuere.enim@ut.ca", "4965133818");
+        Administrateur admin50 = new Administrateur("Herrod", "Rachel", "Koch", "vestibulum@cursus.edu", "4965133818");
+        Administrateur admin51 = new Administrateur("Keefe", "Mari", "Mcknight", "Praesent.eu.nulla@Infaucibus.edu", "4965133818");
+        Administrateur admin52 = new Administrateur("Stone", "Harriet", "Burke", "fames.ac.turpis@faucibus.ca", "7261179984");
+        Administrateur admin53 = new Administrateur("Plato", "Nichole", "Owens", "lorem.lorem@natoquepenatibuset.org", "7261179984");
+        Administrateur admin54 = new Administrateur("Hashim", "Gail", "Oneil", "Suspendisse.aliquet@quamCurabiturvel.edu", "7261179984");
+        Administrateur admin55 = new Administrateur("Colorado", "Daphne", "Freeman", "vulputate@Curae;.com", "7261179984");
+        Administrateur admin56 = new Administrateur("Omar", "Demetria", "Salas", "molestie.tortor@posuere.ca", "7261179984");
+
+        Administrateur admin57 = new Administrateur("Jesse", "Brianna", "Macias", "Nam.interdum@rutrumjustoPraesent.com", "7261179984");
+        Administrateur admin58 = new Administrateur("Hoyt", "Stephanie", "Watts", "penatibus.et.magnis@feugiatnecdiam.com", "7261179984");
+        Administrateur admin59 = new Administrateur("Lawrence", "Macey", "Weaver", "tortor@orciDonecnibh.org", "7261179984");
+        Administrateur admin60 = new Administrateur("Kenyon", "Melanie", "Houston", "tristique.aliquet@egestasrhoncusProin.com", "7261179984");
+
         gestionnaireAdministrateur.create(admin1);
+        gestionnaireAdministrateur.create(admin2);
+        gestionnaireAdministrateur.create(admin3);
+        gestionnaireAdministrateur.create(admin4);
+        gestionnaireAdministrateur.create(admin5);
+        gestionnaireAdministrateur.create(admin6);
+        gestionnaireAdministrateur.create(admin7);
+        gestionnaireAdministrateur.create(admin8);
+        gestionnaireAdministrateur.create(admin9);
+        gestionnaireAdministrateur.create(admin10);
+        gestionnaireAdministrateur.create(admin11);
+        gestionnaireAdministrateur.create(admin12);
+        gestionnaireAdministrateur.create(admin13);
+        gestionnaireAdministrateur.create(admin14);
+        gestionnaireAdministrateur.create(admin15);
+        gestionnaireAdministrateur.create(admin16);
+        gestionnaireAdministrateur.create(admin17);
+        gestionnaireAdministrateur.create(admin18);
+        gestionnaireAdministrateur.create(admin19);
+        gestionnaireAdministrateur.create(admin20);
+        gestionnaireAdministrateur.create(admin21);
+        gestionnaireAdministrateur.create(admin22);
+        gestionnaireAdministrateur.create(admin23);
+        gestionnaireAdministrateur.create(admin24);
+        gestionnaireAdministrateur.create(admin25);
+        gestionnaireAdministrateur.create(admin26);
+        gestionnaireAdministrateur.create(admin27);
+        gestionnaireAdministrateur.create(admin28);
+        gestionnaireAdministrateur.create(admin29);
+        gestionnaireAdministrateur.create(admin30);
+        gestionnaireAdministrateur.create(admin31);
+        gestionnaireAdministrateur.create(admin32);
+        gestionnaireAdministrateur.create(admin33);
+        gestionnaireAdministrateur.create(admin34);
+        gestionnaireAdministrateur.create(admin35);
+        gestionnaireAdministrateur.create(admin36);
+        gestionnaireAdministrateur.create(admin37);
+        gestionnaireAdministrateur.create(admin38);
+        gestionnaireAdministrateur.create(admin39);
+        gestionnaireAdministrateur.create(admin40);
+        gestionnaireAdministrateur.create(admin41);
+        gestionnaireAdministrateur.create(admin42);
+        gestionnaireAdministrateur.create(admin43);
+        gestionnaireAdministrateur.create(admin44);
+        gestionnaireAdministrateur.create(admin45);
+        gestionnaireAdministrateur.create(admin46);
+        gestionnaireAdministrateur.create(admin47);
+        gestionnaireAdministrateur.create(admin48);
+        gestionnaireAdministrateur.create(admin49);
+        gestionnaireAdministrateur.create(admin50);
+        gestionnaireAdministrateur.create(admin51);
+        gestionnaireAdministrateur.create(admin52);
+        gestionnaireAdministrateur.create(admin53);
+        gestionnaireAdministrateur.create(admin54);
+        gestionnaireAdministrateur.create(admin55);
+        gestionnaireAdministrateur.create(admin56);
+        gestionnaireAdministrateur.create(admin57);
+        gestionnaireAdministrateur.create(admin58);
+        gestionnaireAdministrateur.create(admin59);
+        gestionnaireAdministrateur.create(admin60);
         
+        /************************/
+        /*** FIN AJOUT ADMIN ***/
+
     }
 }

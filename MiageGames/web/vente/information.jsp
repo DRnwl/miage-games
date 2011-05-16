@@ -11,16 +11,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Miage Games</title>
+        <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+        
         <!--[if IE 6]>
 			<link rel="stylesheet" href="css/ie6-style.css" type="text/css" media="all" />
 		<![endif]-->
         <script src="js/jquery-1.6.js" type="text/javascript"></script>
+        <script src="js/jquery-ui-1.8.12.custom.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.js" type="text/javascript"></script>
 
         <!-- Script qui permet le changement de jeu dans le cadre principal -->
         <script src="js/fns.js" type="text/javascript"></script>
         <script src="js/validerConnexion.js" type="text/javascript"></script>
+        <script src="js/paginator.js"></script>
     </head>
     <body>
         <%@include file="/config/header.jsp" %>

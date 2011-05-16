@@ -49,16 +49,19 @@
         <url-pattern>/voirCommandes</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletAdmin</servlet-name>
-        <url-pattern>/modifierA</url-pattern>
-        <url-pattern>/ServletAdmin</url-pattern>
-        <url-pattern>/voirAdmin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ServletPrincipal</servlet-name>
         <url-pattern>/categorie</url-pattern>
         <url-pattern>/ServletPrincipal</url-pattern>
         <url-pattern>/information</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAdmin</servlet-name>
+        <url-pattern>/ServletAdmin</url-pattern>
+        <url-pattern>/modifierA</url-pattern>
+        <url-pattern>/voirAdmin</url-pattern>
+        <url-pattern>/modifierCl</url-pattern>
+        <url-pattern>/paginationAdmin</url-pattern>
+        <url-pattern>/voirClient</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

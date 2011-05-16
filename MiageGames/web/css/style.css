@@ -4,6 +4,42 @@
     margin: 0; 
     outline: 0; 
 }
+div.pagination {
+    padding: 3px;
+    margin: 3px;
+    text-align:center;
+    color:#a0a0a0;
+    font-size:80%;
+}
+div.pagination a {
+    border: 1px solid #909090;
+    margin-right:3px;
+    padding:2px 5px;
+    background-image:url('bar.gif');
+    background-position:bottom;
+    text-decoration: none;
+    color: #c0c0c0;
+}
+div.pagination a:hover, div.meneame a:active {
+    border: 1px solid #f0f0f0;
+    background-image:url(invbar.gif);
+    background-color:#404040;
+    color: #ffffff;
+}
+div.pagination span.current {
+    margin-right:3px;
+    padding:2px 5px;
+    border: 1px solid #ffffff;
+    font-weight: bold;
+    background-color: #606060;
+    color: #ffffff;
+}
+div.pagination span.disabled {
+    margin-right:3px;
+    padding:2px 5px;
+    border: 1px solid #606060;
+    color: #808080;
+}
 
 .boutonlien {
     float:right;
@@ -42,9 +78,9 @@ label.error {
     padding: 0 2px;
 }
 
-#erreurCreation,#erreurModification,#erreurRecherche,#erreurCreation {
+#erreurCreation,#erreurModification,#erreurRecherche,#erreurCreation,#erreurSuppression {
     /* Move the error above the input element. */
-font:115%/1 sans-serif;
+    font:115%/1 sans-serif;
     color: red;
     padding: 0 2px;
 }
@@ -75,7 +111,7 @@ a:hover {
     margin: 30px;
     float:left;
     width: 100px;
-    
+
 }
 
 .left { 
@@ -476,7 +512,7 @@ form.creer-client .center input {
     width:100%;
     height:100%;
     color: #262727; 
-    
+
 }
 #content .block { 
     background-image: url(images/content-block-top.gif); 
@@ -547,7 +583,7 @@ form.creer-client .center input {
     width: 158px; 
     border: none; 
     background: none;
-    
+
 }
 .search label.error {
     /* Move the error above the input element. */

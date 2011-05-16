@@ -33,7 +33,7 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3>Modifier votre compte</h3>
+                            <h3>Modifier un compte client</h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>

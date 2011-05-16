@@ -44,6 +44,15 @@ public abstract class GestionnaireCommun<T> {
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
     }
+    
+    public List<T> findAllP(int nombre) {
+        CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entityClass));
+        Query q  = getEntityManager().createQuery(cq);
+        q.setFirstResult(nombre);
+        q.setMaxResults(10);
+        return q.getResultList();
+    }
 
    
     public int count() {
