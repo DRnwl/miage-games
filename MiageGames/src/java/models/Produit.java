@@ -67,12 +67,16 @@ public class Produit implements Serializable {
     private String image;
     
     @Basic(optional = false)
+    @Column(name = "video")
+    private String video;
+    
+    @Basic(optional = false)
     @Column(name = "description")
     private String description;
     
     @Basic(optional = false)
     @Column(name = "quantiteProduit")
-    private String quantiteProduit;
+    private int quantiteProduit;
     
     
     @JoinColumn(name = "categorieAge_id", referencedColumnName = "id")
@@ -112,6 +116,50 @@ public class Produit implements Serializable {
         editeur.getCollectionProduit().add(this);
         collectionCommande = new ArrayList<Commande>();
     }
+    
+    
+    public Produit(String nom, Double prix, Categorie categorie, String image, CategorieAge categorieAge, String sortie, Developpeur developpeur, Editeur editeur, int quantiteProduit) {
+        this.nom = nom;
+        this.prix = prix;
+        this.categorie = categorie;
+        this.image = image;
+        categorie.getCollectionProduit().add(this);
+        collectionProduitCommande = new ArrayList<Produit_Commande>();
+        this.categorieAge = categorieAge;
+        categorieAge.getCollectionProduit().add(this);
+        this.sortie = sortie;
+        this.developpeur = developpeur;
+        developpeur.getCollectionProduit().add(this);
+        this.editeur = editeur;
+        editeur.getCollectionProduit().add(this);
+        collectionCommande = new ArrayList<Commande>();
+        this.quantiteProduit = quantiteProduit;
+    }
+    
+    
+    
+    // constructeur avec video
+    
+     public Produit(String nom, Double prix, Categorie categorie, String image, CategorieAge categorieAge, String sortie, Developpeur developpeur, Editeur editeur, int quantiteProduit, String video) {
+        this.nom = nom;
+        this.prix = prix;
+        this.categorie = categorie;
+        this.image = image;
+        categorie.getCollectionProduit().add(this);
+        collectionProduitCommande = new ArrayList<Produit_Commande>();
+        this.categorieAge = categorieAge;
+        categorieAge.getCollectionProduit().add(this);
+        this.sortie = sortie;
+        this.developpeur = developpeur;
+        developpeur.getCollectionProduit().add(this);
+        this.editeur = editeur;
+        editeur.getCollectionProduit().add(this);
+        collectionCommande = new ArrayList<Commande>();
+        this.quantiteProduit = quantiteProduit;
+        this.video = video;
+    }
+    
+    
 
     public Produit(String nom, Double prix, Categorie categorie, CategorieAge categorieAge) {
         this.nom = nom;
@@ -204,6 +252,16 @@ public class Produit implements Serializable {
     public ArrayList<String> getTags() {
         return tags;
     }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+    
+    
     
     
     
@@ -212,13 +270,15 @@ public class Produit implements Serializable {
         this.tags = tags;
     }
 
-    public String getQuantiteProduit() {
+    public int getQuantiteProduit() {
         return quantiteProduit;
     }
 
-    public void setQuantiteProduit(String quantiteProduit) {
+    public void setQuantiteProduit(int quantiteProduit) {
         this.quantiteProduit = quantiteProduit;
     }
+
+    
     
     
     

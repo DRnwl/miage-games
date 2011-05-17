@@ -13,7 +13,7 @@
         <title>Miage Games</title>
         <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-        
+
         <!--[if IE 6]>
 			<link rel="stylesheet" href="css/ie6-style.css" type="text/css" media="all" />
 		<![endif]-->
@@ -74,7 +74,7 @@
                                 <p class="grey">
 
                                     Developpeur : ${produitRecherche.developpeur.nomDeveloppeur}
-                                    <br>
+                                    
                                     <br>
 
                                     Editeur : ${produitRecherche.editeur.nomEditeur}
@@ -84,6 +84,33 @@
 
                                     Classification: <img src="${produitRecherche.categorieAge.nomImage}" alt="" />
                                     </br>
+
+
+                                    <br>
+
+                                    Quantite disponible : ${produitRecherche.quantiteProduit}
+
+
+                                     <br>
+
+                                    <br>
+
+                                    Video : 
+
+                                    <object width="425px" height="360px" >
+                                        <param name="allowFullScreen" value="true"/>
+                                        <param name="wmode" value="transparent"/>
+                                        <param name="movie" value=""/>
+                                        <embed src="${produitRecherche.video}" width="425" height="360" allowFullScreen="true" type="application/x-shockwave-flash" wmode="transparent"/>
+                                    </object>
+
+
+
+
+
+
+
+
                                 </p>
 
                             </div>

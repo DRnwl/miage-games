@@ -48,6 +48,7 @@ public class ServletPrincipal extends HttpServlet {
                 gestion.creerDonnees();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(ServletPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("Fichier introuvable!!!");
             }
         }
 
@@ -124,6 +125,8 @@ public class ServletPrincipal extends HttpServlet {
 
                 getServletContext().setAttribute("produitRecherche", gestionnaireProduit.findByNom(nomProduit));
 
+                
+                
 
                 RequestDispatcher dp = request.getRequestDispatcher("/vente/information.jsp?nomProduit=" + nomProduit);
                 dp.forward(request, response);
