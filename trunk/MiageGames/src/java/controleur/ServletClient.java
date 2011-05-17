@@ -4,7 +4,10 @@
  */
 package controleur;
 
+import gestionnaire.GestionnaireClient;
 import java.io.IOException;
+import java.io.PrintWriter;
+import javax.ejb.EJB;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,12 +15,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import models.Client;
 
 /**
  *
  * @author Sangre
  */
 public class ServletClient extends HttpServlet {
+
+    @EJB
+    private GestionnaireClient gestionnaireClient;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,14 +40,15 @@ public class ServletClient extends HttpServlet {
         HttpSession session = request.getSession();
         String userPath = request.getServletPath();
 
+        response.setContentType("text/plain");
+        PrintWriter out = response.getWriter();
         if (session.getAttribute("groupeUtilisateur") != null) {
             if (session.getAttribute("groupeUtilisateur").equals("client")) {
-               if (userPath.equals("/modifierC")) {
-                    
+                if (userPath.equals("/modifierC")) {
+
                     RequestDispatcher dp = request.getRequestDispatcher("/utilisateur/modifierCompte.jsp");
                     dp.forward(request, response);
-                }
-                if(userPath.equals("/voirCommandes")){
+                } else if (userPath.equals("/voirCommandes")) {
                     RequestDispatcher dp = request.getRequestDispatcher("/utilisateur/voirCommandes.jsp");
                     dp.forward(request, response);
                 }

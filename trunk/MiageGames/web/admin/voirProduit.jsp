@@ -1,6 +1,6 @@
 <%-- 
-    Document   : voirClient
-    Created on : 15 mai 2011, 21:21:43
+    Document   : voirProduit
+    Created on : 17 mai 2011, 16:26:14
     Author     : Sangre
 --%>
 
@@ -35,13 +35,13 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a id="AjoutClt" href="#" onClick="return false">Ajouter un client</a></h3>
+                            <h3><a id="AjoutProd" href="#" onClick="return false">Ajouter un produit</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
                     <div style="display:none" id="toggleCrea">
                         <span id="erreurCreation" style="display:none"></span>
-                        <form class="formulaire" id ="formCreationC" name="session" action="" method=post>
+                        <form class="formulaire" id ="formCreationP" name="session" action="" method=post>
                             <fieldset>
                                 <legend>Information du compte</legend>
                                 <label class="texte" for="login_c">Nom de compte: </label>
@@ -114,7 +114,7 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a id="RechMClt" href="#" onClick="return false">Modifier un client</a></h3>
+                            <h3><a id="RechMProd" href="#" onClick="return false">Modifier un produit</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                         <div class="search" >
                             <span id="erreurRecherche" style="display:none"></span>
 
-                            <form   class="formulaire" id ="formRechercheC" name="session" action="" method=post>
+                            <form   class="formulaire" id ="formRechercheP" name="session" action="" method=post>
 
                                 <fieldset>
                                     <legend>Recherche d'un client</legend>
@@ -147,14 +147,14 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a  id="SupprClt" href="#" onClick="return false"> Supprimer un client</a></h3>
+                            <h3><a  id="SupprProd" href="#" onClick="return false"> Supprimer un produit</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
                     <div style="display:none" id="toggleSupp">
                         <div class="search" >
                             <span id="erreurSuppression" style="display:none"></span>
-                            <form class="formulaire" id ="formSupprimmerC" name="session" action="" method=post>
+                            <form class="formulaire" id ="formSupprimmerP" name="session" action="" method=post>
                                 <fieldset>
                                     <legend>Identifiant du compte</legend>
                                     <div class="fieldplace">
@@ -174,16 +174,16 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a  id="VoirTousClt" href="#" onClick="return false"> Voir tous les clients</a></h3>
+                            <h3><a  id="VoirTousProd" href="#" onClick="return false"> Voir tous les produits</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
                     <div style="display:none" id="toggleVoir">
                         <span id="erreurVoir" style="display:none"></span>
-                        <div id="voirClt" class="formulaire">
+                        <div id="voirTousProd" class="formulaire">
                             <fieldset>
-                                <legend >Client</legend>
-                                <div id="afficherClient" class="formulaire"></div>
+                                <legend >Produits</legend>
+                                <div id="afficherProd" class="formulaire"></div>
                             </fieldset>
                             <br />
                             <br />
@@ -202,4 +202,5 @@
 
     </body>
 </html>
+
 

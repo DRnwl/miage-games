@@ -390,8 +390,9 @@ public class Gestion {
         Commande_Client commandeClient1 = new Commande_Client();
 
         Commande commande = new Commande();
+String path = System.getProperty("user.dir" );
+        Scanner scanner = new Scanner(new File("/WEB-INF/clients.txt"));
 
-        Scanner scanner = new Scanner(new File("/Users/Pierro/NetBeansProjects/trunk/MiageGames/clients.txt"));
 
 
         while (scanner.hasNext()) {
