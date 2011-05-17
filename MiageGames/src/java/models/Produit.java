@@ -18,19 +18,13 @@ import javax.persistence.*;
 @Table(name = "Produit")
 @NamedQueries({
     @NamedQuery(name = "Produit.findAll", query = "SELECT p FROM Produit p"),
-    
     @NamedQuery(name = "Produit.findById", query = "SELECT p FROM Produit p WHERE p.id = :id"),
-    
     @NamedQuery(name = "Produit.findByNom", query = "SELECT p FROM Produit p WHERE p.nom = :nom"),
-    
     @NamedQuery(name = "Produit.findByPrix", query = "SELECT p FROM Produit p WHERE p.prix = :prix"),
-    
     @NamedQuery(name = "Produit.findBySortie", query = "SELECT p FROM Produit p WHERE p.sortie = :sortie"),
-    
     @NamedQuery(name = "Produit.findByDescription", query = "SELECT p FROM Produit p WHERE p.description = :description"),
-    
-    @NamedQuery(name = "Produit.findByImage", query = "SELECT p FROM Produit p WHERE p.image = :image")
-
+    @NamedQuery(name = "Produit.findByImage", query = "SELECT p FROM Produit p WHERE p.image = :image"),
+    @NamedQuery(name = "Produit.findByQuantiteProduit", query = "SELECT p FROM Produit p WHERE p.quantiteProduit = :quantiteProduit")
 
     
 })
@@ -72,10 +66,13 @@ public class Produit implements Serializable {
     @Column(name = "image")
     private String image;
     
-    
     @Basic(optional = false)
     @Column(name = "description")
     private String description;
+    
+    @Basic(optional = false)
+    @Column(name = "quantiteProduit")
+    private String quantiteProduit;
     
     
     @JoinColumn(name = "categorieAge_id", referencedColumnName = "id")
@@ -92,15 +89,14 @@ public class Produit implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
     private Collection<Produit_Commande> collectionProduitCommande;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
+    private Collection<Commande> collectionCommande;
 
     public Produit() {
     }
 
-   
-
- 
-
-    public Produit(String nom, Double prix, Categorie categorie, String image, CategorieAge categorieAge,String sortie, Developpeur developpeur,Editeur editeur) {
+    public Produit(String nom, Double prix, Categorie categorie, String image, CategorieAge categorieAge, String sortie, Developpeur developpeur, Editeur editeur) {
         this.nom = nom;
         this.prix = prix;
         this.categorie = categorie;
@@ -114,12 +110,8 @@ public class Produit implements Serializable {
         developpeur.getCollectionProduit().add(this);
         this.editeur = editeur;
         editeur.getCollectionProduit().add(this);
+        collectionCommande = new ArrayList<Commande>();
     }
-    
-    
-    
-    
-    
 
     public Produit(String nom, Double prix, Categorie categorie, CategorieAge categorieAge) {
         this.nom = nom;
@@ -128,12 +120,6 @@ public class Produit implements Serializable {
         this.categorieAge = categorieAge;
         collectionProduitCommande = new ArrayList<Produit_Commande>();
     }
-    
-    
-    
-
-    
-    
 
     public String getImage() {
         return image;
@@ -142,7 +128,6 @@ public class Produit implements Serializable {
     public void setImage(String image) {
         this.image = image;
     }
-   
 
     public String getSortie() {
         return sortie;
@@ -219,10 +204,24 @@ public class Produit implements Serializable {
     public ArrayList<String> getTags() {
         return tags;
     }
+    
+    
+    
 
     public void setTags(ArrayList<String> tags) {
         this.tags = tags;
     }
+
+    public String getQuantiteProduit() {
+        return quantiteProduit;
+    }
+
+    public void setQuantiteProduit(String quantiteProduit) {
+        this.quantiteProduit = quantiteProduit;
+    }
+    
+    
+    
 
     public Collection<Produit_Commande> getCollectionProduitCommande() {
         return collectionProduitCommande;
@@ -239,9 +238,14 @@ public class Produit implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
-    
+
+    public Collection<Commande> getCollectionCommande() {
+        return collectionCommande;
+    }
+
+    public void setCollectionCommande(Collection<Commande> collectionCommande) {
+        this.collectionCommande = collectionCommande;
+    }
 
     @Override
     public int hashCode() {

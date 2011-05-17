@@ -37,55 +37,42 @@ public class Client implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
     @Basic(optional = false)
     @Column(name = "login")
     private String login;
-    
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
-    
     @Basic(optional = false)
     @Column(name = "nom")
     private String nom;
-    
     @Basic(optional = false)
     @Column(name = "prenom")
     private String prenom;
-    
     @Basic(optional = false)
     @Column(name = "telephone")
     private String telephone;
-    
     @Basic(optional = false)
     @Column(name = "email")
     private String email;
-    
     @Basic(optional = false)
     @Column(name = "adresse_facturation")
     private String adrFact;
-    
     @Basic(optional = false)
     @Column(name = "code_postal_facturation")
     private String adrFactZip;
-    
     @Basic(optional = false)
     @Column(name = "ville_facturation")
     private String adrFactVille;
-    
     @Basic(optional = false)
     @Column(name = "adresse_livraison")
     private String adrLivraison;
-    
     @Basic(optional = false)
     @Column(name = "code_postal_livraison")
     private String adrLivrZip;
-    
     @Basic(optional = false)
     @Column(name = "ville_livraison")
     private String adrLivrVille;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
     private Collection<Commande_Client> collectionCommandeClient;
 
@@ -114,6 +101,23 @@ public class Client implements Serializable {
         this.prenom = prenom;
         this.telephone = telephone;
         this.email = email;
+        collectionCommandeClient = new ArrayList<Commande_Client>();
+
+    }
+
+    public Client(String login, String password, String nom, String prenom, String telephone, String email, String adrFact, String adrFactZip, String adrFactVille, String adrLivraison, String adrLivrZip, String adrLivrVille) {
+        this.login = login;
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.email = email;
+        this.adrFact = adrFact;
+        this.adrFactZip = adrFactZip;
+        this.adrFactVille = adrFactVille;
+        this.adrLivraison = adrLivraison;
+        this.adrLivrZip = adrLivrZip;
+        this.adrLivrVille = adrLivrVille;
         collectionCommandeClient = new ArrayList<Commande_Client>();
 
     }
@@ -186,7 +190,6 @@ public class Client implements Serializable {
         this.collectionCommandeClient = collectionCommandeClient;
     }
 
-
     public String getAdrFact() {
         return adrFact;
     }
@@ -234,8 +237,6 @@ public class Client implements Serializable {
     public void setAdrLivraison(String adrLivraison) {
         this.adrLivraison = adrLivraison;
     }
-
-
 
     @Override
     public int hashCode() {

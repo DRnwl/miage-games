@@ -8,8 +8,11 @@ import gestionnaire.Gestion;
 import gestionnaire.GestionnaireCategorie;
 import gestionnaire.GestionnaireCategorieAge;
 import gestionnaire.GestionnaireProduit;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -41,7 +44,11 @@ public class ServletPrincipal extends HttpServlet {
 
         // Si aucune catégorie n'existe, on les crées
         if (gestionnaireCategorie.count() < 1) {
-            gestion.creerDonnees();
+            try {
+                gestion.creerDonnees();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ServletPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
 

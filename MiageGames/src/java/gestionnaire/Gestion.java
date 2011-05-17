@@ -4,12 +4,16 @@
  */
 package gestionnaire;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javax.ejb.*;
 import models.Administrateur;
 import models.Categorie;
 import models.CategorieAge;
 import models.CategorieAge;
 import models.Client;
+import models.Commande;
 import models.Commande_Client;
 import models.Developpeur;
 import models.Editeur;
@@ -41,8 +45,10 @@ public class Gestion {
     private GestionnaireDeveloppeur gestionnaireDeveloppeur;
     @EJB
     private GestionnaireEditeur gestionnaireEditeur;
+    @EJB
+    private GestionnaireCommande gestionnaireCommande;
 
-    public void creerDonnees() {
+    public void creerDonnees() throws FileNotFoundException {
 
 
 
@@ -305,7 +311,7 @@ public class Gestion {
 
         Produit produitPS4 = new Produit("NO MORE HEROES : Heroes' Paradise 900", 5.99, PS3, "http://www.micromania.fr/imagesprod/44639/44639_jaqr_micromania1_129x171.jpg", categorie18, "3 mai 2010", dev3, editeur2);
 
-        Produit produitPS5 = new Produit("BUNDLE VIRTUA TENNIS 4 + RAQUETTE stt", 17.99, PS3, "http://www.micromania.fr/imagesprod/44888/44888_jaqr_jaquette_129x171.jpg", categorie3, "29 mai 2007", dev1, editeur3);
+        Produit produitPS5 = new Produit("BUNDLE 7", 17.99, PS3, "http://www.micromania.fr/imagesprod/44888/44888_jaqr_jaquette_129x171.jpg", categorie3, "29 mai 2007", dev1, editeur3);
 
         Produit produitPS6 = new Produit("SNIPER GHOST WARRIOR 2030", 33.99, PS3, "http://www.micromania.fr/imagesprod/43918/43918_jaqr_sniper_ps3_129x171.jpg", categorie12, "2 mai 2002", dev4, editeur2);
 
@@ -335,21 +341,133 @@ public class Gestion {
 
 
 
+
         /****** LES CLIENTS *******/
-        Client client1 = new Client("Vincent", "Vincent", "Charles", "Alex");
-        Client client2 = new Client("Pierre", "Pierre", "Kader", "Al");
+        Double varMontant = 0.0;
+        String varDate_Achat = "";
+        int varNumero_confirmation = 0;
+
+        int varQuantite = 0;
 
 
-        gestionnaireClient.create(client1);
-        gestionnaireClient.create(client2);
+
+        /*** client **/
+        /**
+         * 
+         * String login, 
+         * String password, 
+         * String nom, 
+         * String prenom, 
+         * String telephone,
+         * String email, 
+         * String adrFact, 
+         * String adrFactZip, 
+         * String adrFactVille, 
+         * String adrLivraison, 
+         * String adrLivrZip, 
+         * String adrLivrVille
+         * 
+         **/
+        String varLogin = "";
+        String varPassword = "";
+        String varNom = "";
+        String varPrenom = "";
+
+        String varTelephone = "";
+        String varEmail = "";
+        String varAdrFact = "";
+        String varAdrFactZip = "";
+
+        String varAdrFactVille = "";
+        String varAdrLivraison = "";
+        String varAdrLivrZip = "";
+        String varAdrLivrVille = "";
 
 
-        // commande du client 1
+        Client clientk = new Client();
 
-        Commande_Client commandeClient1 = new Commande_Client(11.5, "12/05/2011", 123333, client1);
-        gestionnaireCommandeClient.create(commandeClient1);
+        /********/
+        Commande_Client commandeClient1 = new Commande_Client();
 
-        // client1 va commande prod10
+        Commande commande = new Commande();
+
+        Scanner scanner = new Scanner(new File("/Users/Pierro/NetBeansProjects/trunk/MiageGames/clients.txt"));
+
+
+        while (scanner.hasNext()) {
+
+
+            String ligne = scanner.nextLine();
+
+            Scanner scan2 = new Scanner(ligne);
+            scan2.useDelimiter("\\s*;\\s*");
+
+            if (scan2.hasNext()) {
+
+                varLogin = scan2.next();
+                varPassword = scan2.next();
+                varNom = scan2.next();
+                varPrenom = scan2.next();
+
+
+                varTelephone = scan2.next();
+                varEmail = scan2.next();
+                varAdrFact = scan2.next();
+                varAdrFactZip = scan2.next();
+
+                varAdrFactVille = scan2.next();
+                varAdrLivraison = scan2.next();
+                varAdrLivrZip = scan2.next();
+                varAdrLivrVille = scan2.next();
+
+
+
+                String test = scan2.next();
+                varMontant = Double.valueOf(test);
+                varDate_Achat = scan2.next();
+                varNumero_confirmation = scan2.nextInt();
+
+
+                varQuantite = scan2.nextInt();
+
+
+
+            }
+
+
+
+
+            clientk = new Client(varLogin, varPassword, varNom, varPrenom, varTelephone, varEmail, varAdrFact, varAdrFactZip, varAdrFactVille, varAdrLivraison, varAdrLivrZip, varAdrLivrVille);
+            gestionnaireClient.create(clientk);
+
+            commandeClient1 = new Commande_Client(varMontant, varDate_Achat, varNumero_confirmation, clientk);
+            gestionnaireCommandeClient.create(commandeClient1);
+
+            commande = new Commande(commandeClient1, produitPS1, varQuantite);
+            gestionnaireCommande.create(commande);
+
+
+
+
+
+            scan2.close();
+
+
+        }
+
+
+        scanner.close();
+
+
+
+
+
+
+
+
+
+
+
 
 
         /****** LES Admins *******/
@@ -477,9 +595,8 @@ public class Gestion {
         gestionnaireAdministrateur.create(admin58);
         gestionnaireAdministrateur.create(admin59);
         gestionnaireAdministrateur.create(admin60);
-        
+
         /************************/
         /*** FIN AJOUT ADMIN ***/
-
     }
 }

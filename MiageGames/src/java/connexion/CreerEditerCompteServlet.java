@@ -319,7 +319,8 @@ public class CreerEditerCompteServlet extends HttpServlet {
                 out.print("-2");
             } else {
 
-                // on cree l'client
+                
+                
                 cl = new Client(login, request.getParameter("password"), mail);
                 cl.setNom(request.getParameter("nom"));
                 cl.setPrenom(request.getParameter("prenom"));
