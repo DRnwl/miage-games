@@ -51,36 +51,34 @@ public class Commande_Client implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "commande_client")
     private Collection<Produit_Commande> collectionProduitCommande;
     
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "commandeClient")
+    private Collection<Commande> collectionCommande;
+    
     @JoinColumn(name="client_id", referencedColumnName="id")
     @ManyToOne(optional = false)
     private Client client;
+    
+    
 
     public Commande_Client() {
     }
 
-    public Commande_Client(Double montant, String date_achat, int numero_confirmation, Client client) {
+   public Commande_Client(Double montant, String date_achat, int numero_confirmation, Client client) {
         this.montant = montant;
         this.date_achat = date_achat;
         this.numero_confirmation = numero_confirmation;
         this.client = client;
+        client.getCollectionCommandeClient().add(this);
         collectionProduitCommande = new ArrayList<Produit_Commande>();
+        collectionCommande = new ArrayList<Commande>();
     }
 
-    public Commande_Client(Double montant, String date_achat, int numero_confirmation, Produit_Commande produitCommande, Client client) {
-        this.montant = montant;
-        this.date_achat = date_achat;
-        this.numero_confirmation = numero_confirmation;
-        collectionProduitCommande = new ArrayList<Produit_Commande>();
-        collectionProduitCommande.add(produitCommande);
-        this.client = client;
-    }
-
-    public Commande_Client(Double montant, String date_achat, Collection<Produit_Commande> collectionProduitCommande, Client client) {
-        this.montant = montant;
-        this.date_achat = date_achat;
-        this.collectionProduitCommande = collectionProduitCommande;
-        this.client = client;
-    }
+   
+    
+    
+    
+    
 
     
    
@@ -97,7 +95,7 @@ public class Commande_Client implements Serializable {
         return id;
     }
 
-    public Double getMontant() {
+    public double getMontant() {
         return montant;
     }
 
@@ -121,7 +119,7 @@ public class Commande_Client implements Serializable {
         this.id = id;
     }
 
-    public void setMontant(Double montant) {
+    public void setMontant(double montant) {
         this.montant = montant;
     }
 
@@ -135,6 +133,22 @@ public class Commande_Client implements Serializable {
 
     public void setCollectionCommande_produit(Collection<Produit_Commande> collectionCommande_produit) {
         this.collectionProduitCommande = collectionCommande_produit;
+    }
+
+    public Collection<Commande> getCollectionCommande() {
+        return collectionCommande;
+    }
+
+    public void setCollectionCommande(Collection<Commande> collectionCommande) {
+        this.collectionCommande = collectionCommande;
+    }
+
+    public Collection<Produit_Commande> getCollectionProduitCommande() {
+        return collectionProduitCommande;
+    }
+
+    public void setCollectionProduitCommande(Collection<Produit_Commande> collectionProduitCommande) {
+        this.collectionProduitCommande = collectionProduitCommande;
     }
 
     
