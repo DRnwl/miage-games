@@ -1,6 +1,6 @@
 <%-- 
-    Document   : voirClient
-    Created on : 15 mai 2011, 21:21:43
+    Document   : voirCommande
+    Created on : 17 mai 2011, 16:44:27
     Author     : Sangre
 --%>
 
@@ -35,13 +35,13 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a id="AjoutClt" href="#" onClick="return false">Ajouter un client</a></h3>
+                            <h3><a id="AjoutComd" href="#" onClick="return false">Ajouter une commande</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
                     <div style="display:none" id="toggleCrea">
                         <span id="erreurCreation" style="display:none"></span>
-                        <form class="formulaire" id ="formCreationC" name="session" action="" method=post>
+                        <form class="formulaire" id ="formCreationCo" name="session" action="" method=post>
                             <fieldset>
                                 <legend>Information du compte</legend>
                                 <label class="texte" for="login_c">Nom de compte: </label>
@@ -114,7 +114,7 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a id="RechMClt" href="#" onClick="return false">Modifier un client</a></h3>
+                            <h3><a id="RechMComd" href="#" onClick="return false">Modifier une commande</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                         <div class="search" >
                             <span id="erreurRecherche" style="display:none"></span>
 
-                            <form   class="formulaire" id ="formRechercheC" name="session" action="" method=post>
+                            <form   class="formulaire" id ="formRechercheCo" name="session" action="" method=post>
 
                                 <fieldset>
                                     <legend>Recherche d'un client</legend>
@@ -147,14 +147,14 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a  id="SupprClt" href="#" onClick="return false"> Supprimer un client</a></h3>
+                            <h3><a  id="SupprComd" href="#" onClick="return false"> Supprimer une commande</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
                     <div style="display:none" id="toggleSupp">
                         <div class="search" >
                             <span id="erreurSuppression" style="display:none"></span>
-                            <form class="formulaire" id ="formSupprimmerC" name="session" action="" method=post>
+                            <form class="formulaire" id ="formSupprimmerCo" name="session" action="" method=post>
                                 <fieldset>
                                     <legend>Identifiant du compte</legend>
                                     <div class="fieldplace">
@@ -174,16 +174,16 @@
                 <div class="block-bot">
                     <div class="head">
                         <div class="head-cnt">
-                            <h3><a  id="VoirTousClt" href="#" onClick="return false"> Voir tous les clients</a></h3>
+                            <h3><a  id="VoirTousComd" href="#" onClick="return false"> Voir toutes les commandes</a></h3>
                             <div class="cl">&nbsp;</div>
                         </div>
                     </div>
                     <div style="display:none" id="toggleVoir">
                         <span id="erreurVoir" style="display:none"></span>
-                        <div id="voirClt" class="formulaire">
+                        <div id="voirTousComd" class="formulaire">
                             <fieldset>
-                                <legend >Client</legend>
-                                <div id="afficherClient" class="formulaire"></div>
+                                <legend >Commandes</legend>
+                                <div id="afficherComd" class="formulaire"></div>
                             </fieldset>
                             <br />
                             <br />
@@ -202,4 +202,5 @@
 
     </body>
 </html>
+
 

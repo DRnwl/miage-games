@@ -6,6 +6,8 @@ package controleur;
 
 import gestionnaire.GestionnaireAdministrateur;
 import gestionnaire.GestionnaireClient;
+import gestionnaire.GestionnaireCommandeClient;
+import gestionnaire.GestionnaireProduit;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -18,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Administrateur;
 import models.Client;
+import models.Commande_Client;
+import models.Produit;
 
 /**
  *
@@ -25,8 +29,14 @@ import models.Client;
  */
 public class ServletAdmin extends HttpServlet {
     @EJB
-    private GestionnaireClient gestionnaireClient;
+    private GestionnaireCommandeClient gestionnaireCommandeClient;
+    @EJB
+    private GestionnaireProduit gestionnaireProduit;
 
+    @EJB
+    private GestionnaireClient gestionnaireClient1;
+    @EJB
+    private GestionnaireClient gestionnaireClient;
     @EJB
     private GestionnaireAdministrateur gestionnaireAdministrateur;
 
@@ -92,39 +102,71 @@ public class ServletAdmin extends HttpServlet {
                     dp.forward(request, response);
 
 
-                } // Pagination, je verrais apres si je peux pas faire une servlet a part pour
-                // tous les affichages (admin/client/produit/commandes)
-                else if (userPath.equals("/paginationAdmin")) {
+                } else if (userPath.equals("/voirProduit")) {
+                    RequestDispatcher dp = request.getRequestDispatcher("/admin/voirProduit.jsp");
+                    dp.forward(request, response);
 
+
+                } else if (userPath.equals("/voirCommande")) {
+                    RequestDispatcher dp = request.getRequestDispatcher("/admin/voirCommande.jsp");
+                    dp.forward(request, response);
+
+
+                }// Pagination
+                else if (userPath.equals("/paginationAdmin")) {
+                    String pagi = request.getParameter("pagi");
                     int page = Integer.parseInt(request.getParameter("page")) - 1;
                     int parPage = 10;
                     int debut = page * parPage;
-                    double test= 5.9;
-                    double nbPage = ((gestionnaireAdministrateur.count()));
-                    nbPage = Math.ceil(nbPage/parPage);
-                    List<Administrateur> listeA = gestionnaireAdministrateur.findAllP(debut);
+                    double nbPage = 0;
+                    List liste ;
                     String remplir = "";
-                    for (int i = 0; i < listeA.size(); i++) {
-                        remplir += "<div>" + listeA.get(i).getLogin() + "</div>";
+                    if (pagi.equals("Admin")) {
+                        nbPage = ((gestionnaireAdministrateur.count()));
+
+                        liste = gestionnaireAdministrateur.findAllP(debut);
+                        for (int i = 0; i < liste.size(); i++) {
+                            remplir += "<div>" + ((Administrateur) liste.get(i)).getLogin() + "</div>";
+                        }
+
+                    } else if (pagi.equals("Client")) {
+                        nbPage = ((gestionnaireClient.count()));
+                        liste = gestionnaireClient.findAllP(debut);
+                        for (int i = 0; i < liste.size(); i++) {
+                            remplir += "<div>" + ((Client) liste.get(i)).getLogin() + "</div>";
+                        }
+                    } else if (pagi.equals("Prod")) {
+                        nbPage = ((gestionnaireProduit.count()));
+                        liste = gestionnaireProduit.findAllP(debut);
+                        for (int i = 0; i < liste.size(); i++) {
+                            remplir += "<div>" + ((Produit) liste.get(i)).getNom() + "</div>";
+                        }
+                    } else {
+                        nbPage = ((gestionnaireCommandeClient.count()));
+                        liste = gestionnaireCommandeClient.findAllP(debut);
+                        for (int i = 0; i < liste.size(); i++) {
+                            remplir += "<div>" + ((Commande_Client) liste.get(i)).getNumero_confirmation() + "</div>";
+                        }
                     }
+
+                    nbPage = Math.ceil(nbPage / parPage);
+
                     remplir += "<br /><div class='pagination'>";
 
                     if (page == 0) {
                         remplir += "<span class='disabled'>Deb</span>"
                                 + "<span class='disabled'>Prec</span>";
                     } else {
-                        remplir += "<a onClick='loadDataA(" + (1) + ")' href='#'>Deb</a>"
-                                + "<a onClick='loadDataA(" + (page) + ")' href='#'>Prec</a>";
+                        remplir += "<a onClick='loadDataA(" + (1) + ",\"" + pagi + "\")' href='#'>Deb</a>"
+                                + "<a onClick='loadDataA(" + (page) + ",\"" + pagi + "\")' href='#'>Prec</a>";
 
                     }
                     for (int i = 0; i < nbPage; i++) {
 
                         if (i == page) {
                             remplir += "<span class='current'>" + (i + 1) + "</span>";
-                        } 
-                        else
-                        {
-                            remplir += "<a onClick='loadDataA(" + (i + 1) + ")' href='#'>" + (i + 1) + "</a>";
+                        } else {
+                            remplir += "<a onClick='loadDataA(" + (i + 1) + ",\"" + pagi + "\")' href='#'>" + (i + 1) + "</a>";
                         }
 
                     }
@@ -132,16 +174,15 @@ public class ServletAdmin extends HttpServlet {
                         remplir += "<span class='disabled'>Suiv</span>"
                                 + "<span class='disabled'>Fin</span>";
                     } else {
-                        remplir += "<a onClick='loadDataA(" + (page + 2) + ")' href='#'>Suiv</a>"
-                                + "<a onClick='loadDataA(" + (nbPage) + ")' href='#'>Fin</a>";
+                        remplir += "<a onClick='loadDataA(" + (page + 2) + ",\"" + pagi + "\")' href='#'>Suiv</a>"
+                                + "<a onClick='loadDataA(" + ((int) nbPage) + ",\"" + pagi + "\")' href='#'>Fin</a>";
                     }
 
                     out.print(remplir);
 
 
                 } else {
-                    RequestDispatcher dp = request.getRequestDispatcher("index.jsp");
-                    dp.forward(request, response);
+                    out.print("-1");
                 }
 
             } else {

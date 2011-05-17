@@ -42,7 +42,7 @@ $(document).ready(function(){
             
             $("#erreurRecherche").hide();
             $("#erreurSuppression").hide();
-            
+            $("#erreurVoir").hide();
             $("#menuModif").empty();
             $("#erreurModification").empty();
             $("#afficherAdmin").empty();
@@ -66,7 +66,7 @@ $(document).ready(function(){
             $("#erreurCreation").hide();
             $("#erreurSuppression").hide();
             $("#afficherAdmin").empty();
-            
+            $("#erreurVoir").hide();
             $("#toggleModif").slideDown("slow");
             $("#toggleCrea").slideUp("fast");
             $("#toggleSupp").slideUp("fast");
@@ -87,6 +87,7 @@ $(document).ready(function(){
             effacer("#formRechercheA");
             $("#erreurCreation").hide();
             $("#erreurRecherche").hide();
+            $("#erreurVoir").hide();
             $("#menuModif").empty();
             $("#erreurModification").empty();
             $("#afficherAdmin").empty();
@@ -111,6 +112,8 @@ $(document).ready(function(){
             
             $("#erreurCreation").hide();
             $("#erreurRecherche").hide();
+            $("#erreurSuppression").hide();
+            
             $("#menuModif").empty();
             $("#erreurModification").empty();
             
@@ -121,7 +124,7 @@ $(document).ready(function(){
             
 
             
-            loadDataA(1);
+            loadDataA(1,'Admin');
             
         }
         else{
@@ -133,7 +136,8 @@ $(document).ready(function(){
     
     $('#voirAdmin .pagination li.active').live('click',function(){
         var page = $(this).attr('p');
-        loadDataA(page);
+        var type = 'Admin';
+        loadDataA(page,type);
     }); 
     
     
@@ -147,9 +151,10 @@ $(document).ready(function(){
             
             $("#erreurRecherche").hide();
             $("#erreurSuppression").hide();
+            $("#erreurVoir").hide();
             
             $("#menuModifC").empty();
-            $("#erreurModification").empty();
+            $("#erreurModification").hide();
             $("#voirClt").empty();
             
             $("#toggleCrea").slideDown("slow");
@@ -170,6 +175,7 @@ $(document).ready(function(){
             effacer("#formSupprimmerC");
             $("#erreurCreation").hide();
             $("#erreurSuppression").hide();
+            $("#erreurVoir").hide();
             $("#voirClt").empty();
             
             $("#toggleModif").slideDown("slow");
@@ -192,7 +198,8 @@ $(document).ready(function(){
             $("#erreurCreation").hide();
             $("#erreurRecherche").hide();
             $("#menuModifC").empty();
-            $("#erreurModification").empty();
+            $("#erreurModification").hide();
+            $("#erreurVoir").hide();
             $("#voirClt").empty();
             
             $("#toggleSupp").slideDown("slow");
@@ -217,6 +224,7 @@ $(document).ready(function(){
             
             $("#erreurCreation").hide();
             $("#erreurRecherche").hide();
+            $("#erreurSuppression").hide();
             $("#menuModifC").empty();
             $("#erreurModification").empty();
             
@@ -227,7 +235,7 @@ $(document).ready(function(){
             
 
             
-            loadDataA(1);
+            loadDataA(1,'Client');
             
         }
         else{
@@ -239,27 +247,238 @@ $(document).ready(function(){
     
     $('#voirClt .pagination li.active').live('click',function(){
         var page = $(this).attr('p');
-        loadDataA(page);
+        loadDataA(page,'Client');
     }); 
+    
+    
+    
+    $("#AjoutProd").click(function(){
+        if ($("#toggleCrea").is(":hidden")){
+            
+                        
+            effacer("#formRechercheP");
+            effacer("#formSupprimmerP");
+            
+            $("#erreurRecherche").hide();
+            $("#erreurSuppression").hide();
+            $("#erreurVoir").hide();
+            
+            $("#menuModifP").empty();
+            $("#erreurModification").hide();
+            $("#voirProd").empty();
+            
+            $("#toggleCrea").slideDown("slow");
+            $("#toggleModif").slideUp("fast");
+            $("#toggleSupp").slideUp("fast");
+            $("#toggleVoir").slideUp("fast");
+
+        }
+        else{
+            $("#toggleCrea").slideUp("slow");
+        }
+    });
+    
+    $("#RechMProd").click(function(){
+        if ($("#toggleModif").is(":hidden")){
+            
+            effacer("#formCreationP");
+            effacer("#formSupprimmerP");
+            $("#erreurCreation").hide();
+            $("#erreurSuppression").hide();
+            $("#erreurVoir").hide();
+            $("#voirProd").empty();
+            
+            $("#toggleModif").slideDown("slow");
+            $("#toggleCrea").slideUp("fast");
+            $("#toggleSupp").slideUp("fast");
+            $("#toggleVoir").slideUp("fast");
+            
+            
+        }
+        else{
+            $("#toggleModif").slideUp("slow");
+        }
+    });
+    
+    $("#SupprProd").click(function(){
+        if ($("#toggleSupp").is(":hidden")){
+            
+            effacer("#formCreationP");
+            effacer("#formRechercheP");
+            $("#erreurCreation").hide();
+            $("#erreurRecherche").hide();
+            $("#menuModifP").empty();
+            $("#erreurModification").hide();
+            $("#erreurVoir").hide();
+            $("#voirProd").empty();
+            
+            $("#toggleSupp").slideDown("slow");
+            $("#toggleCrea").slideUp("fast");
+            $("#toggleModif").slideUp("fast");
+            $("#toggleVoir").slideUp("fast");
+            
+            
+            
+        }
+        else{
+            $("#toggleSupp").slideUp("slow");
+        }
+    });
+    
+    $("#VoirTousProd").click(function(){
+        if ($("#toggleVoir").is(":hidden")){
+            
+            effacer("#formCreationP");
+            effacer("#formRechercheP");
+            effacer("#formSupprimmerP");
+            
+            $("#erreurCreation").hide();
+            $("#erreurRecherche").hide();
+            $("#erreurSuppression").hide();
+            $("#menuModifP").empty();
+            $("#erreurModification").empty();
+            
+            $("#toggleVoir").slideDown("slow");
+            $("#toggleCrea").slideUp("fast");
+            $("#toggleModif").slideUp("fast");
+            $("#toggleSupp").slideUp("fast");
+            
+
+            
+            loadDataA(1,'Prod');
+            
+        }
+        else{
+            $("#toggleVoir").slideUp("slow");
+        }
+    });
+    
+    
+    $("#AjoutComd").click(function(){
+        if ($("#toggleCrea").is(":hidden")){
+            
+                        
+            effacer("#formRechercheCo");
+            effacer("#formSupprimmerCo");
+            
+            $("#erreurRecherche").hide();
+            $("#erreurSuppression").hide();
+            $("#erreurVoir").hide();
+            
+            $("#menuModifCo").empty();
+            $("#erreurModification").hide();
+            $("#voirComd").empty();
+            
+            $("#toggleCrea").slideDown("slow");
+            $("#toggleModif").slideUp("fast");
+            $("#toggleSupp").slideUp("fast");
+            $("#toggleVoir").slideUp("fast");
+
+        }
+        else{
+            $("#toggleCrea").slideUp("slow");
+        }
+    });
+    
+    $("#RechMComd").click(function(){
+        if ($("#toggleModif").is(":hidden")){
+            
+            effacer("#formCreationCo");
+            effacer("#formSupprimmerCo");
+            $("#erreurCreation").hide();
+            $("#erreurSuppression").hide();
+            $("#erreurVoir").hide();
+            $("#voirComd").empty();
+            
+            $("#toggleModif").slideDown("slow");
+            $("#toggleCrea").slideUp("fast");
+            $("#toggleSupp").slideUp("fast");
+            $("#toggleVoir").slideUp("fast");
+            
+            
+        }
+        else{
+            $("#toggleModif").slideUp("slow");
+        }
+    });
+    
+    $("#SupprComd").click(function(){
+        if ($("#toggleSupp").is(":hidden")){
+            
+            effacer("#formCreationCo");
+            effacer("#formRechercheCo");
+            $("#erreurCreation").hide();
+            $("#erreurRecherche").hide();
+            $("#menuModifCo").empty();
+            $("#erreurModification").hide();
+            $("#erreurVoir").hide();
+            $("#voirComd").empty();
+            
+            $("#toggleSupp").slideDown("slow");
+            $("#toggleCrea").slideUp("fast");
+            $("#toggleModif").slideUp("fast");
+            $("#toggleVoir").slideUp("fast");
+            
+            
+            
+        }
+        else{
+            $("#toggleSupp").slideUp("slow");
+        }
+    });
+    
+    $("#VoirTousComd").click(function(){
+        if ($("#toggleVoir").is(":hidden")){
+            
+            effacer("#formCreationCo");
+            effacer("#formRechercheCo");
+            effacer("#formSupprimmerCo");
+            
+            $("#erreurCreation").hide();
+            $("#erreurRecherche").hide();
+            $("#erreurSuppression").hide();
+            $("#menuModifP").empty();
+            $("#erreurModification").empty();
+            
+            $("#toggleVoir").slideDown("slow");
+            $("#toggleCrea").slideUp("fast");
+            $("#toggleModif").slideUp("fast");
+            $("#toggleSupp").slideUp("fast");
+            
+
+            
+            loadDataA(1,'Comd');
+            
+        }
+        else{
+            $("#toggleVoir").slideUp("slow");
+        }
+    });
 
            
 
 }); 
 
-function loadDataA(page)
+function loadDataA(page, type)
 { 
     $.ajax
     ({
         type: "POST",
         url: "paginationAdmin",
-        data: "page="+page,
+        data: "pagi="+type+"&page="+page,
         success: function(msg)
         {
             
-            $("#afficherAdmin").ajaxComplete(function(event, request, settings)
+            $("#afficher"+type).ajaxComplete(function(event, request, settings)
             {
-                // A remplir quand y aura le css
-                $("#afficherAdmin").html(msg);
+                if(msg == -1)
+                {
+                    $('span#erreurVoir').hide();
+                    $("span#erreurVoir").html ("<center>Une erreur est survenue </center>").fadeIn("slow");
+                    
+                }
+                else
+                    $("#afficher"+type).html(msg);
             });
             
         }
