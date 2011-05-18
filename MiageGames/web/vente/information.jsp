@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 
+
         <!--[if IE 6]>
 			<link rel="stylesheet" href="css/ie6-style.css" type="text/css" media="all" />
 		<![endif]-->
@@ -21,10 +22,32 @@
         <script src="js/jquery-ui-1.8.12.custom.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.js" type="text/javascript"></script>
 
+
+
+
         <!-- Script qui permet le changement de jeu dans le cadre principal -->
         <script src="js/fns.js" type="text/javascript"></script>
         <script src="js/validerConnexion.js" type="text/javascript"></script>
         <script src="js/paginator.js"></script>
+
+
+        <script type="text/javascript" src="js/tabber.js"></script>
+        <link rel="stylesheet" href="css/example.css" TYPE="text/css" MEDIA="screen">
+        <link rel="stylesheet" href="css/example-print.css" TYPE="text/css" MEDIA="print">
+
+        <script type="text/javascript">
+
+            /* Optional: Temporarily hide the "tabber" class so it does not "flash"
+    on the page as plain HTML. After tabber runs, the class is changed
+    to "tabberlive" and it will appear. */
+
+            document.write('<style type="text/css">.tabber{display:none;}<\/style>');
+        </script>
+
+
+
+
+
     </head>
     <body>
         <%@include file="/config/header.jsp" %>
@@ -52,50 +75,53 @@
 
                     <div >
                         <div class="cl">&nbsp;</div>
-                        <div class="article">
 
-                            <div class="flottante">
-                                <img src="${produitRecherche.image}" alt=""/>
-                            </div>
+                        <div class="flottante">
+                            <img src="${produitRecherche.image}" alt=""/>
 
 
+                        </div>
 
-                            <div class ="flottante" >
-                                <h4>${produitRecherche.nom}</h4> 
+
+
+                        <div class ="flottante" >
+                            <h4>${produitRecherche.nom}</h4> 
+
+
+                            <h5 style="font-size: 11px"> Sortie: ${produitRecherche.sortie} </h5>
+
+                            <br>
+
+
+                            <p class="grey">
+
+                                Developpeur : ${produitRecherche.developpeur.nomDeveloppeur}
 
                                 <br>
                                 <br>
 
-                                <h5 style="font-size: 11px"> Sortie: ${produitRecherche.sortie} </h5>
+
+                                Editeur : ${produitRecherche.editeur.nomEditeur}
 
                                 <br>
                                 <br>
 
-                                <p class="grey">
+                                Classification: <img src="${produitRecherche.categorieAge.nomImage}" alt="" />
+                                </br>
 
-                                    Developpeur : ${produitRecherche.developpeur.nomDeveloppeur}
-                                    
-                                    <br>
-
-                                    Editeur : ${produitRecherche.editeur.nomEditeur}
-
-                                    <br>
-                                    <br>
-
-                                    Classification: <img src="${produitRecherche.categorieAge.nomImage}" alt="" />
-                                    </br>
+                                
+                                <br>
+                                <br>
+                                
+                                Description : <br><br> ${produitRecherche.description}
 
 
-                                    <br>
 
-                                    Quantite disponible : ${produitRecherche.quantiteProduit}
-
-
-                                     <br>
-
-                                    <br>
-
-                                    Video : 
+                                
+                                <br>
+                                <br>
+                                
+                                 Video : 
 
                                     <object width="425px" height="360px" >
                                         <param name="allowFullScreen" value="true"/>
@@ -104,40 +130,40 @@
                                         <embed src="${produitRecherche.video}" width="425" height="360" allowFullScreen="true" type="application/x-shockwave-flash" wmode="transparent"/>
                                     </object>
 
-
-
-
-
-
-
-
-                                </p>
-
-                            </div>
-
-                            <div class ="flottante">  
-                                <strong class="price">Prix : ${produitRecherche.prix}</strong> €
-                                <a title="Acheter" href="#">
-                                    <img alt="Acheter" src="http://www.micromania.fr/v3b/micromania/images/button-acheter-mini.gif"></img>
-                                </a>
-
-                                <br>
-                            </div>
-
+                            </p>
 
                         </div>
 
 
-                        <br class="clear">
+
+                        <div class ="flottante">  
+                            <strong class="price">Prix : ${produitRecherche.prix}</strong> €
+                            <a title="Acheter" href="#">
+                                <img alt="Acheter" src="http://www.micromania.fr/v3b/micromania/images/button-acheter-mini.gif"></img>
+                            </a>
+
+                            <br>
+                        </div>
 
 
                     </div>
 
 
+
+
+
+
                 </div>
+
+
+
             </div>
 
         </div>
+
+
+        
+
 
         <%@include file="/config/footer.jsp" %>
 
