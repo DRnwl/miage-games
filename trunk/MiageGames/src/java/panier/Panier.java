@@ -42,7 +42,8 @@ public class Panier {
         // produit existe deja dans le panier, on incremente sa quantiteCommande
         for (ElementPanier elementPanier : listeElementPanier) {
 
-            if (elementPanier.getProduit().getNom().equals(produit.getNom()))  {
+            if (elementPanier.getProduit().getNom().equals(produit.getNom())   
+                    && elementPanier.getProduit().getCategorie().getNom().equals(produit.getCategorie().getNom()))  {
 
                 nouvoElement = false;
                 elementPanier.incrementerQuantiteCommande();
@@ -68,8 +69,9 @@ public class Panier {
 
             for (ElementPanier scItem : listeElementPanier) {
                 
-                // on cherche le produit en question
-                if (scItem.getProduit().getNom().equals(produit.getNom()))  {
+                // on cherche le produit en question par son nom et categorie
+                if (scItem.getProduit().getNom().equals(produit.getNom())  && 
+                        scItem.getProduit().getCategorie().getNom().equals(produit.getCategorie().getNom()))  {
 
                     if (qty != 0) {
                         // set elementPanier quantity to new value

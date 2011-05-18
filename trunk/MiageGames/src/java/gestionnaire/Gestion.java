@@ -18,8 +18,7 @@ import models.Commande_Client;
 import models.Developpeur;
 import models.Editeur;
 import models.Produit;
-import models.Produit_Commande;
-import models.Produit_CommandePK;
+
 
 /**
  *

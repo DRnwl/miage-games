@@ -91,8 +91,7 @@ public class Produit implements Serializable {
     @ManyToOne(optional = false)
     private Developpeur developpeur;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
-    private Collection<Produit_Commande> collectionProduitCommande;
+    
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produit")
     private Collection<Commande> collectionCommande;
@@ -106,7 +105,6 @@ public class Produit implements Serializable {
         this.categorie = categorie;
         this.image = image;
         categorie.getCollectionProduit().add(this);
-        collectionProduitCommande = new ArrayList<Produit_Commande>();
         this.categorieAge = categorieAge;
         categorieAge.getCollectionProduit().add(this);
         this.sortie = sortie;
@@ -124,7 +122,6 @@ public class Produit implements Serializable {
         this.categorie = categorie;
         this.image = image;
         categorie.getCollectionProduit().add(this);
-        collectionProduitCommande = new ArrayList<Produit_Commande>();
         this.categorieAge = categorieAge;
         categorieAge.getCollectionProduit().add(this);
         this.sortie = sortie;
@@ -146,7 +143,6 @@ public class Produit implements Serializable {
         this.categorie = categorie;
         this.image = image;
         categorie.getCollectionProduit().add(this);
-        collectionProduitCommande = new ArrayList<Produit_Commande>();
         this.categorieAge = categorieAge;
         categorieAge.getCollectionProduit().add(this);
         this.sortie = sortie;
@@ -167,7 +163,6 @@ public class Produit implements Serializable {
         this.categorie = categorie;
         this.image = image;
         categorie.getCollectionProduit().add(this);
-        collectionProduitCommande = new ArrayList<Produit_Commande>();
         this.categorieAge = categorieAge;
         categorieAge.getCollectionProduit().add(this);
         this.sortie = sortie;
@@ -189,7 +184,6 @@ public class Produit implements Serializable {
         this.prix = prix;
         this.categorie = categorie;
         this.categorieAge = categorieAge;
-        collectionProduitCommande = new ArrayList<Produit_Commande>();
     }
 
     public String getImage() {
@@ -306,13 +300,7 @@ public class Produit implements Serializable {
     
     
 
-    public Collection<Produit_Commande> getCollectionProduitCommande() {
-        return collectionProduitCommande;
-    }
-
-    public void setCollectionProduitCommande(Collection<Produit_Commande> CollectionProduitCommande) {
-        this.collectionProduitCommande = CollectionProduitCommande;
-    }
+    
 
     public String getDescription() {
         return description;
