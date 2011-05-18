@@ -153,7 +153,7 @@ public class Gestion {
         
         
         /* categorie PC*/
-        Produit prod1 = new Produit("BRINK 2030", 12.5, PC, "http://www.micromania.fr/imagesprod/41487/41487_jaqr_brink_gfw_eu_pegi_cover_129x171.jpg", categorie3, "12 mai 2011", dev1, editeur1,12,"http://www.youtube.com/v/O6YGOYxtPfc?version=3");
+        Produit prod1 = new Produit("BRINK 2030", 12.5, PC, "http://www.micromania.fr/imagesprod/41487/41487_jaqr_brink_gfw_eu_pegi_cover_129x171.jpg", categorie3, "12 mai 2011", dev1, editeur1,12,"http://www.youtube.com/v/O6YGOYxtPfc?version=3","mélange captivant de champs de bataille dynamiques, un système de commandes innovateur dont vous ne vous lasserez pas de sitôt!");
         Produit prod2 = new Produit("FABLE III", 50.31, PC, "http://www.micromania.fr/imagesprod/45168/45168_jaqr_fableIIIPC_129x171.jpg", categorie7, "11 mai 2011", dev2, editeur1,12,"http://www.youtube.com/v/uo34rG_3rnU?version=3");
         Produit prod3 = new Produit("The witcher", 20.5, PC, "http://www.micromania.fr/imagesprod/44969/44969_jaqr_witcher2_129x171.jpg", categorie3, "10 mai 2011", dev3, editeur1,12,"http://www.youtube.com/v/zqpnEo-lXwc?version=3");
         Produit prod4 = new Produit("SBK 2011", 10.5, PC, "http://www.micromania.fr/imagesprod/44618/44618_jaqr_sbk2011PC_129x171.jpg", categorie18, "12 mai 2011", dev4, editeur1,12,"http://www.youtube.com/v/9CbCSevdWJ0?version=3");

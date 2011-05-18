@@ -158,6 +158,29 @@ public class Produit implements Serializable {
         this.quantiteProduit = quantiteProduit;
         this.video = video;
     }
+     
+     
+     // constructeur avec description
+      public Produit(String nom, Double prix, Categorie categorie, String image, CategorieAge categorieAge, String sortie, Developpeur developpeur, Editeur editeur, int quantiteProduit, String video,String description) {
+        this.nom = nom;
+        this.prix = prix;
+        this.categorie = categorie;
+        this.image = image;
+        categorie.getCollectionProduit().add(this);
+        collectionProduitCommande = new ArrayList<Produit_Commande>();
+        this.categorieAge = categorieAge;
+        categorieAge.getCollectionProduit().add(this);
+        this.sortie = sortie;
+        this.developpeur = developpeur;
+        developpeur.getCollectionProduit().add(this);
+        this.editeur = editeur;
+        editeur.getCollectionProduit().add(this);
+        collectionCommande = new ArrayList<Commande>();
+        this.quantiteProduit = quantiteProduit;
+        this.video = video;
+        this.description = description;
+    }
+     
     
     
 
