@@ -63,22 +63,29 @@
                                         <div class="flottante">
                                             <a href="<c:url value='information?nomProduit=${produit.nom}'/>"> <img src="${produit.image}" alt="" /></a>
                                         </div>
+                                        
+                                      
 
                                         <div class ="flottante" >
                                             <h4><a href="<c:url value='information?nomProduit=${produit.nom}'/>">${produit.nom}</a></h4> 
-
+                                            <br>
+                                            
+                                            <br>
 
                                             <p class="grey">
 
-                                                Editeur :
+                                                Editeur :${produit.editeur.nomEditeur}
                                                 <br>
-                                                Genre :
+                                               
 
-                                                Classification:
-                                                </br>
+                                               
                                             </p>
+                                            
+                                            
 
                                         </div>
+                                                
+                                                
 
                                         <div class ="flottante">  
                                             <strong class="price">Prix : ${produit.prix}</strong> €

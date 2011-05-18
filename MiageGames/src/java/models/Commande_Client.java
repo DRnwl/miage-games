@@ -9,79 +9,52 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 
-
 /**
  *
  * @author Pierro
  */
 @Entity
-@Table (name = "Commande_Client")
+@Table(name = "Commande_Client")
 @NamedQueries({
     @NamedQuery(name = "Commande_Client.findAll", query = "SELECT c FROM Commande_Client c"),
-    
     @NamedQuery(name = "Commande_Client.findById", query = "SELECT c FROM Commande_Client c WHERE c.id = :id"),
-    
-    @NamedQuery(name = "Commande_Client.findByMontant", query = "SELECT c FROM Commande_Client c WHERE c.montant = :montant"),  
-    
+    @NamedQuery(name = "Commande_Client.findByMontant", query = "SELECT c FROM Commande_Client c WHERE c.montant = :montant"),
     @NamedQuery(name = "Commande_Client.findByDate_achat", query = "SELECT c FROM Commande_Client c WHERE c.date_achat = :date_achat"),
-    
     @NamedQuery(name = "Commande_Client.findByNumero_confirmation", query = "SELECT c FROM Commande_Client c WHERE c.numero_confirmation = :numero_confirmation")})
-
 public class Commande_Client implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
-    
     @Basic(optional = false)
-    @Column(name="montant")
+    @Column(name = "montant")
     private Double montant;
-    
     @Basic(optional = false)
     @Column(name = "date_achat")
     private String date_achat;
-    
-    
     @Basic(optional = false)
-    @Column(name="numero_confirmation")
+    @Column(name = "numero_confirmation")
     private int numero_confirmation;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "commande_client")
-    private Collection<Produit_Commande> collectionProduitCommande;
-    
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "commandeClient")
     private Collection<Commande> collectionCommande;
-    
-    @JoinColumn(name="client_id", referencedColumnName="id")
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Client client;
-    
-    
 
     public Commande_Client() {
     }
 
-   public Commande_Client(Double montant, String date_achat, int numero_confirmation, Client client) {
+    public Commande_Client(Double montant, String date_achat, int numero_confirmation, Client client) {
         this.montant = montant;
         this.date_achat = date_achat;
         this.numero_confirmation = numero_confirmation;
         this.client = client;
         client.getCollectionCommandeClient().add(this);
-        collectionProduitCommande = new ArrayList<Produit_Commande>();
         collectionCommande = new ArrayList<Commande>();
     }
-
-   
-    
-    
-    
-    
-
-    
-   
 
     public Client getClient() {
         return client;
@@ -127,14 +100,6 @@ public class Commande_Client implements Serializable {
         this.numero_confirmation = numero_confirmation;
     }
 
-    public Collection<Produit_Commande> getCollectionCommande_produit() {
-        return collectionProduitCommande;
-    }
-
-    public void setCollectionCommande_produit(Collection<Produit_Commande> collectionCommande_produit) {
-        this.collectionProduitCommande = collectionCommande_produit;
-    }
-
     public Collection<Commande> getCollectionCommande() {
         return collectionCommande;
     }
@@ -142,21 +107,6 @@ public class Commande_Client implements Serializable {
     public void setCollectionCommande(Collection<Commande> collectionCommande) {
         this.collectionCommande = collectionCommande;
     }
-
-    public Collection<Produit_Commande> getCollectionProduitCommande() {
-        return collectionProduitCommande;
-    }
-
-    public void setCollectionProduitCommande(Collection<Produit_Commande> collectionProduitCommande) {
-        this.collectionProduitCommande = collectionProduitCommande;
-    }
-
-    
-    
-    
-    
-    
-  
 
     @Override
     public int hashCode() {
@@ -182,5 +132,4 @@ public class Commande_Client implements Serializable {
     public String toString() {
         return "models.Client_Commande[ id=" + id + " ]";
     }
-    
 }

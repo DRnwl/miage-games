@@ -51,7 +51,6 @@
     </head>
     <body>
         <%@include file="/config/header.jsp" %>
-        <%@include file="/config/menu.jsp" %>
 
 
         <div id="content">
@@ -109,26 +108,26 @@
                                 Classification: <img src="${produitRecherche.categorieAge.nomImage}" alt="" />
                                 </br>
 
-                                
+
                                 <br>
                                 <br>
-                                
+
                                 Description : <br><br> ${produitRecherche.description}
 
 
 
-                                
-                                <br>
-                                <br>
-                                
-                                 Video : 
 
-                                    <object width="425px" height="360px" >
-                                        <param name="allowFullScreen" value="true"/>
-                                        <param name="wmode" value="transparent"/>
-                                        <param name="movie" value=""/>
-                                        <embed src="${produitRecherche.video}" width="425" height="360" allowFullScreen="true" type="application/x-shockwave-flash" wmode="transparent"/>
-                                    </object>
+                                <br>
+                                <br>
+
+                                Video : 
+
+                                <object width="425px" height="360px" >
+                                    <param name="allowFullScreen" value="true"/>
+                                    <param name="wmode" value="transparent"/>
+                                    <param name="movie" value=""/>
+                                    <embed src="${produitRecherche.video}" width="425" height="360" allowFullScreen="true" type="application/x-shockwave-flash" wmode="transparent"/>
+                                </object>
 
                             </p>
 
@@ -162,7 +161,8 @@
         </div>
 
 
-        
+
+        <%@include file="/config/menu.jsp" %>
 
 
         <%@include file="/config/footer.jsp" %>
