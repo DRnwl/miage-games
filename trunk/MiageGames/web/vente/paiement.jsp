@@ -66,7 +66,7 @@
                     <div id="item">
 
 
-                        <h4 id="subtotal">Votre carte ne sera debitée de cette montant ${panier.subtotal} €   <br>qu'au moment où les articles commandés sont prêts à l'envoi. </h4>
+                        <h4 id="subtotal">Votre carte ne sera debitée de ce montant ${panier.subtotal} €   <br>qu'au moment où les articles commandés sont prêts à l'envoi. </h4>
                         <br>
                         <br>
 

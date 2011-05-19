@@ -4,6 +4,7 @@
  */
 package creation;
 
+import gestionnaire.GestionnaireClient;
 import gestionnaire.GestionnaireCommandeClient;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,6 +21,8 @@ import models.Commande_Client;
  * @author Sangre
  */
 public class CreerEditerCommande extends HttpServlet {
+    @EJB
+    private GestionnaireClient gestionnaireClient;
     @EJB
     private GestionnaireCommandeClient gestionnaireCommandeClient;
 
@@ -47,6 +50,8 @@ public class CreerEditerCommande extends HttpServlet {
 
                 Commande_Client comClient = gestionnaireCommandeClient.findByNumC(numConfirm);
                 if (comClient != null) {
+                    comClient.getClient().getCollectionCommandeClient().remove(comClient);
+                    gestionnaireClient.edit(comClient.getClient());
                     gestionnaireCommandeClient.remove(comClient);
                     out.print("1");
                 } else {

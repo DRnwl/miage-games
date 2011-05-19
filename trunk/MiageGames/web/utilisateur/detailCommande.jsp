@@ -81,39 +81,7 @@
                                 <br class="clear">
                             </div>
                         </c:forEach>
-                        <div class='pagination'>
-                            <c:choose>
-                                <c:when test='${page==0}'>
-                                    <span class='disabled'>Deb</span>
-                                    <span class='disabled'>Prec</span>
-                                </c:when>
-                                <c:otherwise>
-                                    <a onClick='loadData(1,"pagination")' href='#'>Deb</a>
-                                    <a onClick='loadData(${page},"pagination")' href='#'>Prec</a>
-                                </c:otherwise>
-                            </c:choose>
-                            <c:forEach var="i" begin="0" end="${nbPage-1}" step="1">
-                                <c:choose>
 
-                                    <c:when test='${i == page}'>
-                                        <span class='current'> ${i+1}</span>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <a onClick='loadData(${i+1},"pagination")' href='#'> ${i+1} </a>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                            <c:choose>
-                                <c:when test='${page == nbPage-1}'>
-                                    <span class='disabled'>Suiv</span>
-                                    <span class='disabled'>Fin</span>
-                                </c:when>
-                                <c:otherwise>
-                                    <a onClick='loadData( ${page+2},"pagination")' href='#'>Suiv</a>
-                                    <a onClick='loadData( ${nbPage},"pagination")' href='#'>Fin</a>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
                     </div>
                     <br />
                 </ul>

@@ -14,6 +14,7 @@ import gestionnaire.GestionnaireProduit;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
@@ -95,7 +96,7 @@ public class ServletPrincipal extends HttpServlet {
         HttpSession session = request.getSession();
         Categorie categorie = null;
         Collection<Produit> categoryProducts;
-Panier panier = (Panier) session.getAttribute("panier");
+        Panier panier = (Panier) session.getAttribute("panier");
 
         if (session.getAttribute("groupeUtilisateur") == null) {
 
@@ -142,11 +143,11 @@ Panier panier = (Panier) session.getAttribute("panier");
                             + "  Classification: <br>" + liste.get(i).getCategorieAge().getNom() + "</h6>"
                             + "</div><div class ='flottante'><strong class='price'>Prix : " + liste.get(i).getPrix() + "</strong> &euro;"
                             + "<td><form action='addToCart' method='post'>"
-                            + " <input type='hidden' name='nomProduitCommande' value='"+ liste.get(i).getNom() +"'>"
+                            + " <input type='hidden' name='nomProduitCommande' value='" + liste.get(i).getNom() + "'>"
                             + " <input type='submit' name='submit' value=ajouterAuPanier /> </form>  </td><br></div></div><br class='clear'></div>";
-                               
+
                 }
-                                               
+
                 remplir += "<br /><div class='pagination'>";
 
 
@@ -262,8 +263,9 @@ Panier panier = (Panier) session.getAttribute("panier");
                 commandeClient.setClient(client);
                 client.getCollectionCommandeClient().add(commandeClient);
 
-                commandeClient.setMontant(panier.getTotal());
-                System.out.println("montant total:  " + panier.getTotal());
+                double total = (double) Math.round(panier.getTotal() * 100) / 100;
+                commandeClient.setMontant(total);
+                System.out.println("montant total:  " + total);
 
                 Random random = new Random();
                 int i = random.nextInt(99999);
@@ -290,12 +292,12 @@ Panier panier = (Panier) session.getAttribute("panier");
 
 
                 }
-               
+
                 gestionnaireCommandeClient.edit(commandeClient);
                 gestionnaireClient.edit(client);
-                 client = gestionnaireClient.findByLogin(login);
-                 session.setAttribute("typeUtilisateur", client);
-                 session.setAttribute("panier", null);
+                client = gestionnaireClient.findByLogin(login);
+                session.setAttribute("typeUtilisateur", client);
+                session.setAttribute("panier", null);
 
             }
 
@@ -359,7 +361,7 @@ Panier panier = (Panier) session.getAttribute("panier");
             RequestDispatcher dp = request.getRequestDispatcher("/vente/panier.jsp");
             dp.forward(request, response);
 
-        }else {
+        } else {
             RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
             dp.forward(request, response);
         }
@@ -393,7 +395,7 @@ Panier panier = (Panier) session.getAttribute("panier");
 
 
 
-        
+
     }
 
     /** 

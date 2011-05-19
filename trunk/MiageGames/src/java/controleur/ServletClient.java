@@ -66,63 +66,7 @@ public class ServletClient extends HttpServlet {
                     RequestDispatcher dp = request.getRequestDispatcher("/utilisateur/detailCommande.jsp");
                     dp.forward(request, response);
 
-                } else if (userPath.equals("/pagination")) {
-                    String page = request.getParameter("page");
-                    if (page == null || page.equals("") || page.equals("0")) {
-                        page = "1";
-                        request.setAttribute("page", page);
-                    }
-                    
-                    int pagee = Integer.parseInt(page) - 1;
-                    double nbPage = 0;
-                    List<Produit> liste = (List<Produit>) (session.getAttribute("commande"));
-                    nbPage = liste.size();
-                    
-                    String remplir = "";
-                    for (int i = 0; i < liste.size(); i++) {
-                        
-                        remplir += "<div ><div class='cl'>&nbsp;</div><div class='article'><div class='flottante'>"
-                                + "<a href='information?nomProduit=" + liste.get(i).getNom() + "'><img src='" + liste.get(i).getImage() + "' alt='' /> </a>"
-                                + "</div><div class ='flottante' > <h3><li><a href='information?nomProduit=" + liste.get(i).getNom() + "'>" + liste.get(i).getNom() + "</a></h3>"
-                                + "<br><h4 style='font-size: 11px'> Sortie : <br>" + liste.get(i).getSortie() + " </h4><br><h5> Categorie:" + liste.get(i).getCategorie().getNom() + "</h5><br><h6 style='font-size: 12px'>"
-                                + " Classification: <br>" + liste.get(i).getCategorieAge().getNom() + "</h6>"
-                                + "</div><div class ='flottante'><strong class='price'>Prix : " + liste.get(i).getPrix() + "</strong> &euro;"
-                                + "<br><strong class='price'>Quantité: " + (liste.get(i).getCollectionCommande().size()) + "</strong></div><div class ='flottante'> "
-                                + "<strong class='price'>Total :" + (liste.get(i).getPrix() * liste.get(i).getCollectionCommande().size()) + "</strong> &euro;</div>";
-
-                    }
-                    remplir += "<br /><div class='pagination'>";
-
-
-                    if (pagee == 0) {
-                        remplir += "<span class='disabled'>Deb</span>"
-                                + "<span class='disabled'>Prec</span>";
-                    } else {
-                        remplir += "<a 'onClick='loadData(" + (1) + ",\"pagination\")' href='#'>Deb</a>"
-                                + "<a onClick='loadData(" + (pagee) + ",\"pagination\")' href='#'>Prec</a>";
-                    }
-
-                    for (int i = 0; i < nbPage; i++) {
-
-                        if (i == pagee) {
-                            remplir += "<span class='current'>" + (i + 1) + "</span>";
-                        } else {
-                            remplir += "<a  onClick='loadData(" + (i + 1) + ",\"pagination\")' href='#'>" + (i + 1) + "</a>";
-                        }
-
-                    }
-                    if (pagee == (nbPage - 1)) {
-                        remplir += "<span class='disabled'>Suiv</span>"
-                                + "<span class='disabled'>Fin</span>";
-                    } else {
-                        remplir += "<a  onClick='loadData(" + (pagee + 2) + ",\"pagination\")' href='#'>Suiv</a>"
-                                + "<a  onClick='loadData(" + ((int) nbPage) + ",\"pagination\")' href='#'>Fin</a>";
-                    }
-                    remplir += "</div>";
-                    out.print(remplir);
-
                 }
-
             }
         } else {
             RequestDispatcher dp = request.getRequestDispatcher("index.jsp");
