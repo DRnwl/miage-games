@@ -19,7 +19,7 @@
         <script src="js/jquery-1.6.js" type="text/javascript"></script>
         <script src="js/jquery-ui-1.8.12.custom.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.js" type="text/javascript"></script>
-
+<script src="js/tableSorter.js" type="text/javascript"></script>
         <!-- Script qui permet le changement de jeu dans le cadre principal -->
         <script src="js/fns.js" type="text/javascript"></script>
         <script src="js/validerConnexion.js" type="text/javascript"></script>

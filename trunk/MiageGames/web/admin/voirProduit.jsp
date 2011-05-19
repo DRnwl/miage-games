@@ -19,7 +19,7 @@
         <script src="js/jquery-1.6.js" type="text/javascript"></script>
         <script src="js/jquery-ui-1.8.12.custom.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.js" type="text/javascript"></script>
-
+        <script src="js/tableSorter.js" type="text/javascript"></script>
         <!-- Script qui permet le changement de jeu dans le cadre principal -->
         <script src="js/fns.js" type="text/javascript"></script>
         <script src="js/validerConnexion.js" type="text/javascript"></script>
@@ -43,63 +43,50 @@
                         <span id="erreurCreation" style="display:none"></span>
                         <form class="formulaire" id ="formCreationP" name="session" action="" method=post>
                             <fieldset>
-                                <legend>Information du compte</legend>
-                                <label class="texte" for="login_c">Nom de compte: </label>
-                                <input name="login_c" id="login_c" />
+                                <legend>Informations du produit</legend>
+                                <label class="texte" for="nom_p">Nom: </label>
+                                <input name="nom_p" id="nom_p" />
                                 <br />
-                                <label class="texte" for="password_c">Password:</label>
-                                <input type="password" name="password_c" id="password_c" />
+                                <label class="texte" for="prix_p">Prix:</label>
+                                <input type="text" name="prix_p" id="prix_p" />
                                 <br />
-                                <label class="texte" for="password_ver"></label>
-                                <input  type="password" name="password_ver" id="password_ver" />
+                                <label class="texte" for="categorie_p">Categorie:</label>
+                                <select style="width: 135px;" name="categorie_p" id="categorie_p" >
+                                    <c:forEach var="categorie" items="${categories}">
+                                        <option>${categorie.nom}</option>
+                                    </c:forEach> 
+                                </select>
                                 <br />
-                            </fieldset>
-                            <fieldset>
-                                <legend>Informations personnelles</legend>
-                                <label class="texte" for="nom">Nom: </label>
-                                <input type="text" name="nom" id="nom" />
-                                <br />
-                                <label class="texte" for="prenom">Prénom:</label>
-                                <input type="text" name="prenom" id="prenom" />
-                                <br />
-                                <label class="texte" for="email">E-mail:</label>
-                                <input type="text" name="email" id="email" />
-                                <br />
-                                <label class="texte" for="num_tel">Numéro de téléphone:</label>
-                                <input type="text" name="num_tel" id="num_tel" />
-                                <br />
-                            </fieldset>
-                            <fieldset>
-                                <legend>Adresse Facturation</legend>
-                                <label class="texte"  for="adresse_f">Adresse: </label>
-                                <input type="text" name="adresse_f" id="adresse_f" />
-                                <br />
-                                <label class="texte"  for="adresse_f_suite"></label>
-                                <input type="text" name="adresse_f_suite" id="adresse_f_suite" />
-                                <br />
-                                <label class="texte"  for="adresse_f_zip">Zip: </label>
-                                <input type="text" name="adresse_f_zip" id="adresse_f_zip" />
-                                <br />
-                                <label class="texte"  for="adresse_f_ville">Ville: </label>
-                                <input type="text" name="adresse_f_ville" id="adresse_f_ville" />
-                                <br />
-                            </fieldset>
-                            <fieldset>
-                                <legend>Adresse Livraison</legend>
-                                <label class="texte"  for="adresse_l">Adresse: </label>
-                                <input type="text" name="adresse_l" id="adresse_l" />
-                                <br />
-                                <label class="texte"  for="adresse_l_suite"></label>
-                                <input type="text" name="adresse_l_suite" id="adresse_l_suite" />
-                                <br />
-                                <label class="texte"  for="adresse_l_zip">Zip: </label>
-                                <input type="text" name="adresse_l_zip" id="adresse_l_zip" />
-                                <br />
-                                <label class="texte"  for="adresse_l_ville">Ville: </label>
-                                <input type="text" name="adresse_l_ville" id="adresse_l_ville" />
-                                <br />
-                            </fieldset>
 
+                                <label class="texte" for="distributeur_p">Distributeur: </label>
+                                <input type="text" name="distributeur_p" id="distributeur_p" />
+                                <br />
+                                <label class="texte" for="editeur_p">Editeur: </label>
+                                <input type="text" name="editeur_p" id="editeur_p" />
+                                <br />
+                                <label class="texte" for="developpeur_p">Developpeur: </label>
+                                <input type="text" name="developpeur_p" id="developpeur_p" />
+                                <br />
+                                <label class="texte" for="date">Sortie:</label>
+                                <input type="text" name="date" id="date" readonly="readonly"/>
+                                <br />
+                                <label class="texte" for="image_p">Image (url)</label>
+                                <input type="text" name="image_p" id="image_p" />
+                                <br />
+                                <label class="texte"  for="description_p">Description: </label>
+                                <textarea cols="14" rows="5" style="resize: none;width: 133px; height: 91px;" name="description_p" id="description_p" ></textarea>
+                                <br />
+                                <label class="texte" for="categorieage_p">Categorie:</label>
+                                <select  style="width: 135px;" name="categorieage_p" id="categorieage_p" >
+                                    <c:forEach var="categorie_age" items="${categorieAge}">
+                                        <option>${categorie_age.nom}</option>
+                                    </c:forEach> 
+                                </select>
+                                <br />
+                                <label class="texte"  for="quantite_p">Quantité:</label>
+                                <input type="text" name="quantite_p" id="quantite_p" />
+                                <br />
+                            </fieldset>
                             <br />
 
                             <input id="ValiderAjouterBouton" class="button" value=" Valider " name="Valider" type="submit" />
@@ -125,10 +112,16 @@
                             <form   class="formulaire" id ="formRechercheP" name="session" action="" method=post>
 
                                 <fieldset>
-                                    <legend>Recherche d'un client</legend>
-
+                                    <legend>Recherche d'un produit</legend>
+                                    <select style="margin-left: auto;margin-right:auto;height: 22px;width: 135px;" name="categorie_pr" id="categorie_pr" >
+                                        <c:forEach var="categorie" items="${categories}">
+                                            <option>${categorie.nom}</option>
+                                        </c:forEach> 
+                                    </select>
                                     <div class="fieldplace">
-                                        <input class="field" type ="text" name="login_cr" id="login_cr" />
+
+                                        <input class="field" type ="text" name="nom_pr" id="nom_pr" />
+
                                     </div>
                                     <input id="ValiderRechercheBouton" class="button" value=" Valider " name="Valider" type="submit" />
 
@@ -139,7 +132,7 @@
 
                         </div>
                         <span id="erreurModification" style="display:none"></span>
-                        <div class="formulaire" id="menuModifC" style="display:none"></div>
+                        <div class="formulaire" id="menuModifP" style="display:none"></div>
                     </div>
                 </div>
             </div>
@@ -156,9 +149,15 @@
                             <span id="erreurSuppression" style="display:none"></span>
                             <form class="formulaire" id ="formSupprimmerP" name="session" action="" method=post>
                                 <fieldset>
-                                    <legend>Identifiant du compte</legend>
+                                    <legend>Nom du produit</legend>
+                                    <select style="margin-left: auto;margin-right:auto;height: 22px;width: 135px;" name="categorie_ps" id="categorie_ps" >
+                                            <c:forEach var="categorie" items="${categories}">
+                                                <option>${categorie.nom}</option>
+                                            </c:forEach> 
+                                        </select>
                                     <div class="fieldplace">
-                                        <input class="field" type ="text" name="login_cs" id="login_cs" />
+                                        <input class="field" type ="text" name="nom_ps" id="nom_ps" />
+                                        
                                     </div>
                                     <input id="ValiderSuppressionBouton" class="button" value=" Valider " name="Valider" type="submit" />
                                     <br />

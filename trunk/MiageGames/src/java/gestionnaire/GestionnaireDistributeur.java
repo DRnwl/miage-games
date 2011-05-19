@@ -30,5 +30,11 @@ public class GestionnaireDistributeur extends GestionnaireCommun<Distributeur> {
         super(Distributeur.class);
     }
     
-    
+    public Distributeur findByNom_distributeur(String nom){
+        try{
+            return (Distributeur)em.createNamedQuery("Distributeur.findByNom_distributeur").setParameter("nom_distributeur", nom).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
+    }
 }

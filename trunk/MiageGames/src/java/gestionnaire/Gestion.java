@@ -46,13 +46,19 @@ public class Gestion {
     private GestionnaireEditeur gestionnaireEditeur;
     @EJB
     private GestionnaireCommande gestionnaireCommande;
+    
+    boolean vide =true;
+
+    public boolean getVide() {
+        return vide;
+    }
 
     public void creerDonnees() throws FileNotFoundException {
 
 
 
 
-
+        vide = false;
         /** EDITEURS */
         Editeur editeur1 = new Editeur("KONAMI");
         Editeur editeur2 = new Editeur("SONY");
@@ -162,7 +168,7 @@ public class Gestion {
         Produit prod6 = new Produit("DARKSPORE", 72.5, PC, "http://www.micromania.fr/imagesprod/43934/43934_jaqr_DarksporeEditionLimiteePC_129x171.jpg", categorie3, "12 mai 2011", dev2, editeur1,12);
         Produit prod7 = new Produit("DUNGEONS", 80.31, PC, "http://www.micromania.fr/imagesprod/44589/44589_jaqr_jaquette1_129x171.jpg", categorie7, "5 mai 2011", dev1, editeur1,12);
         Produit prod8 = new Produit("BATTLEFIELD ", 120.5, PC, "http://www.micromania.fr/imagesprod/44975/44975_jaqr_micromania1_129x171.jpg", categorie12, "10 mai 2011", dev3, editeur1,12);
-        Produit prod9 = new Produit("SID MEIER'S", 100.5, PC, "http://www.micromania.fr/imagesprod/44809/44809_jaqr_micromania_129x171.jpg", categorie3, "7 mai 2011", dev1, editeur1,12);
+        Produit prod9 = new Produit("SID MEIERS", 100.5, PC, "http://www.micromania.fr/imagesprod/44809/44809_jaqr_micromania_129x171.jpg", categorie3, "7 mai 2011", dev1, editeur1,12);
         Produit prod10 = new Produit("TITEUF", 11.5, PC, "http://www.micromania.fr/imagesprod/44563/44563_jaqr_jaquette1_129x171.jpg", categorie3, "8 mai 2011", dev5, editeur1,12);
 
 
@@ -217,7 +223,7 @@ public class Gestion {
 
         Produit produitWi2 = new Produit("KARAOKE REVOLUTION  ", 87.99, WII, "http://www.micromania.fr/imagesprod/45050/45050_jaqr_jaquette1_129x171.jpg", categorie7, "5 mai 2011", dev2, editeur3,6);
 
-        Produit produitWi3 = new Produit("CABELA 'S DANGEROUS ", 34.99, WII, "http://www.micromania.fr/imagesprod/45107/45107_jaqr_CDH2011_Wii_SleeveMock_UKFR_129x171.jpg", categorie16, "22 mai 2011", dev1, editeur3,6);
+        Produit produitWi3 = new Produit("CABELAS DANGEROUS ", 34.99, WII, "http://www.micromania.fr/imagesprod/45107/45107_jaqr_CDH2011_Wii_SleeveMock_UKFR_129x171.jpg", categorie16, "22 mai 2011", dev1, editeur3,6);
 
         Produit produitWi4 = new Produit("GUILTY GEAR", 10.99, WII, "http://www.micromania.fr/imagesprod/45266/45266_jaqr_guiltygearWii_129x171.jpg", categorie7, "25 mai 2011", dev3, editeur2,6);
 
@@ -294,7 +300,7 @@ public class Gestion {
 
         Produit produitXBOX5 = new Produit("LEGO PIRATES DES CARAIBES 2003", 17.99, XBOX360, "http://www.micromania.fr/imagesprod/45009/45009_jaqr_legopiratesx360_129x171.jpg", categorie3, "18 mai 2003", dev1, editeur1,4);
 
-        Produit produitXBOX6 = new Produit("CABELA 'S DANGEROUS HUNT 201", 12.99, XBOX360, "http://www.micromania.fr/imagesprod/45105/45105_jaqr_CDH2011_Xbox360_SleeveMock_UKFR_129x171.jpg", categorie3, "2 mai 2004", dev1, editeur2,4);
+        Produit produitXBOX6 = new Produit("CABELAS DANGEROUS HUNT 201", 12.99, XBOX360, "http://www.micromania.fr/imagesprod/45105/45105_jaqr_CDH2011_Xbox360_SleeveMock_UKFR_129x171.jpg", categorie3, "2 mai 2004", dev1, editeur2,4);
 
         Produit produitXBOX7 = new Produit("SBK 211", 97.99, XBOX360, "http://www.micromania.fr/imagesprod/44616/44616_jaqr_sbk2011x360_129x171.jpg", categorie3, "12 mai 2006", dev1, editeur1,4);
 
@@ -333,7 +339,7 @@ public class Gestion {
 
         Produit produitPS3 = new Produit("BRINK mortel", 4.99, PS3, "http://www.micromania.fr/imagesprod/41485/41485_jaqr_brink_ps3_eu_pegi_cover_129x171.jpg", categorie12, "19 mai 2010", dev1, editeur3,2);
 
-        Produit produitPS4 = new Produit("NO MORE HEROES : Heroes' Paradise 900", 5.99, PS3, "http://www.micromania.fr/imagesprod/44639/44639_jaqr_micromania1_129x171.jpg", categorie18, "3 mai 2010", dev3, editeur2,2);
+        Produit produitPS4 = new Produit("NO MORE HEROES : Heroes Paradise 900", 5.99, PS3, "http://www.micromania.fr/imagesprod/44639/44639_jaqr_micromania1_129x171.jpg", categorie18, "3 mai 2010", dev3, editeur2,2);
 
         Produit produitPS5 = new Produit("BUNDLE 7", 17.99, PS3, "http://www.micromania.fr/imagesprod/44888/44888_jaqr_jaquette_129x171.jpg", categorie3, "29 mai 2007", dev1, editeur3,2);
 
@@ -415,9 +421,7 @@ public class Gestion {
 
         Commande commande = new Commande();
         
-       
-
-        Scanner scanner = new Scanner(new File ("/Users/Pierro/NetBeansProjects/trunk/MiageGames/clients.txt"));
+        Scanner scanner = new Scanner(new File ("/Users/Sangre.Sangre-PC/Documents/NetBeansProjects/M1 Miage/trunk/MiageGames/setup/clients.txt"));
 
         while (scanner.hasNext()) {
 
@@ -467,9 +471,10 @@ public class Gestion {
 
             commandeClient1 = new Commande_Client(varMontant, varDate_Achat, varNumero_confirmation, clientk);
             gestionnaireCommandeClient.create(commandeClient1);
+            gestionnaireCommandeClient.create(commandeClient1);
 
             commande = new Commande(commandeClient1, produitPS1, varQuantite);
-            gestionnaireCommande.create(commande);
+            gestionnaireCommande.create(commande);gestionnaireCommande.create(commande);
 
 
 

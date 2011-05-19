@@ -12,7 +12,7 @@
         <title>Jeux vidéo ${param.cat} sur Miage Games</title>
         <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-
+        <script src="js/tableSorter.js" type="text/javascript"></script>
         <!--[if IE 6]>
 			<link rel="stylesheet" href="css/ie6-style.css" type="text/css" media="all" />
 		<![endif]-->

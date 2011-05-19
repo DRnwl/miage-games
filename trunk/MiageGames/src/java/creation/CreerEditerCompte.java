@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package connexion;
+package creation;
 
 import gestionnaire.GestionnaireAdministrateur;
 import gestionnaire.GestionnaireClient;
@@ -22,7 +22,7 @@ import models.Client;
  *
  * @author Sangre
  */
-public class CreerEditerCompteServlet extends HttpServlet {
+public class CreerEditerCompte extends HttpServlet {
 
     @EJB
     private GestionnaireAdministrateur gestionnaireAdministrateur;
@@ -348,18 +348,6 @@ public class CreerEditerCompteServlet extends HttpServlet {
         out.close();
     }
 
-    // Methode de création d'un client
-    public void supprimerClient(PrintWriter out, HttpServletRequest request) {
-
-        String login = request.getParameter("login");
-        Client cl = gestionnaireClient.findByLogin(login);
-
-        if (cl == null) {
-            // -1 -> erreur Login inexistant
-            out.print("-1");
-        } else {
-        }
-    }
     // Methode de création d'un admin
 
     public void creerAdmin(PrintWriter out, HttpServletRequest request) {
@@ -400,11 +388,6 @@ public class CreerEditerCompteServlet extends HttpServlet {
         out.close();
     }
 
-    public void supprimerAdmin(PrintWriter out, HttpServletRequest request) {
-
-        String login = request.getParameter("login");
-
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

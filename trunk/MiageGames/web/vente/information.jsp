@@ -30,7 +30,7 @@
         <script src="js/validerConnexion.js" type="text/javascript"></script>
         <script src="js/paginator.js"></script>
 
-
+<script src="js/tableSorter.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/tabber.js"></script>
         <link rel="stylesheet" href="css/example.css" TYPE="text/css" MEDIA="screen">
         <link rel="stylesheet" href="css/example-print.css" TYPE="text/css" MEDIA="print">

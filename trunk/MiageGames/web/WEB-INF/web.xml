@@ -21,8 +21,16 @@
         <servlet-class>controleur.ServletClient</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreerEditerCompteServlet</servlet-name>
-        <servlet-class>connexion.CreerEditerCompteServlet</servlet-class>
+        <servlet-name>CreerEditerCompte</servlet-name>
+        <servlet-class>creation.CreerEditerCompte</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreerEditerProduit</servlet-name>
+        <servlet-class>creation.CreerEditerProduit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreerEditerCommande</servlet-name>
+        <servlet-class>creation.CreerEditerCommande</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ConnexionServlet</servlet-name>
@@ -33,14 +41,12 @@
         <url-pattern>/DeconnexionServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreerEditerCompteServlet</servlet-name>
-        <url-pattern>/CreerEditerCompteServlet</url-pattern>
+        <servlet-name>CreerEditerProduit</servlet-name>
+        <url-pattern>/CreerEditerProduit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletClient</servlet-name>
-        <url-pattern>/ServletClient</url-pattern>
-        <url-pattern>/modifierC</url-pattern>
-        <url-pattern>/voirCommandes</url-pattern>
+        <servlet-name>CreerEditerCompte</servlet-name>
+        <url-pattern>/CreerEditerCompte</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletAdmin</servlet-name>
@@ -52,6 +58,23 @@
         <url-pattern>/voirAdmin</url-pattern>
         <url-pattern>/paginationAdmin</url-pattern>
         <url-pattern>/voirClient</url-pattern>
+        <url-pattern>/modifierP</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletClient</servlet-name>
+        <url-pattern>/ServletClient</url-pattern>
+        <url-pattern>/modifierC</url-pattern>
+        <url-pattern>/pagination</url-pattern>
+        <url-pattern>/detailCommande</url-pattern>
+        <url-pattern>/voirCommandes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreerEditerCommande</servlet-name>
+        <url-pattern>/CreerEditerCommande</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreerEditerCommande</servlet-name>
+        <url-pattern>/supprimerCo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletPrincipal</servlet-name>

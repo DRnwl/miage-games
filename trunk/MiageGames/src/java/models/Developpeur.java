@@ -53,10 +53,6 @@ public class Developpeur implements Serializable {
         collectionProduit = new ArrayList<Produit>();
     }
 
-   
-    
-    
-
     public Collection<Produit> getCollectionProduit() {
         return collectionProduit;
     }

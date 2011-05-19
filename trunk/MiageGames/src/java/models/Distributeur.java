@@ -55,6 +55,11 @@ public class Distributeur implements Serializable {
         collectionProduit = new ArrayList<Produit>();
     }
 
+    public Distributeur(String nom_distributeur) {
+        this.nom_distributeur = nom_distributeur;
+        collectionProduit = new ArrayList<Produit>();
+    }
+    
     public Distributeur(String nom_distributeur, String site_distributeur, Produit produit) {
         this.nom_distributeur = nom_distributeur;
         this.site_distributeur = site_distributeur;

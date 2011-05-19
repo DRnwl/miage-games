@@ -29,6 +29,12 @@ public class GestionnaireEditeur extends GestionnaireCommun<Editeur> {
         super(Editeur.class);
     }
     
-    
+    public Editeur findByNomEditeur(String nom){
+        try{
+            return (Editeur)em.createNamedQuery("Editeur.findByNomEditeur").setParameter("nomEditeur", nom).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
+    }
     
 }

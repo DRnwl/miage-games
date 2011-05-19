@@ -42,39 +42,24 @@ public class GestionnairePanier {
     @EJB
     private GestionnaireClient gestionnaireClient;
 
-    
-    
-    
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    
-    public int effectuerCommande(String nom,String prenom,String telephone,String email,String adrFact,
-            String adrFactZip,
-            String adrFactVille,
-            String adrLivraison,
-            String adrLivrZip,
-            String adrLivrVille,
-            Panier panier)
-    {
-        try {
-            
-            Client client = ajouterClient(nom, prenom, telephone, email, adrFact, adrFactZip, adrFactVille, adrLivraison, adrLivrZip, adrLivrVille);
-            Commande_Client commandeClient = ajouterCommandeClient(client, panier);
-            ajouterProduitCommande(commandeClient, panier);
-            return commandeClient.getId();
-            
-        } catch (Exception e) {
-            context.setRollbackOnly();
-            return 0;
-        }
-        
-       
-    }
-    
-    
-    
-
-
-    public Client ajouterClient(
+    /*** client **/
+    /**
+     * 
+     * String login, 
+     * String password, 
+     * String nom, 
+     * String prenom, 
+     * String telephone,
+     * String email, 
+     * String adrFact, 
+     * String adrFactZip, 
+     * String adrFactVille, 
+     * String adrLivraison, 
+     * String adrLivrZip, 
+     * String adrLivrVille
+     * 
+     **/
+    private Client ajouterClient(
             String nom,
             String prenom,
             String telephone,
@@ -106,13 +91,8 @@ public class GestionnairePanier {
 
 
     }
-    
-    
-    
-    
 
-    public Commande_Client ajouterCommandeClient(Client client, Panier panier) {
-        
+    private Commande_Client ajouterCommandeClient(Client client, Panier panier) {
         Commande_Client commandeClient = new Commande_Client();
         commandeClient.setClient(client);
         commandeClient.setMontant(panier.getTotal());
@@ -120,8 +100,6 @@ public class GestionnairePanier {
         Random random = new Random();
         int i = random.nextInt(99999);
         commandeClient.setNumero_confirmation(i);
-        
-        gestionnaireCommandeClient.create(commandeClient);
 
         em.persist(commandeClient);
 
@@ -129,25 +107,24 @@ public class GestionnairePanier {
 
 
     }
-    
-    
 
-    public void ajouterProduitCommande(Commande_Client commandeClient, Panier panier) {
+    private void ajouterProduitCommande(Commande_Client commandeClient, Panier panier) {
         em.flush();
 
         List<ElementPanier> listeElementPanier = panier.getListeElementsCommande();
 
         for (ElementPanier scItem : listeElementPanier) {
-            
+            String nomProduit = scItem.getProduit().getNom();
+
+
             Commande commande = new Commande();
             commande.setCommandeClient(commandeClient);
 
             Produit produit = (Produit) scItem.getProduit();
             commande.setProduit(produit);
 
-            commande.setQuantite(scItem.getQuantiteCommande());
-            
-            gestionnaireProduit.create(produit);
+
+            int quantite = scItem.getQuantiteCommande();
 
             em.persist(commande);
 
@@ -159,12 +136,41 @@ public class GestionnairePanier {
 
     }
 
-   
+    /*
+     * public Map getOrderDetails(int orderId) {
     
+    Map orderMap = new HashMap();
     
+    // get order
+    CustomerOrder order = customerOrderFacade.find(orderId);
     
+    // get customer
+    Customer customer = order.getCustomer();
+    
+    // get all ordered products
+    List<OrderedProduct> orderedProducts = orderedProductFacade.findByOrderId(orderId);
+    
+    // get product details for ordered items
+    List<Product> products = new ArrayList<Product>();
+    
+    for (OrderedProduct op : orderedProducts) {
+    
+    Product p = (Product) productFacade.find(op.getOrderedProductPK().getProductId());
+    products.add(p);
+    }
+    
+    // add each item to orderMap
+    orderMap.put("orderRecord", order);
+    orderMap.put("customer", customer);
+    orderMap.put("orderedProducts", orderedProducts);
+    orderMap.put("products", products);
+    
+    return orderMap;
+    }
+     * 
+     * 
+     **/
     public Map afficherDetailClients(String login) {
-        
         Map contenuMap = new HashMap();
 
         // on recupere le client
@@ -180,9 +186,9 @@ public class GestionnairePanier {
             Produit p = (Produit) gestionnaireProduit.find(op.getCollectionCommande());
             products.add(p);
         }
-
+        
         contenuMap.put("produits", products);
-
+        
         return contenuMap;
 
 
