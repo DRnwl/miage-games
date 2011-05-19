@@ -8,6 +8,8 @@ import gestionnaire.Gestion;
 import gestionnaire.GestionnaireCategorie;
 import gestionnaire.GestionnaireCategorieAge;
 import gestionnaire.GestionnaireClient;
+import gestionnaire.GestionnaireCommande;
+import gestionnaire.GestionnaireCommandeClient;
 import gestionnaire.GestionnaireProduit;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -48,7 +50,10 @@ public class ServletPrincipal extends HttpServlet {
     private GestionnaireClient gestionnaireClient;
     @EJB
     private Gestion gestion;
-    
+    @EJB
+    private GestionnaireCommande gestionnaireCommande;
+    @EJB
+    private GestionnaireCommandeClient gestionnaireCommandeClient;
 
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
@@ -174,17 +179,21 @@ public class ServletPrincipal extends HttpServlet {
                     String login = (String) session.getAttribute("login");
 
                     Client client = gestionnaireClient.findByLogin(login);
-                    System.out.println("login "+login);
+                    System.out.println("login " + login);
                     Commande_Client commandeClient = new Commande_Client();
                     commandeClient.setClient(client);
 
+
                     Panier panier = (Panier) session.getAttribute("panier");
                     commandeClient.setMontant(panier.getTotal());
-                    System.out.println("montant total:  " +panier.getTotal());
-                    
+                    System.out.println("montant total:  " + panier.getTotal());
+
                     Random random = new Random();
                     int i = random.nextInt(999);
                     commandeClient.setNumero_confirmation(i);
+
+                    gestionnaireCommandeClient.create(commandeClient);
+
 
                     List<ElementPanier> listeElementPanier = panier.getListeElementsCommande();
 
@@ -195,12 +204,14 @@ public class ServletPrincipal extends HttpServlet {
 
                         Produit produit = (Produit) scItem.getProduit();
                         commande.setProduit(produit);
-                        System.out.println("nom produit: "+produit.getNom());
+                        System.out.println("nom produit: " + produit.getNom());
 
                         commande.setQuantite(scItem.getQuantiteCommande());
                         
-                       
-                        
+                        gestionnaireCommande.create(commande);
+
+
+
 
 
 

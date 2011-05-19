@@ -98,7 +98,7 @@
 
 
                                     <td><div class ="flottante">  
-                                            ${produit.quantiteProduit}
+                                            ${cartItem.quantiteCommande}
 
                                         </div></td>
 
