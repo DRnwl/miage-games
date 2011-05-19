@@ -156,7 +156,7 @@
 
                 </div>
 
-                <div class ="article"
+                <div class ="article"</div>
 
 
 
@@ -164,7 +164,7 @@
 
                      <% if (session.getAttribute("groupeUtilisateur").equals("visiteur")) {%>
 
-                     <h2> veuillez vous connecter!! </div>
+                     <h2> veuillez vous connecter!! </h2>
 
 
                 <% } else if (session.getAttribute("groupeUtilisateur").equals("client")) {%>
@@ -182,7 +182,7 @@
 
 
                 <%} else if (session.getAttribute("groupeUtilisateur").equals("administrateur")) {%>
-                <h2> pas droit!! </div>
+                <h2> pas droit!! </h2>
 
 
             <%}%>
