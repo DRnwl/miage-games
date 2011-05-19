@@ -190,7 +190,7 @@
 
             <div class ="flottante">  
 
-                <h3><li><a  id ="sign"class= "button button-center" href="<c:url value='home.jsp'/>">Retour aux achats</a></h3>
+                <h3><li><a  id ="sign"class= "button button-center" href="<c:url value='ServletPrincipal'/>">Retour aux achats</a></h3>
 
                 <br>
             </div>

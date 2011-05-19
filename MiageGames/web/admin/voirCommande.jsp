@@ -19,7 +19,7 @@
         <script src="js/jquery-1.6.js" type="text/javascript"></script>
         <script src="js/jquery-ui-1.8.12.custom.min.js" type="text/javascript"></script>
         <script src="js/jquery.validate.js" type="text/javascript"></script>
-
+<script src="js/tableSorter.js" type="text/javascript"></script>
         <!-- Script qui permet le changement de jeu dans le cadre principal -->
         <script src="js/fns.js" type="text/javascript"></script>
         <script src="js/validerConnexion.js" type="text/javascript"></script>
@@ -43,61 +43,9 @@
                         <span id="erreurCreation" style="display:none"></span>
                         <form class="formulaire" id ="formCreationCo" name="session" action="" method=post>
                             <fieldset>
-                                <legend>Information du compte</legend>
-                                <label class="texte" for="login_c">Nom de compte: </label>
-                                <input name="login_c" id="login_c" />
-                                <br />
-                                <label class="texte" for="password_c">Password:</label>
-                                <input type="password" name="password_c" id="password_c" />
-                                <br />
-                                <label class="texte" for="password_ver"></label>
-                                <input  type="password" name="password_ver" id="password_ver" />
-                                <br />
-                            </fieldset>
-                            <fieldset>
-                                <legend>Informations personnelles</legend>
-                                <label class="texte" for="nom">Nom: </label>
-                                <input type="text" name="nom" id="nom" />
-                                <br />
-                                <label class="texte" for="prenom">Prénom:</label>
-                                <input type="text" name="prenom" id="prenom" />
-                                <br />
-                                <label class="texte" for="email">E-mail:</label>
-                                <input type="text" name="email" id="email" />
-                                <br />
-                                <label class="texte" for="num_tel">Numéro de téléphone:</label>
-                                <input type="text" name="num_tel" id="num_tel" />
-                                <br />
-                            </fieldset>
-                            <fieldset>
-                                <legend>Adresse Facturation</legend>
-                                <label class="texte"  for="adresse_f">Adresse: </label>
-                                <input type="text" name="adresse_f" id="adresse_f" />
-                                <br />
-                                <label class="texte"  for="adresse_f_suite"></label>
-                                <input type="text" name="adresse_f_suite" id="adresse_f_suite" />
-                                <br />
-                                <label class="texte"  for="adresse_f_zip">Zip: </label>
-                                <input type="text" name="adresse_f_zip" id="adresse_f_zip" />
-                                <br />
-                                <label class="texte"  for="adresse_f_ville">Ville: </label>
-                                <input type="text" name="adresse_f_ville" id="adresse_f_ville" />
-                                <br />
-                            </fieldset>
-                            <fieldset>
-                                <legend>Adresse Livraison</legend>
-                                <label class="texte"  for="adresse_l">Adresse: </label>
-                                <input type="text" name="adresse_l" id="adresse_l" />
-                                <br />
-                                <label class="texte"  for="adresse_l_suite"></label>
-                                <input type="text" name="adresse_l_suite" id="adresse_l_suite" />
-                                <br />
-                                <label class="texte"  for="adresse_l_zip">Zip: </label>
-                                <input type="text" name="adresse_l_zip" id="adresse_l_zip" />
-                                <br />
-                                <label class="texte"  for="adresse_l_ville">Ville: </label>
-                                <input type="text" name="adresse_l_ville" id="adresse_l_ville" />
-                                <br />
+                              
+                                <legend>Informations commandes</legend>
+                                
                             </fieldset>
 
                             <br />
@@ -125,7 +73,7 @@
                             <form   class="formulaire" id ="formRechercheCo" name="session" action="" method=post>
 
                                 <fieldset>
-                                    <legend>Recherche d'un client</legend>
+                                    <legend>Recherche d'une commande</legend>
 
                                     <div class="fieldplace">
                                         <input class="field" type ="text" name="login_cr" id="login_cr" />
@@ -156,9 +104,9 @@
                             <span id="erreurSuppression" style="display:none"></span>
                             <form class="formulaire" id ="formSupprimmerCo" name="session" action="" method=post>
                                 <fieldset>
-                                    <legend>Identifiant du compte</legend>
+                                    <legend>Numero de confirmation de la commande</legend>
                                     <div class="fieldplace">
-                                        <input class="field" type ="text" name="login_cs" id="login_cs" />
+                                        <input class="field" type ="text" name="numero_cs" id="numero_cs" />
                                     </div>
                                     <input id="ValiderSuppressionBouton" class="button" value=" Valider " name="Valider" type="submit" />
                                     <br />

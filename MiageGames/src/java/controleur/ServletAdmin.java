@@ -19,7 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Administrateur;
+import models.Categorie;
 import models.Client;
+import models.Commande;
 import models.Commande_Client;
 import models.Produit;
 
@@ -28,13 +30,11 @@ import models.Produit;
  * @author Sangre
  */
 public class ServletAdmin extends HttpServlet {
+
     @EJB
     private GestionnaireCommandeClient gestionnaireCommandeClient;
     @EJB
     private GestionnaireProduit gestionnaireProduit;
-
-    @EJB
-    private GestionnaireClient gestionnaireClient1;
     @EJB
     private GestionnaireClient gestionnaireClient;
     @EJB
@@ -82,7 +82,7 @@ public class ServletAdmin extends HttpServlet {
                     }
 
                 } else if (userPath.equals("/modifierCl")) {
-                    String rr = request.getParameter("login");
+
                     Client cl = gestionnaireClient.findByLogin(request.getParameter("login"));
                     if (cl != null) {
                         session.setAttribute("modifCompte", cl);
@@ -107,48 +107,118 @@ public class ServletAdmin extends HttpServlet {
                     dp.forward(request, response);
 
 
+                } else if (userPath.equals("/modifierP")) {
+                    String nom = request.getParameter("nom");
+                    String cat = request.getParameter("categorie");
+
+                    Categorie categorie = null;
+                    for (int i = 0; i < ((List<Categorie>) getServletContext().getAttribute("categories")).size(); i++) {
+                        if (((List<Categorie>) getServletContext().getAttribute("categories")).get(i).getNom().equals(cat)) {
+                            categorie = ((List<Categorie>) getServletContext().getAttribute("categories")).get(i);
+                        }
+                    }
+                    Produit prod = gestionnaireProduit.findByNomCategorie(nom, categorie);
+                    if (prod != null) {
+                        session.setAttribute("modifProduit", prod);
+                        out.print("1");
+                    } else {
+                        // Le produit n'existe pas
+                        out.print("-1");
+                    }
+
                 } else if (userPath.equals("/voirCommande")) {
+
+
                     RequestDispatcher dp = request.getRequestDispatcher("/admin/voirCommande.jsp");
                     dp.forward(request, response);
 
 
-                }// Pagination
+                } // Pagination
                 else if (userPath.equals("/paginationAdmin")) {
                     String pagi = request.getParameter("pagi");
                     int page = Integer.parseInt(request.getParameter("page")) - 1;
-                    int parPage = 10;
+                    int parPage = 5;
                     int debut = page * parPage;
                     double nbPage = 0;
-                    List liste ;
+                    List liste;
                     String remplir = "";
                     if (pagi.equals("Admin")) {
                         nbPage = ((gestionnaireAdministrateur.count()));
+                        remplir += "<table id='tabAdmin' class='tablesorter'> <thead><tr> "
+                                + "<th>Login</th>"
+                                + "<th>Nom</th>"
+                                + "<th>E-Mail</th>"
+                                + "<th>Supprimer</th></tr></thead><tbody> ";
 
-                        liste = gestionnaireAdministrateur.findAllP(debut);
+
+                        liste = gestionnaireAdministrateur.findAllP(debut, parPage);
                         for (int i = 0; i < liste.size(); i++) {
-                            remplir += "<div>" + ((Administrateur) liste.get(i)).getLogin() + "</div>";
+                            remplir += "<tr> <td>" + ((Administrateur) liste.get(i)).getLogin() + "</td>"
+                                    + "<td>" + ((Administrateur) liste.get(i)).getNom() + "</td>"
+                                    + "<td>" + ((Administrateur) liste.get(i)).getEmail() + "</td>"
+                                    + "<td><a href='' onClick='Modif(\"Compte\",\"supprimerA\",\"login=" + ((Administrateur) liste.get(i)).getLogin() + "\",\"Admin\",\""+(page+1)+"\" );return false'><img width='15' height='15' src='css/images/supp.jpg' /></a></td></tr>";
                         }
 
                     } else if (pagi.equals("Client")) {
+                        remplir += "<table id='tabClients' class='tablesorter'> <thead><tr> "
+                                + "<th>Login</th>"
+                                + "<th>Nom</th>"
+                                + "<th>E-Mail</th>"
+                                + "<th>Supprimer</th></tr></thead><tbody> ";
                         nbPage = ((gestionnaireClient.count()));
-                        liste = gestionnaireClient.findAllP(debut);
+                        liste = gestionnaireClient.findAllP(debut, parPage);
                         for (int i = 0; i < liste.size(); i++) {
-                            remplir += "<div>" + ((Client) liste.get(i)).getLogin() + "</div>";
+                            remplir += "<tr> <td>" + ((Client) liste.get(i)).getLogin() + "</td>"
+                                    + "<td>" + ((Client) liste.get(i)).getNom() + "</td>"
+                                    + "<td>" + ((Client) liste.get(i)).getEmail() + "</td>"
+                                    + "<td><a href='' onClick='Modif(\"Compte\",\"supprimerC\",\"login=" + ((Client) liste.get(i)).getLogin() + "\",\"Client\",\""+(page+1)+"\" );return false'><img width='15' height='15' src='css/images/supp.jpg' /></a></td></tr>";
                         }
                     } else if (pagi.equals("Prod")) {
+                        remplir += "<table id='tabProduits' class='tablesorter'> <thead><tr> "
+                                + "<th>Nom</th>"
+                                + "<th>Categorie</th>"
+                                + "<th>Prix</th>"
+                                + "<th>Quantite</th>"
+                                + "<th>Supprimer</th></tr></thead><tbody> ";
                         nbPage = ((gestionnaireProduit.count()));
-                        liste = gestionnaireProduit.findAllP(debut);
+                        liste = gestionnaireProduit.findAllP(debut, parPage);
                         for (int i = 0; i < liste.size(); i++) {
-                            remplir += "<div>" + ((Produit) liste.get(i)).getNom() + "</div>";
+                            String s = ((Produit) liste.get(i)).getNom();
+                            
+                            remplir += "<tr> <td>" + ((Produit) liste.get(i)).getNom() + "</td>"
+                                    + "<td>" + ((Produit) liste.get(i)).getCategorie().getNom() + "</td>"
+                                    + "<td>" + ((Produit) liste.get(i)).getPrix() + "&euro;</td>"
+                                    + "<td>" + ((Produit) liste.get(i)).getQuantiteProduit() + "</td>"
+                                    + "<td><a href='#' onClick='Modif(\"Produit\",\"supprimerP\",\"nom=" + s + "&categorie="+((Produit) liste.get(i)).getCategorie().getNom()+ "\",\"Prod\",\""+(page+1)+"\" );return false'><img width='15' height='15' src='css/images/supp.jpg' /></a></td></tr>";
                         }
                     } else {
+                        remplir += "<table id='tabProduits' class='tablesorter'> <thead><tr> "
+                                + "<th>Numero Commande</th>"
+                                + "<th>Client</th>"
+                                + "<th>Achat</th>"
+                                + "<th>Date achat</th>"
+                                + "<th>Total</th>"
+                                + "<th>Supprimer</th></tr></thead><tbody> ";
                         nbPage = ((gestionnaireCommandeClient.count()));
-                        liste = gestionnaireCommandeClient.findAllP(debut);
+                        liste = gestionnaireCommandeClient.findAllP(debut, parPage);
                         for (int i = 0; i < liste.size(); i++) {
-                            remplir += "<div>" + ((Commande_Client) liste.get(i)).getNumero_confirmation() + "</div>";
+                            List<Commande> lis = (List<Commande>) ((Commande_Client) liste.get(i)).getCollectionCommande();
+                            remplir += "<tr> <td>" + ((Commande_Client) liste.get(i)).getNumero_confirmation() + "</td>"
+                                    + "<td>" + ((Commande_Client) liste.get(i)).getClient().getLogin() + "</td>"
+                                    + "<td><ul>";
+
+                            for (int j = 0; j < lis.size(); j++) {
+                                remplir += " <li style='font:80%/1 sans-serif;'>" + lis.get(j).getProduit().getNom() + " * " + lis.get(j).getQuantite() + "</li>";
+                            }
+                            remplir += "</ul></td>"
+                                    + "<td>" + ((Commande_Client) liste.get(i)).getDate_achat() + "</td>"
+                                    + "<td>" + ((Commande_Client) liste.get(i)).getMontant() + "&euro;</td>"
+                                    + "<td><a href='#' onClick='Modif(\"Commande\",\"supprimerCo\",\"num_confirm=" + ((Commande_Client) liste.get(i)).getNumero_confirmation() + "\",\"Comd\",\""+(page+1)+"\" );return false'  ><img width='15' height='15' src='css/images/supp.jpg' /></a></td></tr>";
                         }
                     }
-
+                    if(page >= (nbPage - 1))
+                        page = (int)(nbPage - 1);
+                    remplir += "</tbody></table>";
                     nbPage = Math.ceil(nbPage / parPage);
 
                     remplir += "<br /><div class='pagination'>";
@@ -157,8 +227,8 @@ public class ServletAdmin extends HttpServlet {
                         remplir += "<span class='disabled'>Deb</span>"
                                 + "<span class='disabled'>Prec</span>";
                     } else {
-                        remplir += "<a onClick='loadDataA(" + (1) + ",\"" + pagi + "\")' href='#'>Deb</a>"
-                                + "<a onClick='loadDataA(" + (page) + ",\"" + pagi + "\")' href='#'>Prec</a>";
+                        remplir += "<a onClick='loadDataA(" + (1) + ",\"" + pagi + "\");return false' href='#'>Deb</a>"
+                                + "<a onClick='loadDataA(" + (page) + ",\"" + pagi + "\");return false' href='#'>Prec</a>";
 
                     }
                     for (int i = 0; i < nbPage; i++) {
@@ -166,18 +236,18 @@ public class ServletAdmin extends HttpServlet {
                         if (i == page) {
                             remplir += "<span class='current'>" + (i + 1) + "</span>";
                         } else {
-                            remplir += "<a onClick='loadDataA(" + (i + 1) + ",\"" + pagi + "\")' href='#'>" + (i + 1) + "</a>";
+                            remplir += "<a onClick='loadDataA(" + (i + 1) + ",\"" + pagi + "\");return false' href='#'>" + (i + 1) + "</a>";
                         }
 
                     }
-                    if (page == (nbPage - 1)) {
+                    if (page >= (nbPage - 1)) {
                         remplir += "<span class='disabled'>Suiv</span>"
                                 + "<span class='disabled'>Fin</span>";
                     } else {
-                        remplir += "<a onClick='loadDataA(" + (page + 2) + ",\"" + pagi + "\")' href='#'>Suiv</a>"
-                                + "<a onClick='loadDataA(" + ((int) nbPage) + ",\"" + pagi + "\")' href='#'>Fin</a>";
+                        remplir += "<a onClick='loadDataA(" + (page + 2) + ",\"" + pagi + "\");return false' href='#'>Suiv</a>"
+                                + "<a onClick='loadDataA(" + ((int) nbPage) + ",\"" + pagi + "\");return false' href='#'>Fin</a>";
                     }
-
+                    remplir += "</div>";
                     out.print(remplir);
 
 

@@ -29,6 +29,12 @@ public class GestionnaireCategorieAge extends GestionnaireCommun<CategorieAge> {
         super(CategorieAge.class);
     }
     
-    
+    public CategorieAge findByNom(String nom){
+        try{
+            return (CategorieAge)em.createNamedQuery("CategorieAge.findByNom").setParameter("nom", nom).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
+    }
     
 }

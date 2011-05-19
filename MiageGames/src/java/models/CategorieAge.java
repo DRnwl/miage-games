@@ -24,6 +24,8 @@ import javax.persistence.*;
     
     @NamedQuery(name = "CategorieAge.findByDescription", query = "SELECT c FROM CategorieAge c WHERE c.description = :description"),
     
+    @NamedQuery(name = "CategorieAge.findByNom", query = "SELECT c FROM CategorieAge c WHERE c.nom = :nom"),
+    
     @NamedQuery(name = "CategorieAge.findByNomImage", query = "SELECT c FROM CategorieAge c WHERE c.nomImage = :nomImage")
 })
 public class CategorieAge implements Serializable {

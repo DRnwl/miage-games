@@ -34,7 +34,7 @@ $(document).ready(function(){
     $("#BoutonDeconnexion").live('click',function(){
         window.location.replace("DeconnexionServlet"); 
     });
-    
+
     $("#AjoutAdm").click(function(){
         if ($("#toggleCrea").is(":hidden")){
             effacer("#formRechercheA");
@@ -134,11 +134,7 @@ $(document).ready(function(){
     
                 
     
-    $('#voirAdmin .pagination li.active').live('click',function(){
-        var page = $(this).attr('p');
-        var type = 'Admin';
-        loadDataA(page,type);
-    }); 
+  
     
     
     
@@ -455,10 +451,38 @@ $(document).ready(function(){
         }
     });
 
-           
-
+    $(function() {
+        $.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
+        $( "#date" ).datepicker( $.datepicker.regional[ "fr" ] );
+        $( "#date" ).datepicker( "option", "dateFormat", 'dd MM yy' );
+        
+        $('#date_pm').live('click', function() {
+            window.alert($( "#date_pm" ).val());
+            $(this).datepicker({
+                showOn:'focus',
+                defaultDate: $.datepicker.parseDate('dd MM yy',$("#date_pm").val())
+            }).focus();
+            
+            
+            $( this ).datepicker( $.datepicker.regional[ "fr" ] );
+            $( this ).datepicker( "option", "dateFormat", 'dd MM yy' );
+            
+            
+        });
+        
+    });
+    $(document).ready(function() 
+    { 
+        
+        $("#tabCommandes").tablesorter( ); 
+        
+    } 
+    ); 
+      
+    
 }); 
 
+    
 function loadDataA(page, type)
 { 
     $.ajax
@@ -485,7 +509,63 @@ function loadDataA(page, type)
     });
     return false;
 }
+
+function Modif(page, demande , donnee, type, pagee)
+{ 
+    $.ajax
+    ({
+        type: "POST",
+        url: "CreerEditer"+page,
+        data: "but="+demande+"&"+donnee,
+        success: function(msg)
+        {
+            
+            
+            if(msg == -1)
+            {
+                $('span#erreurVoir').hide();
+                $("span#erreurVoir").html ("<center>Une erreur est survenue </center>").fadeIn("slow");
+                    
+            }
+            else
+                $(this).empty();
+            loadDataA(pagee,type);
+        }
+    });
+    return false;
+
     
+}
+
+function loadData(page, url)
+{ 
+    $.ajax
+    ({
+        type: "POST",
+        url: url,
+        data: "but=reload&page="+page,
+        success: function(msg)
+        {
+         
+            $("#divListeProduits").ajaxComplete(function(event, request, settings)
+            {
+                $(this).empty();
+                $(this).html(msg);
+                
+            });
+        }
+    
+    });
+    return false;
+}
+    
+function detailCommande(commande)
+{ 
+
+            
+    window.location.replace("detailCommande?commande="+commande);
+
+}
 function effacer (nomForm) {
     $(':input',nomForm)
     .not(':button, :submit, :reset, :hidden')
@@ -642,7 +722,7 @@ jQuery(document).ready(function() {
         submitHandler: function(){
             $.ajax({  
                 type: "POST",  
-                url: "CreerEditerCompteServlet",  
+                url: "CreerEditerCompte",  
                 data: "but=creerC&login=" + $("#login_c").val() + "&password=" + $("#password_c").val()
                 +"&nom=" + $("#nom").val() + "&prenom=" + $("#prenom").val()
                 +"&email=" + $("#email").val() + "&num_tel=" + $("#num_tel").val()
@@ -656,23 +736,23 @@ jQuery(document).ready(function() {
                     if (msg == 1) {  
                         $('form#formCreationC').remove();
                         $('span#erreurCreation').hide();
-                        $("span#erreurCreation").html ("<center> Le compte a bien été crée.</center><br /><center> Vous pouvez utiliser le menu Connexion pour pouvoir y accèder ou retourner à l'<a href='home.jsp'>accueil </center>").fadeIn("slow");
+                        $("span#erreurCreation").html ("<center> Le compte a bien ete cree.</center><br /><center> Vous pouvez utiliser le menu Connexion pour pouvoir y accèder ou retourner à l'<a href='home.jsp'>accueil </center>").fadeIn("slow");
                         
                     } 
                     else if (msg == -1){
                         $('span#erreurCreation').hide();
-                        $("span#erreurCreation").html ("<center> Login déja utilisé ! </center>").fadeIn("slow");
+                        $("span#erreurCreation").html ("<center> Login deja utilise ! </center>").fadeIn("slow");
                         
                     }
                     else if (msg == -2){
                         $('span#erreurCreation').hide();
-                        $("span#erreurCreation").html ("<center> Email déjà utilisé </center>").fadeIn("slow");
+                        $("span#erreurCreation").html ("<center> Email deja utilise </center>").fadeIn("slow");
                         
                     }
                     else
                     {
                         $('span#erreurCreation').hide();
-                        $("span#erreurCreation").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                        $("span#erreurCreation").html ("<center> Une erreur est survenue, le traitement ne peut être effectue </center>").fadeIn("slow");
                          
                     }
                 }  
@@ -762,7 +842,7 @@ jQuery(document).ready(function() {
         submitHandler: function(){
             $.ajax({  
                 type: "POST",  
-                url: "CreerEditerCompteServlet",  
+                url: "CreerEditerCompte",  
                 data: "but=modifierC&login=" + $("#login_c").val() + "&password=" + $("#password_c").val()
                 +"&nom=" + $("#nom").val() + "&prenom=" + $("#prenom").val()
                 +"&email=" + $("#email").val() + "&num_tel=" + $("#num_tel").val()
@@ -846,7 +926,7 @@ jQuery(document).ready(function() {
         submitHandler: function(){
             $.ajax({  
                 type: "POST",  
-                url: "CreerEditerCompteServlet",  
+                url: "CreerEditerCompte",  
                 data: "but=creerA&login=" + $("#login_aa").val() + "&password=" + $("#password_aa").val()
                 +"&nom=" + $("#nom_a").val() +"&email=" + $("#email_a").val() + "&num_tel=" + $("#num_tel_a").val(),
                 success: function (msg) {  
@@ -855,24 +935,24 @@ jQuery(document).ready(function() {
                         
                         effacer("#formCreationA");
                         $('span#erreurCreation').hide();
-                        $("span#erreurCreation").html ("<center> Le compte a bien été crée.</center><br />").fadeIn("slow");
+                        $("span#erreurCreation").html ("<center> Le compte a bien ete cree.</center><br />").fadeIn("slow");
                         
                     } 
                     else if (msg == -1){
                         $('span#erreurCreation').hide();
-                        $("span#erreurCreation").html ("<center> Login déja utilisé ! </center>").fadeIn("slow");
+                        $("span#erreurCreation").html ("<center> Login deja utilise ! </center>").fadeIn("slow");
                         
                     }
                     else if(msg == -2)
                     {
                         $('span#erreurCreation').hide();
-                        $("span#erreurCreation").html ("<center> Email déjà utilisé ! </center>").fadeIn("slow");
+                        $("span#erreurCreation").html ("<center> Email deja utilise ! </center>").fadeIn("slow");
                         
                     }
                     else
                     {
                         $('span#erreurCreation').hide();
-                        $("span#erreurCreation").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                        $("span#erreurCreation").html ("<center> Une erreur est survenue, le traitement ne peut etre effectue </center>").fadeIn("slow");
                          
                     }
                 }  
@@ -924,7 +1004,7 @@ jQuery(document).ready(function() {
         submitHandler: function(){
             $.ajax({  
                 type: "POST",  
-                url: "CreerEditerCompteServlet",  
+                url: "CreerEditerCompte",  
                 data: "but=modifierA&login=" + $("#login_a").val() + "&password=" + $("#password_a").val()
                 +"&nom=" + $("#nom").val() +"&email=" + $("#email").val() + "&num_tel=" + $("#num_tel").val(),
                 success: function (msg) {  
@@ -934,30 +1014,30 @@ jQuery(document).ready(function() {
                         $('div#bienvenue').load("config/menu.jsp #bienvenue");
                         
                         $('span#erreurModification').hide();
-                        $("span#erreurModification").html ("<center> Le compte a bien été modifié.</center><br />").fadeIn("slow");
+                        $("span#erreurModification").html ("<center> Le compte a bien ete modifie.</center><br />").fadeIn("slow");
                         
                     } 
                     else if (msg == -1){
                         $('span#erreurModification').hide();
-                        $("span#erreurModification").html ("<center> Email déja utilisé ! </center>").fadeIn("slow");
+                        $("span#erreurModification").html ("<center> Email deja utilise ! </center>").fadeIn("slow");
                         
                     }
                     else if(msg == -2)
                     {
                         $('span#erreurModification').hide();
-                        $("span#erreurModification").html ("<center> Login déjà utilisé ! </center>").fadeIn("slow");
+                        $("span#erreurModification").html ("<center> Login deja utilise ! </center>").fadeIn("slow");
                         
                     }
                     else if(msg == -3)
                     {
                         $('span#erreurModification').hide();
-                        $("span#erreurModification").html ("<center> Vous n'avez effectué aucune modification ! </center>").fadeIn("slow");
+                        $("span#erreurModification").html ("<center> Vous n'avez effectue aucune modification ! </center>").fadeIn("slow");
                         
                     }
                     else
                     {
                         $('span#erreurModification').hide();
-                        $("span#erreurModification").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                        $("span#erreurModification").html ("<center> Une erreur est survenue, le traitement ne peut etre effectue </center>").fadeIn("slow");
                          
                     }
                 }  
@@ -1032,7 +1112,7 @@ jQuery(document).ready(function() {
                                 submitHandler: function(){
                                     $.ajax({  
                                         type: "POST",  
-                                        url: "CreerEditerCompteServlet",  
+                                        url: "CreerEditerCompte",  
                                         data: "but=modifierA&login=" + $("#login_a").val() + "&password=" + $("#password_a").val()
                                         +"&nom=" + $("#nom").val() +"&email=" + $("#email").val() + "&num_tel=" + $("#num_tel").val(),
                                         success: function (msg) {  
@@ -1041,30 +1121,30 @@ jQuery(document).ready(function() {
                                             if (msg == 1) {  
                                                
                                                 $('span#erreurModification').hide();
-                                                $("span#erreurModification").html ("<center> Le compte a bien été modifié.</center><br />").fadeIn("slow");
+                                                $("span#erreurModification").html ("<center> Le compte a bien ete modifié.</center><br />").fadeIn("slow");
                         
                                             } 
                                             else if (msg == -1){
                                                 $('span#erreurModification').hide();
-                                                $("span#erreurModification").html ("<center> Email déja utilisé ! </center>").fadeIn("slow");
+                                                $("span#erreurModification").html ("<center> Email deja utilise ! </center>").fadeIn("slow");
                         
                                             }
                                             else if(msg == -2)
                                             {
                                                 $('span#erreurModification').hide();
-                                                $("span#erreurModification").html ("<center> Login déjà utilisé ! </center>").fadeIn("slow");
+                                                $("span#erreurModification").html ("<center> Login deja utilise ! </center>").fadeIn("slow");
                         
                                             }
                                             else if(msg == -3)
                                             {
                                                 $('span#erreurModification').hide();
-                                                $("span#erreurModification").html ("<center> Vous n'avez effectué aucune modification ! </center>").fadeIn("slow");
+                                                $("span#erreurModification").html ("<center> Vous n'avez effectue aucune modification ! </center>").fadeIn("slow");
                         
                                             }
                                             else
                                             {
                                                 $('span#erreurModification').hide();
-                                                $("span#erreurModification").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                                                $("span#erreurModification").html ("<center> Une erreur est survenue, le traitement ne peut etre effectue </center>").fadeIn("slow");
                          
                                             }
                                         }  
@@ -1081,7 +1161,7 @@ jQuery(document).ready(function() {
                         $('span#erreurModification').empty();
                         $('div#menuModif').empty();
                         $('span#erreurRecherche').hide();
-                        $("span#erreurRecherche").html ("<center> Le compte recherché n'existe pas ! </center>").fadeIn("slow");
+                        $("span#erreurRecherche").html ("<center> Le compte recherche n'existe pas ! </center>").fadeIn("slow");
                         
                     }
                     else if (msg == -2){
@@ -1096,7 +1176,7 @@ jQuery(document).ready(function() {
                         $('span#erreurModification').empty();
                         $('div#menuModif').empty();
                         $('span#erreurRecherche').hide();
-                        $("span#erreurRecherche").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                        $("span#erreurRecherche").html ("<center> Une erreur est survenue, le traitement ne peut être effectue </center>").fadeIn("slow");
                          
                     }
                 }  
@@ -1118,7 +1198,7 @@ jQuery(document).ready(function() {
         submitHandler: function(){
             $.ajax({  
                 type: "POST",  
-                url: "CreerEditerCompteServlet",  
+                url: "CreerEditerCompte",  
                 data: "but=supprimerA&login=" + $("#login_as").val(),
                 success: function (msg) {  
                  
@@ -1127,13 +1207,13 @@ jQuery(document).ready(function() {
                         
                         
                         $('span#erreurSuppression').hide();
-                        $("span#erreurSuppression").html ("<center> Le compte a été supprimé ! </center>").fadeIn("slow");
+                        $("span#erreurSuppression").html ("<center> Le compte a ete supprime ! </center>").fadeIn("slow");
                         
                         
                     } 
                     else if (msg == -1){
                         $('span#erreurSuppression').hide();
-                        $("span#erreurSuppression").html ("<center> Le compte à supprimer n'existe pas ! </center>").fadeIn("slow");
+                        $("span#erreurSuppression").html ("<center> Le compte a supprimer n'existe pas ! </center>").fadeIn("slow");
                         
                     }
                     else if (msg == -2){
@@ -1144,7 +1224,7 @@ jQuery(document).ready(function() {
                     else
                     {
                         $('span#erreurSuppression').hide();
-                        $("span#erreurSuppression").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                        $("span#erreurSuppression").html ("<center> Une erreur est survenue, le traitement ne peut être effectue </center>").fadeIn("slow");
                          
                     }
                 }  
@@ -1255,7 +1335,7 @@ jQuery(document).ready(function() {
                                 submitHandler: function(){
                                     $.ajax({  
                                         type: "POST",  
-                                        url: "CreerEditerCompteServlet",  
+                                        url: "CreerEditerCompte",  
                                         data: "but=modifierC&login=" + $("#login_cm").val() + "&password=" + $("#password_cm").val()
                                         +"&nom=" + $("#nom_cm").val() +"&email=" + $("#email_cm").val() + "&num_tel=" + $("#num_tel_cm").val()
                                         +"&adresse_f=" + $("#adresse_f_cm").val() +" "+ $("#adresse_f_suite_cm").val() 
@@ -1264,35 +1344,35 @@ jQuery(document).ready(function() {
                                         +"&adresse_l_zip=" + $("#adresse_l_zip_cm").val() + "&adresse_l_ville=" + $("#adresse_l_ville_cm").val(),
            
                                         success: function (msg) {  
-                                            window.alert(msg);
-                                            // Si l'admin existe, on execute le if 
+                                            
+                                            
                                             if (msg == 1) {  
                                                
                                                 $('span#erreurModification').hide();
-                                                $("span#erreurModification").html ("<center> Le compte a bien été modifié.</center><br />").fadeIn("slow");
+                                                $("span#erreurModification").html ("<center> Le compte a bien ete modifie.</center><br />").fadeIn("slow");
                         
                                             } 
                                             else if (msg == -1){
                                                 $('span#erreurModification').hide();
-                                                $("span#erreurModification").html ("<center> Email déja utilisé ! </center>").fadeIn("slow");
+                                                $("span#erreurModification").html ("<center> Email deja utilise ! </center>").fadeIn("slow");
                         
                                             }
                                             else if(msg == -2)
                                             {
                                                 $('span#erreurModification').hide();
-                                                $("span#erreurModification").html ("<center> Login déjà utilisé ! </center>").fadeIn("slow");
+                                                $("span#erreurModification").html ("<center> Login deja utilise ! </center>").fadeIn("slow");
                         
                                             }
                                             else if(msg == -3)
                                             {
                                                 $('span#erreurModification').hide();
-                                                $("span#erreurModification").html ("<center> Vous n'avez effectué aucune modification ! </center>").fadeIn("slow");
+                                                $("span#erreurModification").html ("<center> Vous n'avez effectue aucune modification ! </center>").fadeIn("slow");
                         
                                             }
                                             else
                                             {
                                                 $('span#erreurModification').hide();
-                                                $("span#erreurModification").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                                                $("span#erreurModification").html ("<center> Une erreur est survenue, le traitement ne peut etre effectue </center>").fadeIn("slow");
                          
                                             }
                                         }  
@@ -1307,7 +1387,7 @@ jQuery(document).ready(function() {
                     } 
                     else if (msg == -1){
                         $('span#erreurRecherche').hide();
-                        $("span#erreurRecherche").html ("<center> Le compte recherché n'existe pas ! </center>").fadeIn("slow");
+                        $("span#erreurRecherche").html ("<center> Le compte recherche n'existe pas ! </center>").fadeIn("slow");
                         $('span#erreurModification').empty();
                         $('div#menuModifC').empty();
                     }
@@ -1316,7 +1396,7 @@ jQuery(document).ready(function() {
                         $('span#erreurModification').empty();
                         $('div#menuModifC').empty();
                         $('span#erreurRecherche').hide();
-                        $("span#erreurRecherche").html ("<center> Une erreur est survenue, le traitement ne peut être effectué </center>").fadeIn("slow");
+                        $("span#erreurRecherche").html ("<center> Une erreur est survenue, le traitement ne peut etre effectué </center>").fadeIn("slow");
                          
                     }
                 }  
@@ -1338,7 +1418,7 @@ jQuery(document).ready(function() {
         submitHandler: function(){
             $.ajax({  
                 type: "POST",  
-                url: "CreerEditerCompteServlet",  
+                url: "CreerEditerCompte",  
                 data: "but=supprimerC&login=" + $("#login_cs").val(),
                 success: function (msg) {  
                  
@@ -1347,13 +1427,13 @@ jQuery(document).ready(function() {
                         
                         
                         $('span#erreurSuppression').hide();
-                        $("span#erreurSuppression").html ("<center> Le compte a été supprimé ! </center>").fadeIn("slow");
+                        $("span#erreurSuppression").html ("<center> Le compte a ete supprime ! </center>").fadeIn("slow");
                         
                         
                     } 
                     else if (msg == -1){
                         $('span#erreurSuppression').hide();
-                        $("span#erreurSuppression").html ("<center> Le compte à supprimer n'existe pas ! </center>").fadeIn("slow");
+                        $("span#erreurSuppression").html ("<center> Le compte a supprimer n'existe pas ! </center>").fadeIn("slow");
                         
                     }
                     else
@@ -1368,9 +1448,340 @@ jQuery(document).ready(function() {
             
         }
 
+    }),
+    
+    jQuery("#formCreationP").validate({
+        rules: {
+            "nom_p":{
+                "required": true,
+                "minlength": 3,
+                "maxlength": 40
+            },
+            "prix_p": {
+                "required" : true,
+                "prix": true,
+                "maxlength": 6,
+                "minlength": 1
+            },
+            "categorie_p":{
+            },
+            "distributeur_p":{
+                "required": true
+            },
+            "editeur_p":{
+                "required": true,
+                "minlength": 4,
+                "maxlength": 20
+            },
+            "developpeur_p":{
+                "required": true,
+                "minlength": 4,
+                "maxlength": 20
+            },
+            "date":{
+                "required": true,
+                "minlength": 1
+            },
+            "image_p":{
+                "required": true,
+                "url": true,
+                "minlength": 5,
+                "maxlength": 300
+            },
+            "description_p":{
+                "required": true,
+                "minlength": 30,
+                "maxlength": 700
+            },
+            "quantite_p":{
+                "required": true,
+                "number": true,
+                "range" : [0, 9999],
+                "maxlength": 5
+            }
+
+            
+        },
+        submitHandler: function(){
+            $.ajax({  
+                type: "POST",  
+                url: "CreerEditerProduit",  
+                data: "but=creerP&nom=" + $("#nom_p").val() + "&prix=" + $("#prix_p").val()
+                +"&categorie=" + $("#categorie_p").val() + "&distributeur=" + $("#distributeur_p").val()
+                +"&editeur=" + $("#editeur_p").val() + "&developpeur=" + $("#developpeur_p").val()
+                +"&date_sortie=" + $("#date").val() + "&categorie_age=" + $("#categorieage_p").val()
+                +"&image=" + $("#image_p").val() + "&description=" + $("#description_p").val()
+                +"&quantite=" + $("#quantite_p").val(),
+                
+                success: function (msg) {  
+                
+                 
+                    
+                    if (msg == 1) {  
+                        effacer("#formCreationP");
+                        $('span#erreurCreation').hide();
+                        $("span#erreurCreation").html ("<center> Le produit a bien ete cree.</center>").fadeIn("slow");
+                        
+                    } 
+                    else if (msg == -1){
+                        $('span#erreurCreation').hide();
+                        $("span#erreurCreation").html ("<center> Produit deja existant dans cette categorie ! </center>").fadeIn("slow");
+                        
+                    }
+                    else
+                    {
+                        $('span#erreurCreation').hide();
+                        $("span#erreurCreation").html ("<center> Une erreur est survenue, le traitement ne peut etre effectue </center>").fadeIn("slow");
+                         
+                    }
+                }  
+            });  
+            return false;  
+            
+        }
+
+    }),
+    jQuery("#formRechercheP").validate({
+        rules: {
+            "nom_pr":{
+                "required": true,
+                "minlength": 3,
+                "maxlength": 40
+            },
+            "categorie_pr":{
+                "required": true
+            }
+        },
+        submitHandler: function(){
+            $.ajax({  
+                type: "POST",  
+                url: "modifierP",  
+                data: "nom=" + $("#nom_pr").val() +"&categorie=" + $("#categorie_pr").val(),
+                
+                success: function (msg) {  
+                
+                 
+                    
+                    if (msg == 1) {  
+                        $('span#erreurRecherche').empty();
+                        $('span#erreurModification').load("admin/modifierProduit.jsp #erreurModification");
+                        $('div#menuModifP').load("admin/modifierProduit.jsp #formModificationP");
+                        $('div#menuModifP').show();
+                        
+                        $("#ValiderModifierBoutonP").live('click',function(){
+                            jQuery("#formModificationP").validate({
+                                rules: {
+                                    "nom_pm":{
+                                        "required": true,
+                                        "minlength": 3,
+                                        "maxlength": 40
+                                    },
+                                    "prix_pm": {
+                                        "required" : true,
+                                        "prix": true,
+                                        "maxlength": 6,
+                                        "minlength": 1
+                                    },
+                                    "categorie_pm":{
+                                    },
+                                    "distributeur_pm":{
+                                        "required": true
+                                    },
+                                    "editeur_pm":{
+                                        "required": true,
+                                        "minlength": 4,
+                                        "maxlength": 20
+                                    },
+                                    "developpeur_pm":{
+                                        "required": true,
+                                        "minlength": 4,
+                                        "maxlength": 20
+                                    },
+                                    "date_pm":{
+                                        "required": true,
+                                        "minlength": 1
+                                    },
+                                    "image_pm":{
+                                        "required": true,
+                                        "url": true,
+                                        "minlength": 5,
+                                        "maxlength": 300
+                                    },
+                                    "description_pm":{
+                                        "required": true,
+                                        "minlength": 30,
+                                        "maxlength": 700
+                                    },
+                                    "quantite_pm":{
+                                        "required": true,
+                                        "number": true,
+                                        "range" : [0, 9999],
+                                        "maxlength": 5
+                                    }
+
+            
+                                },
+                                submitHandler: function(){
+                                    $.ajax({  
+                                        type: "POST",  
+                                        url: "CreerEditerProduit",  
+                                        data: "but=modifierP&nom=" + $("#nom_pm").val() + "&prix=" + $("#prix_pm").val()
+                                        +"&categorie=" + $("#categorie_pm").val() + "&distributeur=" + $("#distributeur_pm").val()
+                                        +"&editeur=" + $("#editeur_pm").val() + "&developpeur=" + $("#developpeur_pm").val()
+                                        +"&date_sortie=" + $("#date_pm").val() + "&categorie_age=" + $("#categorieage_pm").val()
+                                        +"&image=" + $("#image_pm").val() + "&description=" + $("#description_pm").val()
+                                        +"&quantite=" + $("#quantite_pm").val(),
+                
+                                        success: function (msg) {  
+                                            
+                                            if (msg == 1) {  
+                                               
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Le produit a bien ete modifie.</center><br />").fadeIn("slow");
+                        
+                                            } 
+                                            else if (msg == -1){
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Ce produit existe deja dans cette categorie ! </center>").fadeIn("slow");
+                        
+                                            }
+                                            else if (msg == -2){
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center>Aucune modification effectuee ! </center>").fadeIn("slow");
+                        
+                                            }
+                                            else
+                                            {
+                                                $('span#erreurModification').hide();
+                                                $("span#erreurModification").html ("<center> Une erreur est survenue, le traitement ne peut etre effectue </center>").fadeIn("slow");
+                         
+                                            }
+                                        }  
+                                    });  
+                                    return false;  
+            
+                                }
+
+                            })
+                        });
+                        
+                    } 
+                    else if (msg == -1){
+                        $('span#erreurRecherche').hide();
+                        $("span#erreurRecherche").html ("<center> Le produit recherche n'existe pas ! </center>").fadeIn("slow");
+                        $('span#erreurModification').empty();
+                        $('div#menuModifP').empty();
+                    }
+                    else
+                    {
+                        $('span#erreurModification').empty();
+                        $('div#menuModifP').empty();
+                        $('span#erreurRecherche').hide();
+                        $("span#erreurRecherche").html ("<center> Une erreur est survenue, le traitement ne peut etre effectué </center>").fadeIn("slow");
+                         
+                    }
+                }  
+            });  
+            return false;  
+            
+        }
+
+    }),
+    
+    jQuery("#formSupprimmerP").validate({
+        rules: {
+            "nom_ps": {
+                "required": true,
+                "maxlength": 20,
+                "minlength": 3
+            },
+            "categorie_ps": {
+                "required": true
+            }
+        },
+        submitHandler: function(){
+            $.ajax({  
+                type: "POST",  
+                url: "CreerEditerProduit",  
+                data: "but=supprimerP&nom=" + $("#nom_ps").val() + "&categorie=" + $("#categorie_ps").val(),
+                success: function (msg) {  
+                 
+                    // Si l'admin existe, on execute le if 
+                    if (msg == 1) {
+                        
+                        
+                        $('span#erreurSuppression').hide();
+                        $("span#erreurSuppression").html ("<center> Le produit a ete supprime ! </center>").fadeIn("slow");
+                        
+                        
+                    } 
+                    else if (msg == -1){
+                        $('span#erreurSuppression').hide();
+                        $("span#erreurSuppression").html ("<center> Le produit a supprimer n'existe pas dans cette categorie ! </center>").fadeIn("slow");
+                        
+                    }
+                    
+                    else
+                    {
+                        $('span#erreurSuppression').hide();
+                        $("span#erreurSuppression").html ("<center> Une erreur est survenue, le traitement ne peut être effectue </center>").fadeIn("slow");
+                         
+                    }
+                }  
+            });  
+            return false;  
+            
+        }
+
+    })
+    
+    jQuery("#formSupprimmerCo").validate({
+        rules: {
+            "numero_cs": {
+                "required": true,
+                "digits": true,
+                "maxlength": 10,
+                "minlength": 5
+            }
+        },
+        submitHandler: function(){
+            $.ajax({  
+                type: "POST",  
+                url: "CreerEditerCommande",  
+                data: "but=supprimerCo&num_confirm=" + $("#numero_cs").val(),
+                success: function (msg) {  
+                 
+                    
+                    if (msg == 1) {
+                        
+                        
+                        $('span#erreurSuppression').hide();
+                        $("span#erreurSuppression").html ("<center> La commande a ete supprime ! </center>").fadeIn("slow");
+                        
+                        
+                    } 
+                    else if (msg == -1){
+                        $('span#erreurSuppression').hide();
+                        $("span#erreurSuppression").html ("<center> La commande n'existe pas! </center>").fadeIn("slow");
+                        
+                    }
+                    
+                    else
+                    {
+                        $('span#erreurSuppression').hide();
+                        $("span#erreurSuppression").html ("<center> Une erreur est survenue, le traitement ne peut être effectue </center>").fadeIn("slow");
+                         
+                    }
+                }  
+            });  
+            return false;  
+            
+        }
+
     })
  
 });
+
 
 // Ouvre une fenetre pour la connexion admin
 // On vérifie que le formulaire est bien remplie

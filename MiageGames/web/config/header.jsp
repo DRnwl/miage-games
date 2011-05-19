@@ -33,7 +33,7 @@
         <div id="main-nav">
             <div class="bg-right">
 
-                <h3><li><a href="<c:url value='panier'/>">Votre panier</a></h3> 
+                <h3><li><a href="<c:url value='panier'/>">Votre panier</a></h3>
 
 
             </div>

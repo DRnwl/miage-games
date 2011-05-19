@@ -23,7 +23,7 @@
         <!-- Script qui permet le changement de jeu dans le cadre principal -->
         <script src="js/fns.js" type="text/javascript"></script>
         <script src="js/validerConnexion.js" type="text/javascript"></script>
-
+<script src="js/tableSorter.js" type="text/javascript"></script>
     </head>
     <body>
         <%@include file="/config/header.jsp" %>

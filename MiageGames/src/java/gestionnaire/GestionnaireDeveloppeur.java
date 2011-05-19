@@ -29,4 +29,12 @@ public class GestionnaireDeveloppeur extends GestionnaireCommun<Developpeur> {
         super(Developpeur.class);
     }
     
+    public Developpeur findByNomDeveloppeur(String nom){
+        try{
+            return (Developpeur)em.createNamedQuery("Developpeur.findByNomDeveloppeur").setParameter("nomDeveloppeur", nom).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
 }
