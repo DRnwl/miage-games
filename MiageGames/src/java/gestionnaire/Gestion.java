@@ -415,12 +415,9 @@ public class Gestion {
 
         Commande commande = new Commande();
         
-        File fichier = new File ("/Users/Pierro/NetBeansProjects/trunk/MiageGames/clients.txt").getAbsoluteFile();
-        
-        System.out.println("chemin absolu: "+fichier.getAbsolutePath());
+       
 
-
-        Scanner scanner = new Scanner(fichier);
+        Scanner scanner = new Scanner(new File ("/Users/Pierro/NetBeansProjects/trunk/MiageGames/clients.txt"));
 
         while (scanner.hasNext()) {
 

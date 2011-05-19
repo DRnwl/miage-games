@@ -33,20 +33,8 @@
         <url-pattern>/DeconnexionServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletPrincipal</servlet-name>
-        <url-pattern>/categorie</url-pattern>
-        <url-pattern>/ServletPrincipal</url-pattern>
-        <url-pattern>/creerClient</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CreerEditerCompteServlet</servlet-name>
         <url-pattern>/CreerEditerCompteServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletPrincipal</servlet-name>
-        <url-pattern>/categorie</url-pattern>
-        <url-pattern>/ServletPrincipal</url-pattern>
-        <url-pattern>/information</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletClient</servlet-name>
@@ -64,6 +52,17 @@
         <url-pattern>/voirAdmin</url-pattern>
         <url-pattern>/paginationAdmin</url-pattern>
         <url-pattern>/voirClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPrincipal</servlet-name>
+        <url-pattern>/categorie</url-pattern>
+        <url-pattern>/paiement</url-pattern>
+        <url-pattern>/ServletPrincipal</url-pattern>
+        <url-pattern>/addToCart</url-pattern>
+        <url-pattern>/creerClient</url-pattern>
+        <url-pattern>/updateCart</url-pattern>
+        <url-pattern>/information</url-pattern>
+        <url-pattern>/panier</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

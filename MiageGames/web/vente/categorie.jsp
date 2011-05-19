@@ -12,7 +12,7 @@
         <title>Jeux vidéo ${param.cat} sur Miage Games</title>
         <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-        
+
         <!--[if IE 6]>
 			<link rel="stylesheet" href="css/ie6-style.css" type="text/css" media="all" />
 		<![endif]-->
@@ -63,37 +63,48 @@
                                         <div class="flottante">
                                             <a href="<c:url value='information?nomProduit=${produit.nom}'/>"> <img src="${produit.image}" alt="" /></a>
                                         </div>
-                                        
-                                      
+
+
 
                                         <div class ="flottante" >
                                             <h4><a href="<c:url value='information?nomProduit=${produit.nom}'/>">${produit.nom}</a></h4> 
                                             <br>
-                                            
+
                                             <br>
 
                                             <p class="grey">
 
                                                 Editeur :${produit.editeur.nomEditeur}
                                                 <br>
-                                               
 
-                                               
+
+
                                             </p>
-                                            
-                                            
+
+
 
                                         </div>
-                                                
-                                                
+
+
 
                                         <div class ="flottante">  
                                             <strong class="price">Prix : ${produit.prix}</strong> €
-                                            <a title="Acheter" href="#">
-                                                <img alt="Acheter" src="http://www.micromania.fr/v3b/micromania/images/button-acheter-mini.gif"></img>
-                                            </a>
+
+
+
+                                            <td>
+                                                <form action="<c:url value='addToCart'/>" method="post">
+                                                    <input type="hidden"
+                                                           name="nomProduitCommande"
+                                                           value="${produit.nom}">
+                                                    <input type="submit"
+                                                           name="submit"
+                                                           value=ajouterAuPanier>
+                                                </form>
+                                            </td>
 
                                             <br>
+
                                         </div>
 
 

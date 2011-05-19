@@ -48,7 +48,7 @@ public class ElementPanier {
 
     public double getTotal() {
         double total = 0;
-        total = (this.getQuantiteCommande() * produit.getPrix().doubleValue());
+        total = (this.getQuantiteCommande() * produit.getPrix());
         return total;
     }
     

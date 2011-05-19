@@ -137,7 +137,7 @@
 
                         <div class ="flottante">  
                             <strong class="price">Prix : ${produitRecherche.prix}</strong> €
-                            <a title="Acheter" href="#">
+                            <a title="Acheter" href="<c:url value='panier?produitPanier=${produitRecherche.nom}'/>">
                                 <img alt="Acheter" src="http://www.micromania.fr/v3b/micromania/images/button-acheter-mini.gif"></img>
                             </a>
 
