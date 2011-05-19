@@ -93,13 +93,13 @@
 
 
                                             <td>
-                                                <form action="<c:url value='addToCart'/>" method="post">
+                                                <form class="formulaire" action="<c:url value='addToCart'/>" method="post">
                                                     <input type="hidden"
                                                            name="nomProduitCommande"
                                                            value="${produit.nom}">
-                                                    <input type="submit"
+                                                    <input class='button' type="submit"
                                                            name="submit"
-                                                           value=ajouterAuPanier>
+                                                           value=Achat>
                                                 </form>
                                             </td>
 
