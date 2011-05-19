@@ -7,13 +7,18 @@ package controleur;
 import gestionnaire.Gestion;
 import gestionnaire.GestionnaireCategorie;
 import gestionnaire.GestionnaireCategorieAge;
+import gestionnaire.GestionnaireClient;
 import gestionnaire.GestionnaireProduit;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -22,7 +27,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Categorie;
+import models.Client;
+import models.Commande;
+import models.Commande_Client;
 import models.Produit;
+import panier.ElementPanier;
+import panier.Panier;
 
 /**
  *
@@ -35,7 +45,10 @@ public class ServletPrincipal extends HttpServlet {
     @EJB
     private GestionnaireCategorie gestionnaireCategorie;
     @EJB
+    private GestionnaireClient gestionnaireClient;
+    @EJB
     private Gestion gestion;
+    
 
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
@@ -75,6 +88,8 @@ public class ServletPrincipal extends HttpServlet {
         HttpSession session = request.getSession();
         Categorie categorie = null;
         Collection<Produit> categoryProducts;
+
+
 
 
         if (session.getAttribute("groupeUtilisateur") != null) {
@@ -125,10 +140,77 @@ public class ServletPrincipal extends HttpServlet {
 
                 getServletContext().setAttribute("produitRecherche", gestionnaireProduit.findByNom(nomProduit));
 
-                
-                
+
+
 
                 RequestDispatcher dp = request.getRequestDispatcher("/vente/information.jsp?nomProduit=" + nomProduit);
+                dp.forward(request, response);
+
+
+            } else if (userPath.equals("/panier")) {
+
+
+                String clear = request.getParameter("clear");
+
+                if ((clear != null) && clear.equals("true")) {
+
+                    Panier panier = (Panier) session.getAttribute("panier");
+
+                    panier.effacerPanier();
+                }
+
+
+
+
+                RequestDispatcher dp = request.getRequestDispatcher("/vente/panier.jsp");
+                dp.forward(request, response);
+
+
+            } else if (userPath.equals("/paiement")) {
+
+
+                if (session.getAttribute("groupeUtilisateur").equals("client")) {
+
+                    String login = (String) session.getAttribute("login");
+
+                    Client client = gestionnaireClient.findByLogin(login);
+                    System.out.println("login "+login);
+                    Commande_Client commandeClient = new Commande_Client();
+                    commandeClient.setClient(client);
+
+                    Panier panier = (Panier) session.getAttribute("panier");
+                    commandeClient.setMontant(panier.getTotal());
+                    System.out.println("montant total:  " +panier.getTotal());
+                    
+                    Random random = new Random();
+                    int i = random.nextInt(999);
+                    commandeClient.setNumero_confirmation(i);
+
+                    List<ElementPanier> listeElementPanier = panier.getListeElementsCommande();
+
+                    for (ElementPanier scItem : listeElementPanier) {
+
+                        Commande commande = new Commande();
+                        commande.setCommandeClient(commandeClient);
+
+                        Produit produit = (Produit) scItem.getProduit();
+                        commande.setProduit(produit);
+                        System.out.println("nom produit: "+produit.getNom());
+
+                        commande.setQuantite(scItem.getQuantiteCommande());
+                        
+                       
+                        
+
+
+
+
+                    }
+
+                }
+
+
+                RequestDispatcher dp = request.getRequestDispatcher("/vente/paiement.jsp");
                 dp.forward(request, response);
 
 
@@ -172,7 +254,66 @@ public class ServletPrincipal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String userPath = request.getServletPath();
+        HttpSession session = request.getSession();
+        Panier panier = (Panier) session.getAttribute("panier");
+        //Validator validator = new Validator();
+
+
+        // if addToCart action is called
+        if (userPath.equals("/addToCart")) {
+
+            // if user is adding item to cart for first time
+            // create cart object and attach it to user session
+            if (panier == null) {
+
+                panier = new Panier();
+                session.setAttribute("panier", panier);
+            }
+
+            // get user input from request
+            String nomProduitCommande = request.getParameter("nomProduitCommande");
+
+            if (!nomProduitCommande.isEmpty()) {
+
+                Produit produit = gestionnaireProduit.findByNom(nomProduitCommande);
+                panier.ajouterProduit(produit);
+                session.setAttribute("liste", panier.getListeElementsCommande());
+            }
+
+            RequestDispatcher dp = request.getRequestDispatcher("home.jsp");
+            dp.forward(request, response);
+
+        } else if (userPath.equals("/updateCart")) {
+
+            // get input from request
+            String nomProduitCommande = request.getParameter("nomProduitCommande");
+            String quantite = request.getParameter("quantite");
+
+
+
+            Produit produit = gestionnaireProduit.findByNom(nomProduitCommande);
+            panier.miseAjour(produit, quantite);
+
+
+            //userPath = "/vente/panier.jsp";
+
+            RequestDispatcher dp = request.getRequestDispatcher("/vente/panier.jsp");
+            dp.forward(request, response);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 
     /** 

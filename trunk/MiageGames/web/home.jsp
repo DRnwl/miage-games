@@ -21,7 +21,7 @@
         <title>Miage Games - Page Principal</title>
         <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-        
+
         <!--[if IE 6]>
 			<link rel="stylesheet" href="css/ie6-style.css" type="text/css" media="all" />
 		<![endif]-->
@@ -101,12 +101,22 @@
 
                                         <div class ="flottante">  
                                             <strong class="price">Prix : ${produit.prix}</strong> €
-                                            <a title="Acheter" href="#">
-                                                <img alt="Acheter" src="http://www.micromania.fr/v3b/micromania/images/button-acheter-mini.gif"></img>
-                                            </a>
+                                           
+
+
+                                            <td>
+                                                <form action="<c:url value='addToCart'/>" method="post">
+                                                    <input type="hidden"
+                                                           name="nomProduitCommande"
+                                                           value="${produit.nom}">
+                                                    <input type="submit"
+                                                           name="submit"
+                                                           value=ajouterAuPanier>
+                                                </form>
+                                            </td>
 
                                             <br>
-                                            
+
                                         </div>
 
 
