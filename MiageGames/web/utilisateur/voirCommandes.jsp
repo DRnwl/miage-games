@@ -61,7 +61,6 @@
 
                 </div>
             </div>
-${typeUtilisateur.collectionCommandeClient}
         </div>
         <!-- / Content -->
         <!--  -->

@@ -6,6 +6,7 @@ package creation;
 
 import gestionnaire.GestionnaireAdministrateur;
 import gestionnaire.GestionnaireClient;
+import gestionnaire.GestionnaireCommandeClient;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -17,12 +18,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Administrateur;
 import models.Client;
+import models.Commande_Client;
 
 /**
  *
  * @author Sangre
  */
 public class CreerEditerCompte extends HttpServlet {
+    @EJB
+    private GestionnaireCommandeClient gestionnaireCommandeClient;
 
     @EJB
     private GestionnaireAdministrateur gestionnaireAdministrateur;
@@ -284,7 +288,13 @@ public class CreerEditerCompte extends HttpServlet {
 
                 Client cl = gestionnaireClient.findByLogin(login);
                 if (cl != null) {
+                    for(int i = 0; i<cl.getCollectionCommandeClient().size();i++)
+                    {
+                        Commande_Client liste = ((List<Commande_Client>)cl.getCollectionCommandeClient()).get(i);
+                        gestionnaireCommandeClient.remove(liste);
+                    }
                     gestionnaireClient.remove(cl);
+                    
                     out.print("1");
                 } else {
                     out.print("-1");

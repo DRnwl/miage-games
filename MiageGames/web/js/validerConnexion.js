@@ -736,7 +736,7 @@ jQuery(document).ready(function() {
                     if (msg == 1) {  
                         $('form#formCreationC').remove();
                         $('span#erreurCreation').hide();
-                        $("span#erreurCreation").html ("<center> Le compte a bien ete cree.</center><br /><center> Vous pouvez utiliser le menu Connexion pour pouvoir y accèder ou retourner à l'<a href='home.jsp'>accueil </center>").fadeIn("slow");
+                        $("span#erreurCreation").html ("<center> Le compte a bien ete cree.</center><br /><center> Vous pouvez utiliser le menu Connexion pour pouvoir y accèder ou retourner à l'<a href='ServletPrincipal'>accueil </center>").fadeIn("slow");
                         
                     } 
                     else if (msg == -1){

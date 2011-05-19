@@ -66,19 +66,13 @@
                             <div class="cl">&nbsp;</div>
                         </div>
 
-                        <br>
-                        <br>
-                        <c:choose>
-                            <c:when test="${panier.nombreElements > 1}">
-                                <p>votre panier contient ${panier.nombreElements} elements!</p>
-                            </c:when>
-                            <c:when test="${panier.nombreElements == 1}">
-                                <p>votre panier contient ${panier.nombreElements} element!</p>
-                            </c:when>
-                            <c:otherwise>
-                                <p>votre panier est vide</p>
-                            </c:otherwise>
-                        </c:choose>
+                        
+
+                        <c:if test="${panier.nombreElements == 0}">
+                            <h2>Votre panier est vide</h2>
+                        </c:if>
+
+
 
 
 
@@ -88,11 +82,11 @@
 
                     <c:if test="${!empty panier && panier.nombreElements != 0}">
 
-                        <h4 id="subtotal">subtotal : ${panier.subtotal}
+                        <h2 id="subtotal" style=";margin-left: 8px">Prix sans tva : ${panier.subtotal}&euro;
 
-                        </h4>
+                        </h2>
 
-                        <table border="10">
+                        <table border="10" style="width:96%;margin-left: 10px">
                             <!-- La ligne de titre du tableau des comptes -->
                             <tr>
                                 <td>Nom du produit</td>
@@ -162,9 +156,9 @@
 
 
 
-                     <% if (session.getAttribute("groupeUtilisateur").equals("visiteur")) {%>
+                <% if (session.getAttribute("groupeUtilisateur").equals("visiteur")) {%>
 
-                     <h2> veuillez vous connecter!! </h2>
+                <h2> veuillez vous connecter!! </h2>
 
 
                 <% } else if (session.getAttribute("groupeUtilisateur").equals("client")) {%>
@@ -185,41 +179,38 @@
                 <h2> pas droit!! </h2>
 
 
-            <%}%>
+                <%}%>
 
 
-            <div class ="flottante">  
 
-                <h3><li><a  id ="sign"class= "button button-center" href="<c:url value='ServletPrincipal'/>">Retour aux achats</a></h3>
+
+                <h3><a style="float:right;margin-top: 35px" href="<c:url value='ServletPrincipal'/>">Retour aux achats</a></h3>
 
                 <br>
+
+
+                <c:if test="${!empty panier && panier.nombreElements != 0}">
+
+                    <c:url var="url" value="panier">
+                        <c:param name="clear" value="true"/>
+                    </c:url>
+
+                        <h3> <a  style="float:right" href="${url}">Vider le panier</a></h3>
+
+                </c:if>
+
             </div>
-
-            <c:if test="${!empty panier && panier.nombreElements != 0}">
-
-                <c:url var="url" value="panier">
-                    <c:param name="clear" value="true"/>
-                </c:url>
-
-                <div class="formulaire">
-
-                    <a  href="${url}" class="rounded bubble hMargin">clearCart</a>
-
-                </div>
-            </c:if>
-
         </div>
+
+
+
     </div>
 
 
 
-</div>
 
 
-
-
-
-<%@include file="/config/footer.jsp" %>
+    <%@include file="/config/footer.jsp" %>
 
 </body>
 </html>
