@@ -123,7 +123,7 @@
                                         </div></td>
 
                                     <td>
-                                        <form action="<c:url value='updateCart'/>" method="post">
+                                        <form class="formulaire" action="<c:url value='updateCart'/>" method="post">
                                             <input type="hidden"
                                                    name="nomProduitCommande"
                                                    value="${produit.nom}">
@@ -131,11 +131,12 @@
                                                    maxlength="2"
                                                    size="2"
                                                    value="${cartItem.quantiteCommande}"
+                                                   
                                                    name="quantite"
                                                    style="margin:5px">
-                                            <input type="submit"
+                                            <input class="button" type="submit"
                                                    name="submit"
-                                                   value=miseAjour>
+                                                   value=MAJ>
                                         </form>
                                     </td>
 

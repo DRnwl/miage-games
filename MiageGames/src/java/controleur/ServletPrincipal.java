@@ -142,9 +142,9 @@ public class ServletPrincipal extends HttpServlet {
                             + "<br><h4 style='font-size: 11px'> Sortie : <br>" + liste.get(i).getSortie() + " </h4><br><h5> Categorie:" + liste.get(i).getCategorie().getNom() + "</h5><br><h6 style='font-size: 12px'>"
                             + "  Classification: <br>" + liste.get(i).getCategorieAge().getNom() + "</h6>"
                             + "</div><div class ='flottante'><strong class='price'>Prix : " + liste.get(i).getPrix() + "</strong> &euro;"
-                            + "<td><form action='addToCart' method='post'>"
+                            + "<td><form class='formulaire' action='addToCart' method='post'>"
                             + " <input type='hidden' name='nomProduitCommande' value='" + liste.get(i).getNom() + "'>"
-                            + " <input type='submit' name='submit' value=ajouterAuPanier /> </form>  </td><br></div></div><br class='clear'></div>";
+                            + " <input class='button' type='submit' name='submit' value=Achat /> </form>  </td><br></div></div><br class='clear'></div>";
 
                 }
 
@@ -297,6 +297,7 @@ public class ServletPrincipal extends HttpServlet {
                 gestionnaireClient.edit(client);
                 client = gestionnaireClient.findByLogin(login);
                 session.setAttribute("typeUtilisateur", client);
+                session.setAttribute("montantTotal", panier.getTotal());
                 session.setAttribute("panier", null);
 
             }
