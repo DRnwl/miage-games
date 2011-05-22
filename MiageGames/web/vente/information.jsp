@@ -30,7 +30,7 @@
         <script src="js/validerConnexion.js" type="text/javascript"></script>
         <script src="js/paginator.js"></script>
 
-<script src="js/tableSorter.js" type="text/javascript"></script>
+        <script src="js/tableSorter.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/tabber.js"></script>
         <link rel="stylesheet" href="css/example.css" TYPE="text/css" MEDIA="screen">
         <link rel="stylesheet" href="css/example-print.css" TYPE="text/css" MEDIA="print">
@@ -137,9 +137,17 @@
 
                         <div class ="flottante">  
                             <strong class="price">Prix : ${produitRecherche.prix}</strong> €
-                            <a title="Acheter" href="<c:url value='panier?produitPanier=${produitRecherche.nom}'/>">
-                                <img alt="Acheter" src="http://www.micromania.fr/v3b/micromania/images/button-acheter-mini.gif"></img>
-                            </a>
+
+                            <td>
+                                <form class="formulaire" action="<c:url value='addToCart'/>" method="post">
+                                    <input type="hidden"
+                                           name="nomProduitCommande"
+                                           value="${produitRecherche.nom}">
+                                    <input class='button' type="submit"
+                                           name="submit"
+                                           value=Achat>
+                                </form>
+                            </td>
 
                             <br>
                         </div>
