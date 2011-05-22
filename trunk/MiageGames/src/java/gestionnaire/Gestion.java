@@ -189,9 +189,9 @@ public class Gestion {
 
 
         /*** Categorie DS **/
-        Produit produitDS1 = new Produit("DRAGON", 34.5, DS, "http://www.micromania.fr/imagesprod/45083/45083_jaqr_dragonquestVI_129x171.jpg", categorie3, "12 mai 2011", dev1, editeur2,7);
-        Produit produitDS2 = new Produit("RIO", 39.5, DS, "http://www.micromania.fr/imagesprod/44824/44824_jaqr_riods_129x171.jpg", categorie3, "12 mai 2011", dev2, editeur2,7);
-        Produit produitDS3 = new Produit("Meutre a Venise", 9.5, DS, "http://www.micromania.fr/imagesprod/45089/45089_jaqr_meurtresavenise_129x171.jpg", categorie16, "9 mai 2011", dev1, editeur2,7);
+        Produit produitDS1 = new Produit("DRAGON", 34.5, DS, "http://www.micromania.fr/imagesprod/45083/45083_jaqr_dragonquestVI_129x171.jpg", categorie3, "12 mai 2011", dev1, editeur2,7,"http://www.youtube.com/v/oOvNGQoM_3g?version=3");
+        Produit produitDS2 = new Produit("RIO", 39.5, DS, "http://www.micromania.fr/imagesprod/44824/44824_jaqr_riods_129x171.jpg", categorie3, "12 mai 2011", dev2, editeur2,7,"http://www.youtube.com/v/CSPXiUbpYGM?version=3");
+        Produit produitDS3 = new Produit("Meutre a Venise", 9.5, DS, "http://www.micromania.fr/imagesprod/45089/45089_jaqr_meurtresavenise_129x171.jpg", categorie16, "9 mai 2011", dev1, editeur2,7,"http://www.youtube.com/v/m47ovuCIUIU?version=3");
         Produit produitDS4 = new Produit("LEGO  ", 31.5, DS, "http://www.micromania.fr/imagesprod/44999/44999_jaqr_legopiratesDS_129x171.jpg", categorie3, "15 mai 2011", dev3, editeur2,7);
         Produit produitDS5 = new Produit("GO DIEGO", 29.5, DS, "http://www.micromania.fr/imagesprod/43794/43794_jaqr_godiegomissionconstructionDS_129x171.jpg", categorie12, "19 mai 2011", dev5, editeur2,7);
         Produit produitDS6 = new Produit("THOR  ", 19.5, DS, "http://www.micromania.fr/imagesprod/44531/44531_jaqr_thorDS_129x171.jpg", categorie3, "12 mai 2011", dev1, editeur2,7);
@@ -219,11 +219,11 @@ public class Gestion {
 
 
         /*****WII **/
-        Produit produitWi1 = new Produit("LEGO PIRATES ", 50.99, WII, "http://www.micromania.fr/imagesprod/45007/45007_jaqr_legopirateswii_129x171.jpg", categorie3, "12 mai 2011", dev1, editeur3,6);
+        Produit produitWi1 = new Produit("LEGO PIRATES ", 50.99, WII, "http://www.micromania.fr/imagesprod/45007/45007_jaqr_legopirateswii_129x171.jpg", categorie3, "12 mai 2011", dev1, editeur3,6,"http://www.youtube.com/v/33ra9TK89kY?version=3");
 
-        Produit produitWi2 = new Produit("KARAOKE REVOLUTION  ", 87.99, WII, "http://www.micromania.fr/imagesprod/45050/45050_jaqr_jaquette1_129x171.jpg", categorie7, "5 mai 2011", dev2, editeur3,6);
+        Produit produitWi2 = new Produit("KARAOKE REVOLUTION  ", 87.99, WII, "http://www.micromania.fr/imagesprod/45050/45050_jaqr_jaquette1_129x171.jpg", categorie7, "5 mai 2011", dev2, editeur3,6,"http://www.youtube.com/v/eMQ2YHz_GNQ?version=3");
 
-        Produit produitWi3 = new Produit("CABELAS DANGEROUS ", 34.99, WII, "http://www.micromania.fr/imagesprod/45107/45107_jaqr_CDH2011_Wii_SleeveMock_UKFR_129x171.jpg", categorie16, "22 mai 2011", dev1, editeur3,6);
+        Produit produitWi3 = new Produit("CABELAS DANGEROUS ", 34.99, WII, "http://www.micromania.fr/imagesprod/45107/45107_jaqr_CDH2011_Wii_SleeveMock_UKFR_129x171.jpg", categorie16, "22 mai 2011", dev1, editeur3,6,"http://www.youtube.com/v/Poi8TOTRrA0?version=3");
 
         Produit produitWi4 = new Produit("GUILTY GEAR", 10.99, WII, "http://www.micromania.fr/imagesprod/45266/45266_jaqr_guiltygearWii_129x171.jpg", categorie7, "25 mai 2011", dev3, editeur2,6);
 
@@ -258,7 +258,7 @@ public class Gestion {
 
 
         /**** Categorie PSP ****/
-        Produit produitPSP1 = new Produit("PATAPON 2", 29.99, PSP, "http://www.micromania.fr/imagesprod/37457/37457_jaqr_Jaquette-micromania_129x171.jpg", categorie3, "1 mai 2011", dev1, editeur3,5);
+        Produit produitPSP1 = new Produit("PATAPON 2", 29.99, PSP, "http://www.micromania.fr/imagesprod/37457/37457_jaqr_Jaquette-micromania_129x171.jpg", categorie3, "1 mai 2011", dev1, editeur3,5,"http://www.youtube.com/v/hJfIy92nYo4?version=3");
         Produit produitPSP2 = new Produit("LEGO PIRATES DES CARAIBES 9", 19.99, PSP, "http://www.micromania.fr/imagesprod/45003/45003_jaqr_legopiratesPSP_129x171.jpg", categorie18, "2 mai 2011", dev3, editeur3,5);
         Produit produitPSP3 = new Produit("PRO EVOLUTION SOCCER 2011 star", 49.99, PSP, "http://www.micromania.fr/imagesprod/42631/42631_jaqr_PES2011PSP_129x171.jpg", categorie18, "3 mai 2011", dev3, editeur3,5);
         Produit produitPSP4 = new Produit("PATAPON 3", 59.99, PSP, "http://www.micromania.fr/imagesprod/42961/42961_jaqr_Patapon3PSP_129x171.jpg", categorie12, "12 mai 2011", dev4, editeur3,5);
@@ -372,122 +372,95 @@ public class Gestion {
 
 
 
-        /****** LES CLIENTS *******/
-        Double varMontant = 0.0;
-        String varDate_Achat = "";
-        int varNumero_confirmation = 0;
+         Client client1 = new Client("Camilla", "Rojas", "Chaim", "Shelley", "0610111213", "chamil@yahoo.fr", "rue Agathe", "06000", "Nice", "Assalit", "06200", "Nice");
+        Client client2 = new Client("Cedric", "Roj", "Chaiyze", "Shelldd", "0610111213", "chamil@yaho.fr", "rue Agate", "06000", "Nice", "Assalit", "06100", "Nice");
 
-        int varQuantite = 0;
+        Client client3 = new Client("Yosef", "Rojert", "Chaizeer", "Shelaze", "0610111213", "chamil@yaho.fr", "rue Agate", "06000", "Nice", "Assalit", "06400", "Nice");
 
+        Client client4 = new Client("Stephane", "Kader", "Chazert", "Sheyuie", "0610111213", "chamil@yaho.fr", "rue Agate", "06000", "Nice", "Assalit", "06500", "Nice");
+        Client client5 = new Client("Christiane", "Kabere", "Gabriel", "Sheyzere", "0610111213", "chamil@yaho.fr", "rue Agate", "06000", "Nice", "Assalit", "06600", "Nice");
 
-
-        /*** client **/
-        /**
-         * 
-         * String login, 
-         * String password, 
-         * String nom, 
-         * String prenom, 
-         * String telephone,
-         * String email, 
-         * String adrFact, 
-         * String adrFactZip, 
-         * String adrFactVille, 
-         * String adrLivraison, 
-         * String adrLivrZip, 
-         * String adrLivrVille
-         * 
-         **/
-        String varLogin = "";
-        String varPassword = "";
-        String varNom = "";
-        String varPrenom = "";
-
-        String varTelephone = "";
-        String varEmail = "";
-        String varAdrFact = "";
-        String varAdrFactZip = "";
-
-        String varAdrFactVille = "";
-        String varAdrLivraison = "";
-        String varAdrLivrZip = "";
-        String varAdrLivrVille = "";
-
-
-        Client clientk = new Client();
-
-        /********/
-        Commande_Client commandeClient1 = new Commande_Client();
-
-        Commande commande = new Commande();
         
-        Scanner scanner = new Scanner(new File ("/Users/Sangre.Sangre-PC/Documents/NetBeansProjects/M1 Miage/trunk/MiageGames/setup/clients.txt"));
+        Client client6 = new Client("Catherine", "Joseph", "Alphonse", "Gasayesss", "0610111213", "chamil@yahoo.fr", "rue Agathe", "06000", "Nice", "Assalit", "06700", "Nice");
+        Client client7 = new Client("Mathieu", "Rodriguez", "Charles", "Mohamed", "0610111213", "chamil@yaho.fr", "rue Agate", "06000", "Nice", "Assalit", "06800", "Nice");
 
-        while (scanner.hasNext()) {
+        Client client8 = new Client("Mohamedd", "Jean", "Josephe", "Zerty", "0610111213", "chamil@yaho.fr", "rue Agate", "06000", "Nice", "Assalit", "06100", "Nice");
 
+        Client client9 = new Client("Charles", "Rodolphe", "Chisles", "Poerre", "0610111213", "chamil@yaho.fr", "rue Agate", "06000", "Nice", "Assalit", "06100", "Nice");
+        Client client10 = new Client("Pierre", "Seryezz", "Wessss", "Zserydd", "0610111213", "chamil@yaho.fr", "rue Agate", "06000", "Nice", "Assalit", "06100", "Nice");
 
-            String ligne = scanner.nextLine();
+        
+        
+        
+        
 
-            Scanner scan2 = new Scanner(ligne);
-            scan2.useDelimiter("\\s*;\\s*");
+        gestionnaireClient.create(client1);
+        gestionnaireClient.create(client2);
+        gestionnaireClient.create(client3);
+        gestionnaireClient.create(client4);
+        gestionnaireClient.create(client5);
+        
+        gestionnaireClient.create(client6);
+        gestionnaireClient.create(client7);
+        gestionnaireClient.create(client8);
+        gestionnaireClient.create(client9);
+        gestionnaireClient.create(client10);
 
-            if (scan2.hasNext()) {
-
-                varLogin = scan2.next();
-                varPassword = scan2.next();
-                varNom = scan2.next();
-                varPrenom = scan2.next();
-
-
-                varTelephone = scan2.next();
-                varEmail = scan2.next();
-                varAdrFact = scan2.next();
-                varAdrFactZip = scan2.next();
-
-                varAdrFactVille = scan2.next();
-                varAdrLivraison = scan2.next();
-                varAdrLivrZip = scan2.next();
-                varAdrLivrVille = scan2.next();
-
-
-
-                String test = scan2.next();
-                varMontant = Double.valueOf(test);
-                varDate_Achat = scan2.next();
-                varNumero_confirmation = scan2.nextInt();
+        
+        
 
 
-                varQuantite = scan2.nextInt();
+        Commande_Client commande_Client1 = new Commande_Client(14.8, "01 mai 2011", 12336, client1);
+        Commande_Client commande_Client2 = new Commande_Client(24.8, "02 mai 2011", 123356, client2);
+        Commande_Client commande_Client3 = new Commande_Client(34.8, "03 mai 2011", 123553, client3);
+        Commande_Client commande_Client4 = new Commande_Client(44.8, "04 mai 2011", 122256, client4);
+        Commande_Client commande_Client5 = new Commande_Client(54.8, "05 mai 2011", 12445556, client5);
+        
+        Commande_Client commande_Client6 = new Commande_Client(4.8, "0§ mai 2011", 212336, client6);
+        Commande_Client commande_Client7 = new Commande_Client(9.8, "07 mai 2011", 3123356, client7);
+        Commande_Client commande_Client8 = new Commande_Client(34.8, "08 mai 2011", 4123553, client8);
+        Commande_Client commande_Client9 = new Commande_Client(44.8, "09 mai 2011", 5122256, client9);
+        Commande_Client commande_Client10 = new Commande_Client(444.8, "15 mai 2011", 445556, client10);
 
-
-
-            }
-
-
-
-
-            clientk = new Client(varLogin, varPassword, varNom, varPrenom, varTelephone, varEmail, varAdrFact, varAdrFactZip, varAdrFactVille, varAdrLivraison, varAdrLivrZip, varAdrLivrVille);
-            gestionnaireClient.create(clientk);
-
-            commandeClient1 = new Commande_Client(varMontant, varDate_Achat, varNumero_confirmation, clientk);
-            gestionnaireCommandeClient.create(commandeClient1);
-            gestionnaireCommandeClient.create(commandeClient1);
-
-            commande = new Commande(commandeClient1, produitPS1, varQuantite);
-            gestionnaireCommande.create(commande);gestionnaireCommande.create(commande);
+        gestionnaireCommandeClient.create(commande_Client1);
+        gestionnaireCommandeClient.create(commande_Client2);
+        gestionnaireCommandeClient.create(commande_Client3);
+        gestionnaireCommandeClient.create(commande_Client4);
+        gestionnaireCommandeClient.create(commande_Client5);
+        
+        gestionnaireCommandeClient.create(commande_Client6);
+        gestionnaireCommandeClient.create(commande_Client7);
+        gestionnaireCommandeClient.create(commande_Client8);
+        gestionnaireCommandeClient.create(commande_Client9);
+        gestionnaireCommandeClient.create(commande_Client10);
 
 
 
+        Commande commande1 = new Commande(commande_Client1, produitPS9, 1);
+        Commande commande2 = new Commande(commande_Client2, prod1, 3);
+        Commande commande3 = new Commande(commande_Client3, prod6, 4);
+        Commande commande4 = new Commande(commande_Client4, produitDS3, 7);
+        Commande commande5 = new Commande(commande_Client5, produitXBOX6, 6);
+        
+         Commande commande6 = new Commande(commande_Client6, produitPS3, 1);
+        Commande commande7= new Commande(commande_Client7, prod2, 3);
+        Commande commande8 = new Commande(commande_Client8, prod5, 4);
+        Commande commande9 = new Commande(commande_Client9, produitDS6, 7);
+        Commande commande10 = new Commande(commande_Client10, produitXBOX5, 6);
 
 
-            scan2.close();
-
-
-        }
-
-
-        scanner.close();
-
+        gestionnaireCommande.create(commande1);
+        gestionnaireCommande.create(commande2);
+        gestionnaireCommande.create(commande3);
+        gestionnaireCommande.create(commande4);
+        gestionnaireCommande.create(commande5);
+        
+        
+        gestionnaireCommande.create(commande6);
+        gestionnaireCommande.create(commande7);
+        gestionnaireCommande.create(commande8);
+        gestionnaireCommande.create(commande9);
+        gestionnaireCommande.create(commande10);
 
 
 
